@@ -2,15 +2,17 @@
 .DS_Store
 *.local
 *.log*
+.tanstack
 
 # Dist
 node_modules
-dist/
+dist
 
 # Profile
 .rspack-profile-*/
 
 # IDE
+.vscode
 .vscode/*
 !.vscode/extensions.json
 .idea
