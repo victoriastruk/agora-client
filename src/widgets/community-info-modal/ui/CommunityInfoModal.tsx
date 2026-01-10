@@ -1,13 +1,13 @@
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { X, Users, Calendar, ExternalLink } from "lucide-react";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "@tanstack/react-router";
-import { Button } from "../../../shared/ui";
-import { useCommunity } from "../../../entities/community";
-import { useIsAuthenticated } from "../../../entities/session";
-import { useCommunityActions } from "../../../features/community";
-import { format } from "date-fns";
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { X, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from '@tanstack/react-router';
+import { Button } from '../../../shared/ui';
+import { useCommunity } from '../../../entities/community';
+import { useIsAuthenticated } from '../../../entities/session';
+import { useCommunityActions } from '../../../features/community';
+import { CommunityStats } from '../../../entities/community/ui/community-stats';
 
 const fadeAnimation = {
   animate: { opacity: 1 },
@@ -21,13 +21,16 @@ interface CommunityInfoModalProps {
   trigger: React.ReactNode;
 }
 
-export const CommunityInfoModal = ({ communityId, trigger }: CommunityInfoModalProps) => {
+export const CommunityInfoModal = ({
+  communityId,
+  trigger,
+}: CommunityInfoModalProps) => {
   const [open, setOpen] = useState(false);
   const { data: community, isLoading } = useCommunity(communityId);
   const isAuthenticated = useIsAuthenticated();
   const { join, leave, isJoined, isPending, joinLabel } = useCommunityActions(
     communityId,
-    false 
+    false
   );
 
   if (!community && !isLoading) {
@@ -75,6 +78,13 @@ export const CommunityInfoModal = ({ communityId, trigger }: CommunityInfoModalP
                   </DialogPrimitive.Close>
 
                   <div className="p-6 pt-0">
+                    <DialogPrimitive.Title className="sr-only">
+                      Community Information
+                    </DialogPrimitive.Title>
+                    <DialogPrimitive.Description className="sr-only">
+                      View details and information about this community
+                    </DialogPrimitive.Description>
+
                     {isLoading ? (
                       <div className="space-y-4">
                         <div className="-mt-10 mb-4">
@@ -105,35 +115,29 @@ export const CommunityInfoModal = ({ communityId, trigger }: CommunityInfoModalP
                           )}
                         </div>
 
-                        <h2 className="text-xl font-bold mb-1">r/{community?.name}</h2>
+                        <h2 className="text-xl font-bold mb-1">
+                          r/{community?.name}
+                        </h2>
                         <p className="text-sm text-muted-foreground mb-4">
-                          {community?.description && community.description.trim() ? community.description : "No description available."}
+                          {community?.description &&
+                          community.description.trim()
+                            ? community.description
+                            : 'No description available.'}
                         </p>
 
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-                          <div className="flex items-center gap-1">
-                            <Users className="h-4 w-4" />
-                            <span>{community?.members.toLocaleString()} members</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            <span>
-                              Created {community?.createdAt ? format(new Date(community.createdAt), 'MMM d, yyyy') : 'Unknown'}
-                            </span>
-                          </div>
-                        </div>
+                        {community && <CommunityStats community={community} />}
                       </>
                     )}
 
                     {isAuthenticated && (
-                      <div className="flex gap-3 mb-4">
+                      <div className="flex gap-3 mb-4 mt-6">
                         <Button
-                          variant={isJoined ? "outline" : "default"}
+                          variant={isJoined ? 'outline' : 'default'}
                           className="flex-1"
                           onClick={isJoined ? leave : join}
                           disabled={isPending}
                         >
-                          {isPending ? "Loading..." : joinLabel}
+                          {isPending ? 'Loading...' : joinLabel}
                         </Button>
                         <Button
                           variant="outline"
@@ -148,7 +152,7 @@ export const CommunityInfoModal = ({ communityId, trigger }: CommunityInfoModalP
                     <Link
                       to="/r/$communityId"
                       params={{ communityId: community?.id || '' }}
-                      className="flex items-center justify-center gap-2 text-sm text-primary hover:underline"
+                      className="flex items-center justify-center gap-2 text-sm text-primary hover:underline mt-6"
                       onClick={() => setOpen(false)}
                     >
                       <ExternalLink className="h-4 w-4" />

@@ -1,30 +1,21 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Suspense } from "react";
-import { useCommunity } from "../entities/community";
-import { Feed } from "../widgets/feed";
-import { useIsAuthenticated } from "../entities/session";
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { useCommunity } from '../entities/community';
+import { Feed } from '../widgets/feed';
+import { useIsAuthenticated } from '../entities/session';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../shared/ui/card";
-import { Badge } from "../shared/ui/badge";
-import { Button, Spinner } from "../shared/ui";
-import { Users, Loader2 } from "lucide-react";
+} from '../shared/ui/card';
+import { Badge } from '../shared/ui/badge';
+import { Button } from '../shared/ui';
+import { Loader2 } from 'lucide-react';
+import { CommunityStats } from '../entities/community/ui/community-stats';
 
-export const Route = createFileRoute("/_main/r/$communityId")({
+export const Route = createFileRoute('/_main/r/$communityId')({
   component: CommunityPage,
-  loader: async ({ context, params }) => {
-    const { queryClient } = context;
-    const { communityId: communityName } = params;
-
-    // await prefetchQueries.communityByName(queryClient, communityName);
-
-    return { communityName };
-  },
-  staleTime: 5 * 60 * 1000,
 });
 
 function CommunityLoadingSkeleton() {
@@ -49,18 +40,14 @@ function CommunityLoadingSkeleton() {
 }
 
 function CommunityPage() {
-  return (
-    <Suspense fallback={<Spinner />}>
-      <CommunityPageContent />
-    </Suspense>
-  );
+  return <CommunityPageContent />;
 }
 
 function CommunityPageContent() {
   const { communityId } = Route.useParams();
   const navigate = useNavigate();
   const isAuthenticated = useIsAuthenticated();
-  const { community, isLoading } = useCommunity(communityId);
+  const { data: community, isLoading } = useCommunity(communityId);
 
   if (isLoading) {
     return <CommunityLoadingSkeleton />;
@@ -95,28 +82,20 @@ function CommunityPageContent() {
               <CardDescription className="text-base">
                 {community.description && community.description.trim()
                   ? community.description
-                  : "No description available."}
+                  : 'No description available.'}
               </CardDescription>
             </div>
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <Users className="h-4 w-4" />
-              <span>
-                {community.members.toLocaleString()}{" "}
-                {community.members === 1 ? "member" : "members"}
-              </span>
-            </div>
-          </div>
+          <CommunityStats community={community} />
           {isAuthenticated && community && (
             <div className="mt-4">
               <Button
                 onClick={() =>
                   navigate({
                     search: { communityId: community.id },
-                    to: "/submit",
+                    to: '/submit',
                   })
                 }
                 className="w-full"
