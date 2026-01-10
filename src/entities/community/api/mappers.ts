@@ -1,12 +1,17 @@
 import type { Community } from "../model/types";
+import type { SubredditResponse } from "./types";
 
-export const mapCommunity = (data: any): Community => ({
+export const mapCommunity = (data: SubredditResponse): Community => ({
   id: data.id,
   name: data.name,
-  displayName: data.displayName || data.name,
+  displayName: data.display_name || data.name,
   description: data.description,
-  iconUrl: data.iconUrl,
-  bannerUrl: data.bannerUrl,
-  members: data.members || 0,
-  createdAt: data.createdAt,
+  iconUrl: data.icon_url,
+  bannerUrl: undefined,
+  members: data.member_count,
+  postCount: data.post_count,
+  isJoined: false,
+  isPublic: data.is_public ?? true,
+  isNSFW: data.is_nsfw ?? false,
+  createdAt: data.created_at,
 });

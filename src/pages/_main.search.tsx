@@ -217,12 +217,12 @@ function SearchPageContent() {
                   <Link
                     key={community.id}
                     to="/r/$communityId"
-                    params={{ communityId: community.name }}
+                    params={{ communityId: community.id }}
                   >
                     <Card className="hover:bg-muted/50 transition-colors">
                       <CardContent className="p-4">
                         <div className="flex items-center gap-4">
-                          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold">
+                          <div className="h-12 w-12 rounded-full bg-linear-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold">
                             {community.iconUrl ? (
                               <img
                                 src={community.iconUrl}
@@ -291,7 +291,7 @@ function SearchPageContent() {
                     <Card className="hover:bg-muted/50 transition-colors">
                       <CardContent className="p-4">
                         <div className="flex items-center gap-4">
-                          <div className="h-12 w-12 rounded-full bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold">
+                          <div className="h-12 w-12 rounded-full bg-linear-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold">
                             {user.avatarUrl ? (
                               <img
                                 src={user.avatarUrl}

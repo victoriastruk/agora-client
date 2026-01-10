@@ -1,4 +1,9 @@
-import { Card, CardContent, CardHeader, CardTitle } from "../../../shared/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../../shared/ui/card";
 import { Badge } from "../../../shared/ui/badge";
 import { Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -14,7 +19,11 @@ const useMockPopularCommunitiesQuery = (limit: number) => {
 };
 
 export function PopularCommunities() {
-  const { data: communities, isLoading, error } = useMockPopularCommunitiesQuery(5);
+  const {
+    data: communities,
+    isLoading,
+    error,
+  } = useMockPopularCommunitiesQuery(5);
 
   if (isLoading) {
     return (
@@ -63,7 +72,7 @@ export function PopularCommunities() {
             <Link
               key={community.id}
               to="/r/$communityId"
-              params={{ communityId: community.name }}
+              params={{ communityId: community.id }}
               className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors"
             >
               <div className="h-8 w-8 bg-primary/10 rounded-full flex items-center justify-center">

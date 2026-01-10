@@ -1,9 +1,15 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Suspense } from "react";
-import { useCommunityByName } from "../entities/community";
+import { useCommunity } from "../entities/community";
 import { Feed } from "../widgets/feed";
 import { useIsAuthenticated } from "../entities/session";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../shared/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../shared/ui/card";
 import { Badge } from "../shared/ui/badge";
 import { Button, Spinner } from "../shared/ui";
 import { Users, Loader2 } from "lucide-react";
@@ -32,7 +38,9 @@ function CommunityLoadingSkeleton() {
         <CardContent>
           <div className="flex items-center gap-2">
             <Loader2 className="h-4 w-4 animate-spin" />
-            <span className="text-sm text-muted-foreground">Loading community...</span>
+            <span className="text-sm text-muted-foreground">
+              Loading community...
+            </span>
           </div>
         </CardContent>
       </Card>
@@ -49,10 +57,10 @@ function CommunityPage() {
 }
 
 function CommunityPageContent() {
-  const { communityId: communityName } = Route.useParams();
+  const { communityId } = Route.useParams();
   const navigate = useNavigate();
   const isAuthenticated = useIsAuthenticated();
-  const { community, isLoading } = useCommunityByName(communityName);
+  const { community, isLoading } = useCommunity(communityId);
 
   if (isLoading) {
     return <CommunityLoadingSkeleton />;
@@ -81,10 +89,14 @@ function CommunityPageContent() {
                   r/{community.name}
                 </Badge>
               </div>
-              <CardTitle className="text-2xl mb-2">{community.name}</CardTitle>
-              {community.description && (
-                <CardDescription className="text-base">{community.description}</CardDescription>
-              )}
+              <CardTitle className="text-2xl mb-2">
+                {community.displayName}
+              </CardTitle>
+              <CardDescription className="text-base">
+                {community.description && community.description.trim()
+                  ? community.description
+                  : "No description available."}
+              </CardDescription>
             </div>
           </div>
         </CardHeader>
