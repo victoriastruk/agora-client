@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { Plus, TrendingUp, Sparkles, ChevronRight, Trophy } from 'lucide-react';
 import { usePopularCommunities } from '@/entities/community';
 import type { Community } from '@/entities/community';
-import { useCommunityActions } from '@/features/community';
+import { useCommunityActions } from '@/features/join-leave-community';
 import { useIsAuthenticated } from '@/entities/session';
 import {
   Button,

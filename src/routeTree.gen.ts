@@ -18,6 +18,7 @@ import { Route as MainSavedRouteImport } from './pages/_main.saved'
 import { Route as MainNotificationsRouteImport } from './pages/_main.notifications'
 import { Route as MainMessagesRouteImport } from './pages/_main.messages'
 import { Route as MainUUsernameRouteImport } from './pages/_main.u.$username'
+import { Route as MainRCreateCommunityRouteImport } from './pages/_main.r.create-community'
 import { Route as MainRCommunityIdRouteImport } from './pages/_main.r.$communityId'
 import { Route as MainPostPostIdRouteImport } from './pages/_main.post.$postId'
 import { Route as MainAuthCallbackRouteImport } from './pages/_main.auth.callback'
@@ -66,6 +67,11 @@ const MainUUsernameRoute = MainUUsernameRouteImport.update({
   path: '/u/$username',
   getParentRoute: () => MainRoute,
 } as any)
+const MainRCreateCommunityRoute = MainRCreateCommunityRouteImport.update({
+  id: '/r/create-community',
+  path: '/r/create-community',
+  getParentRoute: () => MainRoute,
+} as any)
 const MainRCommunityIdRoute = MainRCommunityIdRouteImport.update({
   id: '/r/$communityId',
   path: '/r/$communityId',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/auth/callback': typeof MainAuthCallbackRoute
   '/post/$postId': typeof MainPostPostIdRoute
   '/r/$communityId': typeof MainRCommunityIdRoute
+  '/r/create-community': typeof MainRCreateCommunityRoute
   '/u/$username': typeof MainUUsernameRoute
 }
 export interface FileRoutesByTo {
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/auth/callback': typeof MainAuthCallbackRoute
   '/post/$postId': typeof MainPostPostIdRoute
   '/r/$communityId': typeof MainRCommunityIdRoute
+  '/r/create-community': typeof MainRCreateCommunityRoute
   '/u/$username': typeof MainUUsernameRoute
 }
 export interface FileRoutesById {
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/_main/auth/callback': typeof MainAuthCallbackRoute
   '/_main/post/$postId': typeof MainPostPostIdRoute
   '/_main/r/$communityId': typeof MainRCommunityIdRoute
+  '/_main/r/create-community': typeof MainRCreateCommunityRoute
   '/_main/u/$username': typeof MainUUsernameRoute
 }
 export interface FileRouteTypes {
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/post/$postId'
     | '/r/$communityId'
+    | '/r/create-community'
     | '/u/$username'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/auth/callback'
     | '/post/$postId'
     | '/r/$communityId'
+    | '/r/create-community'
     | '/u/$username'
   id:
     | '__root__'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/_main/auth/callback'
     | '/_main/post/$postId'
     | '/_main/r/$communityId'
+    | '/_main/r/create-community'
     | '/_main/u/$username'
   fileRoutesById: FileRoutesById
 }
@@ -235,6 +247,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainUUsernameRouteImport
       parentRoute: typeof MainRoute
     }
+    '/_main/r/create-community': {
+      id: '/_main/r/create-community'
+      path: '/r/create-community'
+      fullPath: '/r/create-community'
+      preLoaderRoute: typeof MainRCreateCommunityRouteImport
+      parentRoute: typeof MainRoute
+    }
     '/_main/r/$communityId': {
       id: '/_main/r/$communityId'
       path: '/r/$communityId'
@@ -270,6 +289,7 @@ interface MainRouteChildren {
   MainAuthCallbackRoute: typeof MainAuthCallbackRoute
   MainPostPostIdRoute: typeof MainPostPostIdRoute
   MainRCommunityIdRoute: typeof MainRCommunityIdRoute
+  MainRCreateCommunityRoute: typeof MainRCreateCommunityRoute
   MainUUsernameRoute: typeof MainUUsernameRoute
 }
 
@@ -284,6 +304,7 @@ const MainRouteChildren: MainRouteChildren = {
   MainAuthCallbackRoute: MainAuthCallbackRoute,
   MainPostPostIdRoute: MainPostPostIdRoute,
   MainRCommunityIdRoute: MainRCommunityIdRoute,
+  MainRCreateCommunityRoute: MainRCreateCommunityRoute,
   MainUUsernameRoute: MainUUsernameRoute,
 }
 

@@ -6,7 +6,7 @@ import { Link } from '@tanstack/react-router';
 import { Button } from '@/shared/ui';
 import { useCommunity } from '@/entities/community';
 import { useIsAuthenticated } from '@/entities/session';
-import { useCommunityActions } from '@/features/community';
+import { useCommunityActions } from '@/features/join-leave-community';
 import { CommunityStats } from '@/entities/community/ui/community-stats';
 
 const fadeAnimation = {

@@ -15,3 +15,10 @@ export interface SubredditResponse {
 export interface SubredditsApiResponse {
   subreddits: SubredditResponse[];
 }
+
+export interface CreateSubredditData {
+  name: string;
+  display_name: string;
+  description?: string;
+  icon_url?: File;
+}

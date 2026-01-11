@@ -26,7 +26,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { CommunityInfoModal } from '@/widgets/community-info-modal';
-import { CreateCommunityModal } from '@/widgets/create-community-modal';
 import { cn } from '@/shared/lib/utils';
 
 interface NavItemProps {
@@ -76,8 +75,8 @@ const NavItem = ({
 };
 
 export const Sidebar = () => {
-  const { communities, isLoading } = useCommunities();
   const isAuthenticated = useIsAuthenticated();
+  const { communities, isLoading } = useCommunities();
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredCommunities = communities.filter((c: Community) =>
@@ -138,37 +137,33 @@ export const Sidebar = () => {
               />
             </div>
             {isAuthenticated && (
-              <CreateCommunityModal
-                trigger={
-                  <button
-                    className={cn(
-                      'group flex items-center gap-3 w-full rounded-lg p-3',
-                      'text-sm transition-all cursor-pointer',
-                      'bg-linear-to-r from-brand/3 to-orange-500/3',
-                      'hover:from-brand/8 hover:to-orange-500/8',
-                      'border border-brand/15 hover:border-brand/30'
-                    )}
-                  >
-                    <div
-                      className={cn(
-                        'flex h-9 w-9 items-center justify-center rounded-full',
-                        'bg-brand/90 text-white shadow-sm',
-                        'group-hover:scale-105 group-hover:bg-brand transition-transform'
-                      )}
-                    >
-                      <Plus className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1 text-left">
-                      <p className="font-medium text-foreground">
-                        Create a community
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        Start your own space
-                      </p>
-                    </div>
-                  </button>
-                }
-              />
+              <button
+                className={cn(
+                  'group flex items-center gap-3 w-full rounded-lg p-3',
+                  'text-sm transition-all cursor-pointer',
+                  'bg-linear-to-r from-brand/3 to-orange-500/3',
+                  'hover:from-brand/8 hover:to-orange-500/8',
+                  'border border-brand/15 hover:border-brand/30'
+                )}
+              >
+                <div
+                  className={cn(
+                    'flex h-9 w-9 items-center justify-center rounded-full',
+                    'bg-brand/90 text-white shadow-sm',
+                    'group-hover:scale-105 group-hover:bg-brand transition-transform'
+                  )}
+                >
+                  <Plus className="h-5 w-5" />
+                </div>
+                <Link to='/r/create-community' className="flex-1 text-left">
+                  <p className="font-medium text-foreground">
+                    Create a community
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Start your own space
+                  </p>
+                </Link>
+              </button>
             )}
             <div className="space-y-1">
               {isLoading ? (

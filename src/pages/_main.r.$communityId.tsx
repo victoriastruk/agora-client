@@ -1,6 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useCommunity } from "@/entities/community";
-import { Feed } from "@/widgets/feed";
 import { useIsAuthenticated } from "@/entities/session";
 import {
   Card,
@@ -106,7 +105,6 @@ function CommunityPageContent() {
           )}
         </CardContent>
       </Card>
-      <Feed />
     </div>
   );
 }
