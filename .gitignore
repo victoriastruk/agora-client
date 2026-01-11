@@ -3,6 +3,7 @@
 *.local
 *.log*
 .tanstack
+.env
 
 # Dist
 node_modules
