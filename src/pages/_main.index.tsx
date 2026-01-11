@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
-import { Spinner } from "../shared/ui";
+import { Spinner } from "@/shared/ui";
 
 const Feed = lazy(() => import("../widgets/feed").then((module) => ({ default: module.Feed })));
 

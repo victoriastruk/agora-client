@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Card, CardContent } from "../../../shared/ui/card";
-import { Avatar, AvatarFallback } from "../../../shared/ui/avatar";
-import { CommentItem, CommentForm } from "../../../features/comment";
-import { getInitials, formatCommentCount } from "../../../shared/services";
-import { UI_TEXT } from "../../../shared/constants";
+import { Card, CardContent } from "@/shared/ui/card";
+import { Avatar, AvatarFallback } from "@/shared/ui/avatar";
+import { CommentItem, CommentForm } from "@/features/comment";
+import { getInitials, formatCommentCount } from "@/shared/services";
+import { UI_TEXT } from "@/shared/constants";
 
 interface Comment {
   id: string;

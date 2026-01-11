@@ -1,4 +1,4 @@
-import { logger } from "../../../shared/services/logger";
+import { logger } from "@/shared/services/logger";
 
 export const sharePost = async (postId: string): Promise<void> => {
   const url = `${window.location.origin}/post/${postId}`;

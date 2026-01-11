@@ -1,20 +1,20 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useCommunity } from '../entities/community';
-import { Feed } from '../widgets/feed';
-import { useIsAuthenticated } from '../entities/session';
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useCommunity } from "@/entities/community";
+import { Feed } from "@/widgets/feed";
+import { useIsAuthenticated } from "@/entities/session";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '../shared/ui/card';
-import { Badge } from '../shared/ui/badge';
-import { Button } from '../shared/ui';
-import { Loader2 } from 'lucide-react';
-import { CommunityStats } from '../entities/community/ui/community-stats';
+} from "@/shared/ui/card";
+import { Badge } from "@/shared/ui/badge";
+import { Button } from "@/shared/ui";
+import { Loader2 } from "lucide-react";
+import { CommunityStats } from "@/entities/community/ui/community-stats";
 
-export const Route = createFileRoute('/_main/r/$communityId')({
+export const Route = createFileRoute("/_main/r/$communityId")({
   component: CommunityPage,
 });
 
@@ -82,7 +82,7 @@ function CommunityPageContent() {
               <CardDescription className="text-base">
                 {community.description && community.description.trim()
                   ? community.description
-                  : 'No description available.'}
+                  : "No description available."}
               </CardDescription>
             </div>
           </div>
@@ -95,7 +95,7 @@ function CommunityPageContent() {
                 onClick={() =>
                   navigate({
                     search: { communityId: community.id },
-                    to: '/submit',
+                    to: "/submit",
                   })
                 }
                 className="w-full"

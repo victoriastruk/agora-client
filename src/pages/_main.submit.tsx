@@ -4,11 +4,11 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { useEffect, Suspense } from "react";
-import { ROUTES } from "../shared/config";
-import { CreatePostModal } from "../widgets/create-post-modal";
-import { useIsAuthenticated } from "../entities/session";
-import { Card, CardContent, Button, Spinner } from "../shared/ui";
-import { authModalActions } from "../shared/stores";
+import { ROUTES } from "@/shared/config";
+import { CreatePostModal } from "@/widgets/create-post-modal";
+import { useIsAuthenticated } from "@/entities/session";
+import { Card, CardContent, Button, Spinner } from "@/shared/ui";
+import { authModalActions } from "@/shared/stores";
 import { LogIn } from "lucide-react";
 
 export const Route = createFileRoute("/_main/submit")({

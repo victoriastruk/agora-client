@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { sessionApi } from './sessionApi';
 import { sessionKeys } from './query-keys';
 import { sessionActions } from '../model/session-store';
-import { logger } from '../../../shared/services/logger';
+import { logger } from '@/shared/services/logger';
 import type {
   LoginRequest,
   RegisterRequest,
-} from '../../../shared/api/auth/types';
+} from '@/shared/api/auth/types';
 
 export const useLoginMutation = () => {
   const queryClient = useQueryClient();

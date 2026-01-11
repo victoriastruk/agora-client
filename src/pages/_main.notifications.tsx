@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState, Suspense } from "react";
-import { ROUTES } from "../shared/config";
+import { ROUTES } from "@/shared/config";
 import { formatDistanceToNow } from "date-fns";
 import {
   Bell,
@@ -14,7 +14,7 @@ import {
   CheckCheck,
   Trash2,
 } from "lucide-react";
-import { useIsAuthenticated } from "../entities/session";
+import { useIsAuthenticated } from "@/entities/session";
 import {
   Card,
   CardContent,
@@ -28,8 +28,8 @@ import {
   AvatarImage,
   Badge,
   Spinner,
-} from "../shared/ui";
-import { cn } from "../shared/lib/utils";
+} from "@/shared/ui";
+import { cn } from "@/shared/lib/utils";
 
 export const Route = createFileRoute("/_main/notifications")({
   component: NotificationsPage,

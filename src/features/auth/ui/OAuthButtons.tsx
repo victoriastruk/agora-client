@@ -1,12 +1,12 @@
-import { OAuthButton } from '../../../shared/ui/oauth-button';
-import phoneIcon from '../../../shared/assets/phone.svg';
-import googleIcon from '../../../shared/assets/google.svg';
-import appleIcon from '../../../shared/assets/apple.svg';
-import linkIcon from '../../../shared/assets/link.svg';
-import { useGoogleOAuth } from '../../../shared/services/google-auth';
-import { useAppleOAuth } from '../../../shared/services/apple-auth';
-import { authModalActions } from '../../../shared/stores';
-import { notificationActions } from '../../../shared/stores';
+import { OAuthButton } from '@/shared/ui/oauth-button';
+import phoneIcon from '@/shared/assets/phone.svg';
+import googleIcon from '@/shared/assets/google.svg';
+import appleIcon from '@/shared/assets/apple.svg';
+import linkIcon from '@/shared/assets/link.svg';
+import { useGoogleOAuth } from '@/shared/services/google-auth';
+import { useAppleOAuth } from '@/shared/services/apple-auth';
+import { authModalActions } from '@/shared/stores';
+import { notificationActions } from '@/shared/stores';
 
 interface OAuthButtonsProps {
   showEmailLink?: boolean;

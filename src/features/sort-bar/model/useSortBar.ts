@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { useUserPlaceQuery } from "../../../shared/services";
+import { useUserPlaceQuery } from "@/shared/services";
 import { REGION_OPTIONS } from "../lib/constants";
-import type { RegionOption } from "../../../shared/types";
+import type { RegionOption } from "@/shared/types";
 
 interface UseSortBarOptions {
   region: RegionOption;

@@ -1,24 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, Suspense } from "react";
-import { useUserByUsername } from "../entities/user";
-import { useUserPosts } from "../entities/post";
-import { useUserComments } from "../entities/comment";
-import { PostCard } from "../widgets/post-card";
+import { useUserByUsername } from "@/entities/user";
+import { useUserPosts } from "@/entities/post";
+import { useUserComments } from "@/entities/comment";
+import { PostCard } from "@/widgets/post-card";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../shared/ui/card";
-import { Badge } from "../shared/ui/badge";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-  Spinner,
-} from "../shared/ui";
+} from "@/shared/ui/card";
+import { Badge } from "@/shared/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger, Spinner } from "@/shared/ui";
 import { Calendar, Award, MessageSquare, FileText } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 

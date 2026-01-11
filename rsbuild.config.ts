@@ -1,15 +1,15 @@
-import { defineConfig, loadEnv } from "@rsbuild/core";
-import { reactAppPreset } from "./rsbuild.preset.react";
+import { defineConfig, loadEnv } from '@rsbuild/core';
+import { reactAppPreset } from './rsbuild.preset.react';
 
 export default defineConfig(({ envMode }) => {
-  const host = process.env.HOST || "localhost";
+  const host = process.env.HOST || 'localhost';
   const port = Number(process.env.PORT || 3000);
   const previewPort = Number(process.env.PREVIEW_PORT || 4173);
-  const backendUrl = process.env.BACKEND_URL || "http://localhost:8000";
+  const backendUrl = process.env.BACKEND_URL || 'http://localhost:8000';
 
-  const mode = (envMode === "production" ? "production" : "development") as
-    | "development"
-    | "production";
+  const mode = (envMode === 'production' ? 'production' : 'development') as
+    | 'development'
+    | 'production';
 
   const preset = reactAppPreset({
     mode,
@@ -20,11 +20,14 @@ export default defineConfig(({ envMode }) => {
     mode,
     ...preset,
     source: {
-      entry: { index: "./src/app/index.tsx" },
+      entry: { index: './src/app/index.tsx' },
       define: {
         __APP_ENV__: JSON.stringify(mode),
         __BACKEND_URL__: JSON.stringify(backendUrl),
       },
+    },
+    resolve: {
+      alias: { '@': './src' },
     },
     server: {
       host,
@@ -32,22 +35,22 @@ export default defineConfig(({ envMode }) => {
       strictPort: true,
       historyApiFallback: true,
       proxy: {
-        "/auth": {
+        '/auth': {
           target: backendUrl,
           changeOrigin: true,
           secure: false,
         },
-        "/me": {
+        '/me': {
           target: backendUrl,
           changeOrigin: true,
           secure: false,
         },
-        "/health": {
+        '/health': {
           target: backendUrl,
           changeOrigin: true,
           secure: false,
         },
-        "/subreddits": {
+        '/subreddits': {
           target: backendUrl,
           changeOrigin: true,
           secure: false,
@@ -56,7 +59,7 @@ export default defineConfig(({ envMode }) => {
     },
 
     preview: {
-      host: "0.0.0.0",
+      host: '0.0.0.0',
       port: previewPort,
       strictPort: true,
       cors: true,
@@ -64,7 +67,7 @@ export default defineConfig(({ envMode }) => {
 
     tools: {
       rspack: {
-        cache: { type: "filesystem" },
+        cache: { type: 'filesystem' },
         watchOptions: {
           ignored: /node_modules/,
           aggregateTimout: 100,

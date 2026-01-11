@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, Suspense } from "react";
-import { ROUTES } from "../shared/config";
+import { ROUTES } from "@/shared/config";
 import {
   User,
   Bell,
@@ -20,7 +20,7 @@ import {
   useIsAuthenticated,
   useSessionUser,
   useLogout,
-} from "../entities/session";
+} from "@/entities/session";
 import {
   Card,
   CardContent,
@@ -34,8 +34,8 @@ import {
   FormField,
   Badge,
   Spinner,
-} from "../shared/ui";
-import { cn } from "../shared/lib/utils";
+} from "@/shared/ui";
+import { cn } from "@/shared/lib/utils";
 
 export const Route = createFileRoute("/_main/settings")({
   component: SettingsPage,

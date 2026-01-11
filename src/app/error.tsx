@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/react';
-import { Button } from '../shared/ui/button';
-import { ROUTES } from '../shared/config';
+import { Button } from '@/shared/ui/button';
+import { ROUTES } from '@/shared/config';
 
 export function AppErrorFallback({
   error,

@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
-import { SortBar } from "../../../features/sort-bar";
-import { PostCard } from "../../../widgets/post-card";
+import { SortBar } from "@/features/sort-bar";
+import { PostCard } from "@/widgets/post-card";
 
 export type SortOption = "best" | "hot" | "new" | "rising" | "top";
 export type RegionOption = "global" | "my-country";

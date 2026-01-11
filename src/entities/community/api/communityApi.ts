@@ -1,4 +1,4 @@
-import { apiClient } from '../../../shared/api/client';
+import { apiClient } from '@/shared/api/client';
 import type { SubredditResponse, SubredditsApiResponse } from './types';
 
 export const communityApi = {

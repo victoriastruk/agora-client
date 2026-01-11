@@ -4,25 +4,25 @@ import {
   useSearchPosts,
   useSearchCommunities,
   useSearchUsers,
-} from "../features/search";
-import type { SearchType } from "../features/search";
+} from "@/features/search";
+import type { SearchType } from "@/features/search";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../shared/ui/card";
-import { Input } from "../shared/ui/input";
-import { Badge } from "../shared/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../shared/ui/tabs";
+} from "@/shared/ui/card";
+import { Input } from "@/shared/ui/input";
+import { Badge } from "@/shared/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/ui/tabs";
 import { Search, FileText, Users, User, Loader2 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
-import { cn } from "../shared/lib/utils";
-import { Spinner } from "../shared/ui";
+import { cn } from "@/shared/lib/utils";
+import { Spinner } from "@/shared/ui";
 
 const PostCard = lazy(() =>
-  import("../widgets/post-card").then((module) => ({
+  import("@/widgets/post-card").then((module) => ({
     default: module.PostCard,
   }))
 );

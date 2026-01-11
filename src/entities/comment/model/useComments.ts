@@ -3,7 +3,7 @@ import {
   useCommentsQuery as useCommentsGql,
   useCommentQuery as useCommentGql,
   useUserCommentsQuery as useUserCommentsGql,
-} from "../../../shared/api/gql/query-hooks";
+} from "@/shared/api/gql/query-hooks";
 import { mapComment } from "../api/mappers";
 
 export const useComments = (postId: string, limit = 50, offset = 0) => {

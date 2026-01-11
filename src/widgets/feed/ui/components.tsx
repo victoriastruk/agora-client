@@ -6,14 +6,14 @@ import {
   Sparkles,
   CheckCircle2,
 } from 'lucide-react';
-import { UI_TEXT } from '../../../shared/constants';
-import { ROUTES } from '../../../shared/config';
+import { UI_TEXT } from '@/shared/constants';
+import { ROUTES } from '@/shared/config';
 import {
   Button,
   Card,
   CardContent,
   SkeletonPostCard,
-} from '../../../shared/ui';
+} from '@/shared/ui';
 import { LOADING_MORE_SKELETON_COUNT } from '../lib/constants';
 
 const PostSkeleton = () => <SkeletonPostCard />;

@@ -1,9 +1,9 @@
 import { useNavigate } from "@tanstack/react-router";
 import { User, LogOut, Settings, Bookmark, FileText, MessageSquare } from "lucide-react";
 
-import { useSessionUser, useIsAuthenticated, useLogoutMutation } from "../../../entities/session";
-import { ROUTES } from "../../../shared/config";
-import { Button } from "../../../shared/ui/button";
+import { useSessionUser, useIsAuthenticated, useLogoutMutation } from "@/entities/session";
+import { ROUTES } from "@/shared/config";
+import { Button } from "@/shared/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,10 +11,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../../shared/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "../../../shared/ui/avatar";
-import { logger } from "../../../shared/services/logger";
-import { getInitials } from "../../../shared/services";
+} from "@/shared/ui/dropdown-menu";
+import { Avatar, AvatarFallback } from "@/shared/ui/avatar";
+import { logger } from "@/shared/services/logger";
+import { getInitials } from "@/shared/services";
 
 export const UserMenuWidget = () => {
   const user = useSessionUser();

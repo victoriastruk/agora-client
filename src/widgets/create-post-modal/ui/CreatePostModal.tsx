@@ -12,7 +12,7 @@ import {
   SelectEmpty,
   SelectTrigger,
   SelectValue,
-} from "../../../shared/ui";
+} from "@/shared/ui";
 
 interface Community {
   id: string;

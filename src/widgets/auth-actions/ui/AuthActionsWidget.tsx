@@ -1,5 +1,5 @@
-import { Button } from "../../../shared/ui";
-import { authModalActions } from "../../../shared/stores";
+import { Button } from "@/shared/ui";
+import { authModalActions } from "@/shared/stores";
 
 export const AuthActionsWidget = () => (
   <div className="flex items-center gap-2">

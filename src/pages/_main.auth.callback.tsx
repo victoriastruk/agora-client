@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { logger } from "../shared/services/logger";
-import { env } from "../shared/utils/env";
-import { Spinner } from "../shared/ui";
-import { sessionKeys } from "../entities/session/api/query-keys";
+import { logger } from "@/shared/services/logger";
+import { env } from "@/shared/utils/env";
+import { Spinner } from "@/shared/ui";
+import { sessionKeys } from "@/entities/session/api/query-keys";
 
 export const Route = createFileRoute("/_main/auth/callback")({
   component: OAuthCallbackPage,

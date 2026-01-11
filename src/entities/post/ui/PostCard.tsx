@@ -1,8 +1,8 @@
 import { memo } from "react";
 import type { Post } from "../model/types";
-import { VoteColumn } from "../../../features/vote";
-import { PostActions } from "../../../features/post-actions";
-import { PostMenu } from "../../../features/post-menu";
+import { VoteColumn } from "@/features/vote";
+import { PostActions } from "@/features/post-actions";
+import { PostMenu } from "@/features/post-menu";
 import { PostCardContent } from "./PostCardContent";
 
 interface PostCardProps {

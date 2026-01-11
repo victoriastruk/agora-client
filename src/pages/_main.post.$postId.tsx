@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
-import { usePost } from "../entities/post";
-import { useComments } from "../entities/comment";
-import { PostDetailWidget } from "../widgets/post-detail";
-import { CommentSectionWidget } from "../widgets/comment-section";
-import { PostLoadingSkeletonWidget } from "../widgets/post-loading-skeleton";
-import { PostNotFoundWidget } from "../widgets/post-not-found";
-import { Spinner } from "../shared/ui";
+import { usePost } from "@/entities/post";
+import { useComments } from "@/entities/comment";
+import { PostDetailWidget } from "@/widgets/post-detail";
+import { CommentSectionWidget } from "@/widgets/comment-section";
+import { PostLoadingSkeletonWidget } from "@/widgets/post-loading-skeleton";
+import { PostNotFoundWidget } from "@/widgets/post-not-found";
+import { Spinner } from "@/shared/ui";
 
 export const Route = createFileRoute("/_main/post/$postId")({
   component: PostDetailPage,

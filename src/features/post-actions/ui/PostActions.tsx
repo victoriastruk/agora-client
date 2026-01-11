@@ -7,11 +7,11 @@ import {
   MoreHorizontal,
 } from 'lucide-react';
 
-import { cn } from '../../../shared/lib';
-import { formatCommentCount } from '../../../shared/services';
-import { logger } from '../../../shared/services/logger';
+import { cn } from '@/shared/lib';
+import { formatCommentCount } from '@/shared/services';
+import { logger } from '@/shared/services/logger';
 import { usePostActions } from '../model/use-post-actions';
-import type { Post } from '../../../entities/post';
+import type { Post } from '@/entities/post';
 
 interface PostActionsProps {
   post: Post;

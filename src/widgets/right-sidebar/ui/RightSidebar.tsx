@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router';
 import { Plus, TrendingUp, Sparkles, ChevronRight, Trophy } from 'lucide-react';
 
-import { usePopularCommunities } from '../../../entities/community';
-import type { Community } from '../../../entities/community';
-import { useCommunityActions } from '../../../features/community';
-import { useIsAuthenticated } from '../../../entities/session';
+import { usePopularCommunities } from '@/entities/community';
+import type { Community } from '@/entities/community';
+import { useCommunityActions } from '@/features/community';
+import { useIsAuthenticated } from '@/entities/session';
 import {
   Button,
   Card,
@@ -16,10 +16,10 @@ import {
   AvatarImage,
   Badge,
   SkeletonCommunityList,
-} from '../../../shared/ui';
-import { logger } from '../../../shared/services/logger';
-import { cn } from '../../../shared/lib/utils';
-import { ROUTES } from '../../../shared/config/routes';
+} from '@/shared/ui';
+import { logger } from '@/shared/services/logger';
+import { cn } from '@/shared/lib/utils';
+import { ROUTES } from '@/shared/config/routes';
 
 const CommunityItem = ({
   community,

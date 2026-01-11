@@ -4,10 +4,10 @@ import {
   useIsPostSaved,
   clientStateActions,
   authModalActions,
-} from '../../../shared/stores';
-import { logger } from '../../../shared/services/logger';
+} from '@/shared/stores';
+import { logger } from '@/shared/services/logger';
 import { sharePost } from '../lib/share-utils';
-import { useIsAuthenticated } from '../../../entities/session';
+import { useIsAuthenticated } from '@/entities/session';
 
 const queryKeys = {
   posts: {

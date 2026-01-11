@@ -1,6 +1,6 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { ArrowLeft } from 'lucide-react';
-import { ResetForm } from '../../../../features/auth/ui/ResetForm';
+import { ResetForm } from '@/features/auth/ui/ResetForm';
 import type { AuthViewProps } from './types';
 
 export const ResetView = ({

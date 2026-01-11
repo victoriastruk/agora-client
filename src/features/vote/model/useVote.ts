@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from "react";
-import { usePostVote, clientStateActions } from "../../../shared/stores";
+import { usePostVote, clientStateActions } from "@/shared/stores";
 import { calculateVoteValue, getVoteState } from "../lib/vote-utils";
 
 // TODO(mock-env): replace with real vote gql mutations

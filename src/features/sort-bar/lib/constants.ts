@@ -1,4 +1,4 @@
-import type { SortOption, RegionOption } from "../../../shared/types";
+import type { SortOption, RegionOption } from "@/shared/types";
 
 export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
   { label: "Best", value: "best" },

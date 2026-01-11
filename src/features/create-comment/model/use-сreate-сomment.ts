@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useSessionUser } from '../../../entities/session';
-import { logger } from '../../../shared/services/logger';
+import { useSessionUser } from '@/entities/session';
+import { logger } from '@/shared/services/logger';
 
 const useMockCreateCommentMutation = () => {
   const mutateAsync = async ({

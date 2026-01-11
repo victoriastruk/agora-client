@@ -1,7 +1,7 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { LoginForm } from '../../../../features/auth/ui/LoginForm';
-import OAuthButtons from '../../../../features/auth/ui/OAuthButtons';
-import Divider from '../../../../features/auth/ui/Divider';
+import { LoginForm } from '@/features/auth/ui/LoginForm';
+import OAuthButtons from '@/features/auth/ui/OAuthButtons';
+import Divider from '@/features/auth/ui/Divider';
 import { PolicyLinks } from './PolicyLinks';
 import type { AuthViewProps } from './types';
 

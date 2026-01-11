@@ -2,15 +2,15 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import { useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '../../../shared/ui/button';
+import { Button } from '@/shared/ui/button';
 import { LoginView, RegisterView, ResetView, PhoneView } from './views';
 import {
   authModalActions,
   useAuthModalOpen,
   useAuthModalView,
   useAuthModalPhoneMode,
-} from '../../../shared/stores';
-import type { AuthView } from '../../../shared/stores';
+} from '@/shared/stores';
+import type { AuthView } from '@/shared/stores';
 
 const fadeAnimation = {
   animate: { opacity: 1 },

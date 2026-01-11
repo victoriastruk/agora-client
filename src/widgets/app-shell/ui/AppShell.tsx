@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import { Header } from "../../header";
 import { Sidebar } from "../../sidebar";
 import { RightSidebar } from "../../right-sidebar";
-import { HeroCarousel } from "../../../features/hero-carousel";
-import { cn } from "../../../shared/lib";
+import { HeroCarousel } from "@/features/hero-carousel";
+import { cn } from "@/shared/lib";
 
 interface AppShellProps {
   children: ReactNode;

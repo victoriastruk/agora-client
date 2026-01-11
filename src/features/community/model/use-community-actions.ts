@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
-import { logger } from '../../../shared/services/logger';
-import { notificationActions } from '../../../shared/stores/notification-store';
+import { logger } from '@/shared/services/logger';
+import { notificationActions } from '@/shared/stores/notification-store';
 import {
   clientStateActions,
   clientStateStore,
   useIsCommunityJoined,
-} from '../../../shared/stores';
+} from '@/shared/stores';
 
 export const queryKeys = {
   communities: {

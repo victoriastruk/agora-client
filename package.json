@@ -10,7 +10,15 @@
     "build:prod": "rsbuild build --mode production",
     "build:analyze": "BUNDLE_ANALYZE=true rsbuild build",
     "preview": "rsbuild preview",
-    "generate:routes": "bunx @tanstack/router-cli generate"
+    "generate:routes": "bunx @tanstack/router-cli generate",
+    "fmt": "oxfmt .",
+    "fmt:check": "oxfmt --check .",
+    "lint": "oxlint src/",
+    "lint:aware": "oxlint --type-aware",
+    "lint:fix": "oxlint --fix src/ && bun run fmt",
+    "prepare": "lefthook install && bun scripts/setup-dev.ts",
+    "preinstall": "npx only-allow bun",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

@@ -1,5 +1,5 @@
-import { VOTE_VALUES } from "../../../shared/constants";
-import type { VoteDirection } from "../../../shared/constants";
+import { VOTE_VALUES } from "@/shared/constants";
+import type { VoteDirection } from "@/shared/constants";
 
 export interface VoteState {
   currentVotes: number;

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "../../../shared/ui/card";
+import { Card, CardContent, CardHeader } from "@/shared/ui/card";
 
 export const PostLoadingSkeletonWidget = () => (
   <div className="container mx-auto max-w-4xl p-4">

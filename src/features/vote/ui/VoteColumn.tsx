@@ -1,10 +1,10 @@
 import { memo, useCallback } from "react";
 import { ArrowBigUp, ArrowBigDown } from "lucide-react";
 
-import { cn } from "../../../shared/lib/utils";
-import { logger } from "../../../shared/services/logger";
+import { cn } from "@/shared/lib/utils";
+import { logger } from "@/shared/services/logger";
 import { useVote } from "../model/useVote";
-import type { VoteDirection } from "../../../shared/constants";
+import type { VoteDirection } from "@/shared/constants";
 
 interface VoteColumnProps {
   postId: string;

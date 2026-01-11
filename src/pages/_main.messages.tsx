@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Suspense } from "react";
-import { ROUTES } from "../shared/config";
+import { ROUTES } from "@/shared/config";
 import {
   Card,
   CardContent,
@@ -9,10 +9,10 @@ import {
   CardDescription,
   Button,
   Spinner,
-} from "../shared/ui";
+} from "@/shared/ui";
 import { MessageSquare } from "lucide-react";
-import { useIsAuthenticated } from "../entities/session";
-import { authModalActions } from "../shared/stores";
+import { useIsAuthenticated } from "@/entities/session";
+import { authModalActions } from "@/shared/stores";
 
 const MessagesPage = () => {
   return (

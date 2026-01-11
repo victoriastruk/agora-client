@@ -1,4 +1,4 @@
-import { env } from '../../shared/utils';
+import { env } from '../utils';
 
 const baseUrl = env.BACKEND_URL;
 

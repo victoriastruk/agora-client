@@ -1,19 +1,19 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, Suspense } from "react";
-import { ROUTES } from "../shared/config";
-import { useSavedPosts } from "../entities/post";
-import type { Post } from "../entities/post";
-import { useIsAuthenticated } from "../entities/session";
-import { PostCard } from "../widgets/post-card";
+import { ROUTES } from "@/shared/config";
+import { useSavedPosts } from "@/entities/post";
+import type { Post } from "@/entities/post";
+import { useIsAuthenticated } from "@/entities/session";
+import { PostCard } from "@/widgets/post-card";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../shared/ui/card";
-import { Button, Spinner } from "../shared/ui";
-import { authModalActions } from "../shared/stores";
+} from "@/shared/ui/card";
+import { Button, Spinner } from "@/shared/ui";
+import { authModalActions } from "@/shared/stores";
 import { Bookmark, LogIn, AlertCircle, RefreshCw } from "lucide-react";
 
 export const Route = createFileRoute("/_main/saved")({

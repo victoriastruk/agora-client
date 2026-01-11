@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { VoteColumn } from "../../../features/vote";
-import { Card, CardContent, CardHeader, Badge } from "../../../shared/ui";
+import { VoteColumn } from "@/features/vote";
+import { Card, CardContent, CardHeader, Badge } from "@/shared/ui";
 import { Clock, MessageSquare } from "lucide-react";
 import {
   formatRelativeTime,
   formatCommentCount,
-} from "../../../shared/services";
-import type { Post } from "../../../entities/post";
+} from "@/shared/services";
+import type { Post } from "@/entities/post";
 
 interface PostDetailWidgetProps {
   post: Post;

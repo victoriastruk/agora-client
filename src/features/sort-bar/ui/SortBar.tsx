@@ -4,7 +4,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   Button,
-} from "../../../shared/ui";
+} from "@/shared/ui";
 import {
   ChevronDown,
   SlidersHorizontal,
@@ -15,10 +15,10 @@ import {
   Star,
   Sparkles,
 } from "lucide-react";
-import type { SortOption, RegionOption } from "../../../shared/types";
+import type { SortOption, RegionOption } from "@/shared/types";
 import { useSortBar } from "../model/useSortBar";
 import { SORT_OPTIONS, REGION_OPTIONS } from "../lib/constants";
-import { cn } from "../../../shared/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 interface SortBarProps {
   sort: SortOption;

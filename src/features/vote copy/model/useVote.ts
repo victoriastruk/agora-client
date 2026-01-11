@@ -3,12 +3,12 @@ import { useQueryClient } from "@tanstack/react-query";
 import {
   useVotePostMutation,
   useVoteCommentMutation,
-} from "../../../shared/api/gql/query-hooks";
-import { queryKeys } from "../../../shared/api/query-keys";
-import { VoteType } from "../../../shared/api/gql";
-import { usePostVote, clientStateActions } from "../../../shared/stores";
+} from "@/shared/api/gql/query-hooks";
+import { queryKeys } from "@/shared/api/query-keys";
+import { VoteType } from "@/shared/api/gql";
+import { usePostVote, clientStateActions } from "@/shared/stores";
 import { calculateVoteValue, getVoteState } from "../lib/vote-utils";
-import { logger } from "../../../shared/services/logger";
+import { logger } from "@/shared/services/logger";
 
 export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
   const storedVote = usePostVote(postId);

@@ -7,7 +7,7 @@ import {
   AvatarFallback,
   AvatarImage,
   Skeleton,
-} from '../../../shared/ui';
+} from '@/shared/ui';
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,7 +17,7 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { useHeroCarousel } from '../model/use-hero-carousel';
-import { cn } from '../../../shared/lib';
+import { cn } from '@/shared/lib';
 
 const LoadingSkeleton = () => (
   <div className="bg-linear-to-b from-muted/30 to-transparent py-8 border-b border-border/50">

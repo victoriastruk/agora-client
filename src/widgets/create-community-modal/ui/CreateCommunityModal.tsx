@@ -8,7 +8,7 @@ import {
   ImageUpload,
   RadioCardGroup,
   FormField,
-} from '../../../shared/ui';
+} from '@/shared/ui';
 
 type CommunityType = 'public' | 'restricted' | 'private';
 

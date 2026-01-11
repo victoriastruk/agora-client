@@ -26,6 +26,6 @@ export interface Post {
   isSaved?: boolean;
 }
 
-import type { Community } from "../../community";
+import type { Community } from "@/community";
 
 export type { Community };

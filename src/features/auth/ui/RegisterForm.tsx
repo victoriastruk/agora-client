@@ -1,7 +1,7 @@
-import { FloatingInput } from '../../../shared/ui/floating-input';
-import { Button } from '../../../shared/ui/button';
+import { FloatingInput } from '@/shared/ui/floating-input';
+import { Button } from '@/shared/ui/button';
 import { useRegisterForm } from '../model/use-register-form';
-import type { AuthView } from '../../../shared/stores';
+import type { AuthView } from '@/shared/stores';
 
 interface RegisterFormProps {
   setView?: (view: AuthView) => void;

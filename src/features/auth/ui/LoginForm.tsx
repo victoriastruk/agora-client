@@ -1,7 +1,7 @@
-import { FloatingInput } from "../../../shared/ui/floating-input";
-import { Button } from "../../../shared/ui/button";
+import { FloatingInput } from "@/shared/ui/floating-input";
+import { Button } from "@/shared/ui/button";
 import { useLoginForm } from "../model/use-login-form";
-import type { AuthView } from "../../../shared/stores";
+import type { AuthView } from "@/shared/stores";
 
 const FIRST_ERROR_INDEX = 0;
 

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
-import { Button } from "../../../shared/ui/button";
-import { cn } from "../../../shared/lib/utils";
+import { Button } from "@/shared/ui/button";
+import { cn } from "@/shared/lib/utils";
 import { calculateVoteChange } from "../lib/vote-calculator";
-import { VOTE_BUTTON_SIZES, VOTE_BUTTON_ORIENTATIONS } from "../../../shared/constants";
-import type { VoteButtonSize, VoteButtonOrientation, VoteDirection } from "../../../shared/constants";
-import { useIsAuthenticated } from "../../../entities/session";
-import { authModalActions } from "../../../shared/stores";
+import { VOTE_BUTTON_SIZES, VOTE_BUTTON_ORIENTATIONS } from "@/shared/constants";
+import type { VoteButtonSize, VoteButtonOrientation, VoteDirection } from "@/shared/constants";
+import { useIsAuthenticated } from "@/entities/session";
+import { authModalActions } from "@/shared/stores";
 
 interface VoteButtonProps {
   votes: number;

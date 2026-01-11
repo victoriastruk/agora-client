@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 import { RouterProvider } from '@tanstack/react-router';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'sonner';
-import { queryClient } from '../shared/utils';
-import { useSession } from '../entities/session';
+import { queryClient } from '@/shared/utils';
+import { useSession } from '@/entities/session';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './global.css';
 

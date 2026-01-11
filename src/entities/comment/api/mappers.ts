@@ -1,5 +1,5 @@
-import type { Comment as GraphQLComment } from "../../../shared/api/gql";
-import type { Comment } from "../model/types";
+import type { Comment as GraphQLComment } from "@/shared/api/gql";
+import type { Comment } from "@/entities/comment/model/types";
 
 export const mapComment = (comment: GraphQLComment): Comment => ({
   author: {

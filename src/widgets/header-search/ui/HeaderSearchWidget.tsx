@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
-import { Input } from "../../../shared/ui/input";
+import { Input } from "@/shared/ui/input";
 
 export const HeaderSearchWidget = () => {
   const [searchQuery, setSearchQuery] = useState("");

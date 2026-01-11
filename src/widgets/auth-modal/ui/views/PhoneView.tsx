@@ -1,7 +1,7 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { useState } from 'react';
-import { Button } from '../../../../shared/ui/button';
-import { FloatingInput } from '../../../../shared/ui/floating-input';
+import { Button } from '@/shared/ui/button';
+import { FloatingInput } from '@/shared/ui/floating-input';
 
 interface Country {
   code: string;

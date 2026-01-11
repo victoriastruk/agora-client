@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useForm } from "@tanstack/react-form";
 import { useNavigate } from "@tanstack/react-router";
-import { notificationActions } from "../../../shared/stores";
-import { logger } from "../../../shared/services/logger";
+import { notificationActions } from "@/shared/stores";
+import { logger } from "@/shared/services/logger";
 import { createCommunitySchema } from "../lib/schemas";
 import type { CreateCommunityValues } from "../lib/schemas";
 

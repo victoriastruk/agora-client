@@ -1,8 +1,8 @@
 import { useForm } from "@tanstack/react-form";
 import { useNavigate } from "@tanstack/react-router";
-import { useLoginMutation } from "../../../entities/session";
+import { useLoginMutation } from "@/entities/session";
 import { loginSchema } from "../lib/schemas";
-import { logger } from "../../../shared/services";
+import { logger } from "@/shared/services";
 
 interface UseLoginFormOptions {
   redirect?: string;

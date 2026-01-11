@@ -1,16 +1,16 @@
 import { MoreHorizontal, Bookmark, Eye, Flag, UserX, Share } from "lucide-react";
 
-import { Button } from "../../../shared/ui/button";
+import { Button } from "@/shared/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../../shared/ui/dropdown-menu";
-import { logger } from "../../../shared/services/logger";
-import { usePostActions } from "../../../features/post-actions";
-import type { Post } from "../../../entities/post";
+} from "@/shared/ui/dropdown-menu";
+import { logger } from "@/shared/services/logger";
+import { usePostActions } from "@/features/post-actions";
+import type { Post } from "@/entities/post";
 
 interface PostMenuProps {
   post: Post;

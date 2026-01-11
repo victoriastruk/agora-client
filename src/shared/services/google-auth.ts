@@ -1,4 +1,4 @@
-import { useGoogleOAuthMutation } from "../../entities/session";
+import { useGoogleOAuthMutation } from "@/entities/session";
 
 export const useGoogleOAuth = () => {
   const googleOAuthMutation = useGoogleOAuthMutation();

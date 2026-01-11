@@ -1,8 +1,8 @@
 import { useForm } from "@tanstack/react-form";
-import { FloatingInput } from "../../../shared/ui/floating-input";
-import { Button } from "../../../shared/ui/button";
-import { resetSchema } from "../../../features/auth/lib/schemas";
-import { logger } from "../../../shared/services/logger";
+import { FloatingInput } from "@/shared/ui/floating-input";
+import { Button } from "@/shared/ui/button";
+import { resetSchema } from "@/features/auth/lib/schemas";
+import { logger } from "@/shared/services/logger";
 
 export const ResetForm = () => {
   const isFormValid = (values: { email: string }) => {

@@ -1,16 +1,16 @@
 import { useState } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Link } from "@tanstack/react-router";
-import { ROUTES } from "../../../shared/config";
+import { ROUTES } from "@/shared/config";
 import { Menu, Plus, Bell, X } from "lucide-react";
-import { useIsAuthenticated } from "../../../entities/session";
-import { HeaderSearchWidget } from "../../../widgets/header-search";
-import { UserMenuWidget } from "../../../widgets/user-menu";
-import { ThemeToggle } from "../../../features/theme-toggle";
-import { AuthTrigger } from "../../../widgets/auth-modal";
-import { Sidebar } from "../../../widgets/sidebar";
-import { Button } from "../../../shared/ui/button";
-import { cn } from "../../../shared/lib";
+import { useIsAuthenticated } from "@/entities/session";
+import { HeaderSearchWidget } from "@/widgets/header-search";
+import { UserMenuWidget } from "@/widgets/user-menu";
+import { ThemeToggle } from "@/features/theme-toggle";
+import { AuthTrigger } from "@/widgets/auth-modal";
+import { Sidebar } from "@/widgets/sidebar";
+import { Button } from "@/shared/ui/button";
+import { cn } from "@/shared/lib";
 
 export const Header = () => {
   const isAuthenticated = useIsAuthenticated();

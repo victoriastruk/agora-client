@@ -1,9 +1,9 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { useState } from 'react';
-import { ROUTES } from '../../../shared/config';
-import { useCommunities } from '../../../entities/community';
-import type { Community } from '../../../entities/community';
-import { useIsAuthenticated } from '../../../entities/session';
+import { ROUTES } from '@/shared/config';
+import { useCommunities } from '@/entities/community';
+import type { Community } from '@/entities/community';
+import { useIsAuthenticated } from '@/entities/session';
 import {
   Accordion,
   AccordionContent,
@@ -14,7 +14,7 @@ import {
   AvatarImage,
   Badge,
   Input,
-} from '../../../shared/ui';
+} from '@/shared/ui';
 import {
   Home,
   TrendingUp,
@@ -26,9 +26,9 @@ import {
   Flame,
   Sparkles,
 } from 'lucide-react';
-import { CommunityInfoModal } from '../../../widgets/community-info-modal';
-import { CreateCommunityModal } from '../../../widgets/create-community-modal';
-import { cn } from '../../../shared/lib/utils';
+import { CommunityInfoModal } from '@/widgets/community-info-modal';
+import { CreateCommunityModal } from '@/widgets/create-community-modal';
+import { cn } from '@/shared/lib/utils';
 
 interface NavItemProps {
   to: string;

@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { useDebounce } from "../../../shared/hooks";
-import { mapPost } from "../../../entities/post";
-import { mapCommunity } from "../../../entities/community/api/mappers";
-import { mapUser } from "../../../entities/user";
+import { useDebounce } from "@/shared/hooks";
+import { mapPost } from "@/entities/post";
+import { mapCommunity } from "@/entities/community/api/mappers";
+import { mapUser } from "@/entities/user";
 
 export type SearchType = "posts" | "communities" | "users";
 

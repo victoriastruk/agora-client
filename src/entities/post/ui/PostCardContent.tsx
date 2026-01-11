@@ -1,11 +1,11 @@
 import { memo } from "react";
 import { Link } from "@tanstack/react-router";
 import type { Post } from "../model/types";
-import { Card } from "../../../shared/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "../../../shared/ui/avatar";
-import { FlairBadge } from "../../../shared/ui/flair-badge";
+import { Card } from "@/shared/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
+import { FlairBadge } from "@/shared/ui/flair-badge";
 import { ExternalLink, Image as ImageIcon, Play, Link2 } from "lucide-react";
-import { formatRelativeTime } from "../../../shared/services";
+import { formatRelativeTime } from "@/shared/services";
 import type { ReactNode } from "react";
 
 interface PostCardContentProps {

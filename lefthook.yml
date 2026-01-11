@@ -1,0 +1,69 @@
+colors: true
+
+pre-commit:
+  parallel: true
+  commands:
+    generate-routes:
+      run: |
+        echo "🛠 Generating routes..."
+        bun run generate:routes
+        git add src/routeTree.gen.ts 
+
+    lint:
+      glob: '*.{js,jsx,ts,tsx,vue}'
+      run: |
+        echo "🔍 Linting code..."
+        output=$(bun run lint {staged_files} 2>&1)
+        echo "$output"
+        if echo "$output" | grep -qE "Found [0-9]+ warnings and [1-9][0-9]* errors|Found [1-9][0-9]* errors"; then
+          exit 1
+        fi
+      skip: [merge, rebase]
+
+    format:
+      glob: '*.{js,jsx,ts,tsx,vue,json,md}'
+      stage_fixed: true
+      run: |
+        echo "✨ Formatting code..."
+        bun run fmt
+
+    typecheck:
+      glob: '*.{ts,tsx}'
+      run: |
+        echo "🔎 Type checking..."
+        bun run type-check
+      skip: [merge, rebase]
+
+    no-debug:
+      glob: '*.{js,jsx,ts,tsx,vue}'
+      run: |
+        echo "🐛 Checking for debug code..."
+        grep -nE "console\\.log|debugger" {staged_files} && echo "⚠️ Debug code detected!" && exit 1 || true
+
+commit-msg:
+  parallel: true
+  commands:
+    commitlint:
+      run: |
+        echo "📝 Validating commit message..."
+        npx --no-install commitlint --edit "$1"
+
+post-merge:
+  commands:
+    update-deps:
+      run: |
+        echo "📦 Checking dependencies..."
+        if git diff --name-only ORIG_HEAD HEAD 2>/dev/null | grep -E 'bun\.lock|package\.json'; then
+          echo "📦 Updating dependencies..."
+          bun install
+        fi
+
+post-checkout:
+  commands:
+    setup:
+      run: |
+        echo "🧹 Preparing workspace..."
+        if [ "$3" = "1" ] && git diff --name-only $1 $2 2>/dev/null | grep -E 'bun\.lock|package\.json'; then
+          echo "📦 Updating dependencies for new branch..."
+          bun install
+        fi

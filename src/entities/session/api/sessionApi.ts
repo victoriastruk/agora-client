@@ -1,9 +1,9 @@
-import { authApi } from '../../../shared/api/auth/auth-api';
+import { authApi } from '@/shared/api/auth/auth-api';
 import {
   type LoginRequest,
   type RegisterRequest,
   type AuthResponse,
-} from '../../../shared/api/auth/types';
+} from '@/shared/api/auth/types';
 
 export const sessionApi = {
   getCurrentUser: () => authApi.getCurrentUser() as Promise<AuthResponse>,

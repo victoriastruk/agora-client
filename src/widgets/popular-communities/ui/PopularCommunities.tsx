@@ -3,8 +3,8 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../../shared/ui/card";
-import { Badge } from "../../../shared/ui/badge";
+} from "@/shared/ui/card";
+import { Badge } from "@/shared/ui/badge";
 import { Users } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 

@@ -1,11 +1,11 @@
 import { createRootRouteWithContext, Outlet, Link } from "@tanstack/react-router";
-import type { SessionState } from "../entities/session";
+import type { SessionState } from "@/entities/session";
 import type { QueryClient } from "@tanstack/react-query";
-import { Card, CardContent } from "../shared/ui/card";
-import { Button } from "../shared/ui/button";
-import { ErrorBoundary } from "../shared/ui";
-import { ROUTES } from "../shared/config";
-import { isDevelopment } from "../shared/utils/env";
+import { Card, CardContent } from "@/shared/ui/card";
+import { Button } from "@/shared/ui/button";
+import { ErrorBoundary } from "@/shared/ui";
+import { ROUTES } from "@/shared/config";
+import { isDevelopment } from "@/shared/utils/env";
 
 interface RouterContext {
   queryClient: QueryClient;

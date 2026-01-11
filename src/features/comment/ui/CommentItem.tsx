@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { Card, CardContent } from '../../../shared/ui/card';
-import { Button } from '../../../shared/ui/button';
-import { Textarea } from '../../../shared/ui/textarea';
-import { Avatar, AvatarFallback } from '../../../shared/ui/avatar';
+import { Card, CardContent } from '@/shared/ui/card';
+import { Button } from '@/shared/ui/button';
+import { Textarea } from '@/shared/ui/textarea';
+import { Avatar, AvatarFallback } from '@/shared/ui/avatar';
 import { MessageSquare } from 'lucide-react';
-import { formatReplyCount, getInitials } from '../../../shared/services';
+import { formatReplyCount, getInitials } from '@/shared/services';
 import {
   UI_TEXT,
   MAX_COMMENT_DEPTH,
   COMMENT_FORM_ROWS,
   REPLY_FORM_PLACEHOLDER,
-} from '../../../shared/constants';
-import type { Comment } from '../../../entities/comment';
+} from '@/shared/constants';
+import type { Comment } from '@/entities/comment';
 
 interface CommentItemProps {
   comment: Comment;
