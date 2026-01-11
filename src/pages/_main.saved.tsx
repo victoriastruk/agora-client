@@ -1,27 +1,26 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState, Suspense } from "react";
-import { ROUTES } from "@/shared/config";
-import { useSavedPosts } from "@/entities/post";
-import type { Post } from "@/entities/post";
-import { useIsAuthenticated } from "@/entities/session";
-import { PostCard } from "@/widgets/post-card";
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { useState, Suspense } from 'react';
+import { useSavedPosts } from '@/entities/post';
+import type { Post } from '@/entities/post';
+import { useIsAuthenticated } from '@/entities/session';
+import { PostCard } from '@/widgets/post-card';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/shared/ui/card";
-import { Button, Spinner } from "@/shared/ui";
-import { authModalActions } from "@/shared/stores";
-import { Bookmark, LogIn, AlertCircle, RefreshCw } from "lucide-react";
+} from '@/shared/ui/card';
+import { Button, Spinner } from '@/shared/ui';
+import { authModalActions } from '@/shared/stores';
+import { Bookmark, LogIn, AlertCircle, RefreshCw } from 'lucide-react';
 
-export const Route = createFileRoute("/_main/saved")({
+export const Route = createFileRoute('/_main/saved')({
   component: SavedPostsPage,
 });
 
 const redirectToLogin = () => {
-  authModalActions.open("login");
+  authModalActions.open('login');
 };
 
 function SavedPostsPage() {
@@ -77,7 +76,7 @@ function SavedPostsPageContent() {
           </CardHeader>
         </Card>
         <div className="space-y-4">
-          {[1, 2, 3].map((i) => (
+          {[1, 2, 3].map(i => (
             <div key={i} className="h-32 bg-muted animate-pulse rounded-lg" />
           ))}
         </div>
@@ -103,7 +102,7 @@ function SavedPostsPageContent() {
               Failed to load saved posts
             </h2>
             <p className="text-muted-foreground mb-4">
-              {error.message || "Something went wrong. Please try again."}
+              {error.message || 'Something went wrong. Please try again.'}
             </p>
             <Button
               onClick={handleRetry}
@@ -111,9 +110,9 @@ function SavedPostsPageContent() {
               className="gap-2"
             >
               <RefreshCw
-                className={`h-4 w-4 ${isRetrying ? "animate-spin" : ""}`}
+                className={`h-4 w-4 ${isRetrying ? 'animate-spin' : ''}`}
               />
-              {isRetrying ? "Retrying..." : "Try Again"}
+              {isRetrying ? 'Retrying...' : 'Try Again'}
             </Button>
           </CardContent>
         </Card>
@@ -141,9 +140,7 @@ function SavedPostsPageContent() {
             <p className="text-muted-foreground mb-4">
               Save posts to read them later. They'll appear here.
             </p>
-            <Button onClick={() => navigate({ to: ROUTES.HOME })}>
-              Browse Posts
-            </Button>
+            <Button onClick={() => navigate({ to: '/' })}>Browse Posts</Button>
           </CardContent>
         </Card>
       ) : (

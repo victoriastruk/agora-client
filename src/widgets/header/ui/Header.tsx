@@ -1,16 +1,15 @@
-import { useState } from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Link } from "@tanstack/react-router";
-import { ROUTES } from "@/shared/config";
-import { Menu, Plus, Bell, X } from "lucide-react";
-import { useIsAuthenticated } from "@/entities/session";
-import { HeaderSearchWidget } from "@/widgets/header-search";
-import { UserMenuWidget } from "@/widgets/user-menu";
-import { ThemeToggle } from "@/features/theme-toggle";
-import { AuthTrigger } from "@/widgets/auth-modal";
-import { Sidebar } from "@/widgets/sidebar";
-import { Button } from "@/shared/ui/button";
-import { cn } from "@/shared/lib";
+import { useState } from 'react';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { Link } from '@tanstack/react-router';
+import { Menu, Plus, Bell, X } from 'lucide-react';
+import { useIsAuthenticated } from '@/entities/session';
+import { HeaderSearchWidget } from '@/widgets/header-search';
+import { UserMenuWidget } from '@/widgets/user-menu';
+import { ThemeToggle } from '@/features/theme-toggle';
+import { AuthTrigger } from '@/widgets/auth-modal';
+import { Sidebar } from '@/widgets/sidebar';
+import { Button } from '@/shared/ui/button';
+import { cn } from '@/shared/lib';
 
 export const Header = () => {
   const isAuthenticated = useIsAuthenticated();
@@ -19,10 +18,10 @@ export const Header = () => {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40",
-        "border-b border-border/50",
-        "bg-background/80 backdrop-blur-xl backdrop-saturate-150",
-        "supports-backdrop-filter:bg-background/70"
+        'sticky top-0 z-40',
+        'border-b border-border/50',
+        'bg-background/80 backdrop-blur-xl backdrop-saturate-150',
+        'supports-backdrop-filter:bg-background/70'
       )}
     >
       <div className="relative flex items-center justify-center h-14 px-4 lg:grid lg:grid-cols-[280px_1fr_320px] xl:grid-cols-[280px_1fr_320px]">
@@ -41,7 +40,7 @@ export const Header = () => {
         {/* Logo */}
         <div className="flex items-center lg:col-start-1 lg:justify-start lg:gap-4">
           <Link
-            to={ROUTES.HOME}
+            to={'/'}
             className="shrink-0 flex items-center gap-2 hover:opacity-90 transition-opacity"
           >
             <img
@@ -72,8 +71,13 @@ export const Header = () => {
           {isAuthenticated && (
             <>
               {/* Create Post Button - Desktop */}
-              <Button variant="ghost" size="sm" className="hidden sm:flex gap-2" asChild>
-                <Link to={ROUTES.CREATE_POST}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="hidden sm:flex gap-2"
+                asChild
+              >
+                <Link to='/submit'>
                   <Plus className="h-4 w-4" />
                   <span className="hidden lg:inline">Create</span>
                 </Link>
@@ -107,16 +111,19 @@ export const Header = () => {
       </div>
 
       {/* Mobile menu drawer */}
-      <DialogPrimitive.Root open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+      <DialogPrimitive.Root
+        open={isMobileMenuOpen}
+        onOpenChange={setIsMobileMenuOpen}
+      >
         <DialogPrimitive.Portal>
           <DialogPrimitive.Overlay className="fixed inset-0 bg-black/60 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0" />
           <DialogPrimitive.Content
             id="mobile-nav"
             className={cn(
-              "fixed inset-y-0 left-0 z-50 w-[82vw] max-w-xs bg-background",
-              "border-r border-border shadow-xl",
-              "data-[state=open]:animate-in data-[state=closed]:animate-out",
-              "data-[state=open]:slide-in-from-left data-[state=closed]:slide-out-to-left"
+              'fixed inset-y-0 left-0 z-50 w-[82vw] max-w-xs bg-background',
+              'border-r border-border shadow-xl',
+              'data-[state=open]:animate-in data-[state=closed]:animate-out',
+              'data-[state=open]:slide-in-from-left data-[state=closed]:slide-out-to-left'
             )}
           >
             <DialogPrimitive.Title className="sr-only">

@@ -6,13 +6,12 @@ export const router = createRouter({
   routeTree,
   context: {
     queryClient,
-   //  session: undefined!,
+    session: undefined!,
   },
 });
 
 declare module '@tanstack/react-router' {
   interface Register {
-    router: typeof router
+    router: typeof router;
   }
 }
-

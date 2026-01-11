@@ -1,6 +1,5 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { useState } from 'react';
-import { ROUTES } from '@/shared/config';
 import { useCommunities } from '@/entities/community';
 import type { Community } from '@/entities/community';
 import { useIsAuthenticated } from '@/entities/session';
@@ -88,7 +87,7 @@ export const Sidebar = () => {
   return (
     <aside className="space-y-6">
       <nav className="space-y-1">
-        <NavItem to={ROUTES.HOME} icon={Home} label="Home" />
+        <NavItem to={'/'} icon={Home} label="Home" />
         <NavItem
           to="/r/$communityId"
           params={{ communityId: 'popular' }}
@@ -103,9 +102,9 @@ export const Sidebar = () => {
         />
         {isAuthenticated && (
           <>
-            <NavItem to={ROUTES.SAVED} icon={Bookmark} label="Saved" />
+            <NavItem to='/saved' icon={Bookmark} label="Saved" />
             <NavItem
-              to={ROUTES.NOTIFICATIONS}
+              to='/notifications'
               icon={Bell}
               label="Notifications"
               badge={3}
@@ -203,7 +202,7 @@ export const Sidebar = () => {
                               alt={community.name}
                             />
                           ) : (
-                            <AvatarFallback className='text-xs font-semibold bg-linear-to-br from-brand to-orange-400 text-white'>
+                            <AvatarFallback className="text-xs font-semibold bg-linear-to-br from-brand to-orange-400 text-white">
                               {community.name
                                 ? community.name[0].toUpperCase()
                                 : '?'}
@@ -224,7 +223,7 @@ export const Sidebar = () => {
 
             {communities.length > 8 && (
               <Link
-                to={ROUTES.SEARCH}
+                to='/search'
                 search={{ q: '', type: 'communities' }}
                 className={cn(
                   'flex items-center gap-2 px-3 py-2 rounded-lg text-sm',
@@ -244,7 +243,7 @@ export const Sidebar = () => {
         <>
           <hr className="border-border" />
           <nav className="space-y-1">
-            <NavItem to={ROUTES.SETTINGS} icon={Settings} label="Settings" />
+            <NavItem to='/settings' icon={Settings} label="Settings" />
           </nav>
         </>
       )}

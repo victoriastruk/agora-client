@@ -7,7 +7,6 @@ import {
 } from 'react-error-boundary';
 import type { FallbackProps } from 'react-error-boundary';
 import { AlertTriangle, ArrowLeft, Info, RefreshCw } from 'lucide-react';
-import { ROUTES } from '../config';
 import { logger } from '../services/logger';
 import { cn } from '../lib';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
@@ -160,7 +159,7 @@ export function ErrorBoundary({
   children,
   title = 'We hit a snag',
   description = 'Something broke while loading this page. You can try again or go back to a safe place.',
-  fallbackRoute = ROUTES.HOME,
+  fallbackRoute = '/',
   resetLabel = 'Try again',
   fallbackLabel = 'Back home',
   showDetails = false,

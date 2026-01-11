@@ -2,16 +2,15 @@ import {
   createFileRoute,
   useNavigate,
   useRouter,
-} from "@tanstack/react-router";
-import { useEffect, Suspense } from "react";
-import { ROUTES } from "@/shared/config";
-import { CreatePostModal } from "@/widgets/create-post-modal";
-import { useIsAuthenticated } from "@/entities/session";
-import { Card, CardContent, Button, Spinner } from "@/shared/ui";
-import { authModalActions } from "@/shared/stores";
-import { LogIn } from "lucide-react";
+} from '@tanstack/react-router';
+import { useEffect, Suspense } from 'react';
+import { CreatePostModal } from '@/widgets/create-post-modal';
+import { useIsAuthenticated } from '@/entities/session';
+import { Card, CardContent, Button, Spinner } from '@/shared/ui';
+import { authModalActions } from '@/shared/stores';
+import { LogIn } from 'lucide-react';
 
-export const Route = createFileRoute("/_main/submit")({
+export const Route = createFileRoute('/_main/submit')({
   component: CreatePostModalRoute,
 });
 
@@ -29,22 +28,22 @@ function CreatePostModalRouteContent() {
   const isAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
-    router.preloadRoute({ to: "/" }).catch((error) => {
+    router.preloadRoute({ to: '/' }).catch(error => {
       console.error(error);
     });
   }, [router]);
 
   const handleClose = () => {
     if (window.history.length > 2) {
-      navigate({ to: ".." });
+      navigate({ to: '..' });
     } else {
-      navigate({ to: ROUTES.HOME });
+      navigate({ to: '/' });
     }
   };
 
   const handleLogin = () => {
-    authModalActions.open("login");
-    navigate({ to: ROUTES.HOME });
+    authModalActions.open('login');
+    navigate({ to: '/' });
   };
 
   if (!isAuthenticated) {
@@ -81,7 +80,7 @@ function CreatePostModalRouteContent() {
       defaultOpen
       onClose={handleClose}
       onSuccess={() => {
-        navigate({ to: ROUTES.HOME });
+        navigate({ to: '/' });
       }}
     />
   );

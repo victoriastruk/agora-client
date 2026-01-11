@@ -7,7 +7,6 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { UI_TEXT } from '@/shared/constants';
-import { ROUTES } from '@/shared/config';
 import {
   Button,
   Card,
@@ -60,14 +59,14 @@ const FeedEmpty = ({ communityId }: { communityId?: string }) => (
       </p>
       <div className="flex items-center justify-center gap-3">
         <Button variant="brand" asChild>
-          <Link to={ROUTES.CREATE_POST}>
+          <Link to={'/submit'}>
             <Sparkles className="h-4 w-4 mr-2" />
             Create a post
           </Link>
         </Button>
         {!communityId && (
           <Button variant="outline" asChild>
-            <Link to={ROUTES.SEARCH} search={{ q: '', type: 'communities' }}>
+            <Link to={'/search'} search={{ q: '', type: 'communities' }}>
               Discover communities
             </Link>
           </Button>

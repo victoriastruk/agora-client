@@ -1,6 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState, Suspense } from "react";
-import { ROUTES } from "@/shared/config";
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { useState, Suspense } from 'react'
 import {
   User,
   Bell,
@@ -15,12 +14,12 @@ import {
   Moon,
   Sun,
   Monitor,
-} from "lucide-react";
+} from 'lucide-react';
 import {
   useIsAuthenticated,
   useSessionUser,
   useLogout,
-} from "@/entities/session";
+} from '@/entities/session';
 import {
   Card,
   CardContent,
@@ -34,50 +33,50 @@ import {
   FormField,
   Badge,
   Spinner,
-} from "@/shared/ui";
-import { cn } from "@/shared/lib/utils";
+} from '@/shared/ui';
+import { cn } from '@/shared/lib/utils';
 
-export const Route = createFileRoute("/_main/settings")({
+export const Route = createFileRoute('/_main/settings')({
   component: SettingsPage,
 });
 
 type SettingsSection =
-  | "profile"
-  | "account"
-  | "notifications"
-  | "privacy"
-  | "appearance";
+  | 'profile'
+  | 'account'
+  | 'notifications'
+  | 'privacy'
+  | 'appearance';
 
 const settingsSections = [
   {
-    description: "Manage your public profile",
+    description: 'Manage your public profile',
     icon: User,
-    id: "profile" as const,
-    label: "Profile",
+    id: 'profile' as const,
+    label: 'Profile',
   },
   {
-    description: "Email, password, and security",
+    description: 'Email, password, and security',
     icon: Settings,
-    id: "account" as const,
-    label: "Account",
+    id: 'account' as const,
+    label: 'Account',
   },
   {
-    description: "Email and push notifications",
+    description: 'Email and push notifications',
     icon: Bell,
-    id: "notifications" as const,
-    label: "Notifications",
+    id: 'notifications' as const,
+    label: 'Notifications',
   },
   {
-    description: "Control your visibility",
+    description: 'Control your visibility',
     icon: Shield,
-    id: "privacy" as const,
-    label: "Privacy & Safety",
+    id: 'privacy' as const,
+    label: 'Privacy & Safety',
   },
   {
-    description: "Theme and display settings",
+    description: 'Theme and display settings',
     icon: Palette,
-    id: "appearance" as const,
-    label: "Appearance",
+    id: 'appearance' as const,
+    label: 'Appearance',
   },
 ];
 
@@ -95,7 +94,7 @@ function SettingsPageContent() {
   const user = useSessionUser();
   const { logout } = useLogout();
   const [activeSection, setActiveSection] =
-    useState<SettingsSection>("profile");
+    useState<SettingsSection>('profile');
 
   if (!isAuthenticated || !user) {
     return (
@@ -110,7 +109,7 @@ function SettingsPageContent() {
           <p className="text-muted-foreground mb-6">
             You need to be logged in to manage your settings.
           </p>
-          <Button variant="brand" onClick={() => navigate({ to: ROUTES.HOME })}>
+          <Button variant="brand" onClick={() => navigate({ to: '/' })}>
             Go to Home
           </Button>
         </CardContent>
@@ -120,7 +119,7 @@ function SettingsPageContent() {
 
   const handleLogout = async () => {
     await logout();
-    navigate({ to: ROUTES.HOME });
+    navigate({ to: '/' });
   };
 
   return (
@@ -136,16 +135,16 @@ function SettingsPageContent() {
         <Card className="h-fit">
           <CardContent className="p-2">
             <nav className="space-y-1">
-              {settingsSections.map((section) => (
+              {settingsSections.map(section => (
                 <button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
                   className={cn(
-                    "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left",
-                    "transition-colors duration-150",
+                    'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left',
+                    'transition-colors duration-150',
                     activeSection === section.id
-                      ? "bg-accent text-foreground"
-                      : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
+                      ? 'bg-accent text-foreground'
+                      : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground'
                   )}
                 >
                   <section.icon className="h-5 w-5" />
@@ -164,9 +163,9 @@ function SettingsPageContent() {
               <button
                 onClick={handleLogout}
                 className={cn(
-                  "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left",
-                  "text-destructive hover:bg-destructive/10",
-                  "transition-colors duration-150"
+                  'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left',
+                  'text-destructive hover:bg-destructive/10',
+                  'transition-colors duration-150'
                 )}
               >
                 <LogOut className="h-5 w-5" />
@@ -177,11 +176,11 @@ function SettingsPageContent() {
         </Card>
 
         <div className="space-y-6">
-          {activeSection === "profile" && <ProfileSettings user={user} />}
-          {activeSection === "account" && <AccountSettings user={user} />}
-          {activeSection === "notifications" && <NotificationSettings />}
-          {activeSection === "privacy" && <PrivacySettings />}
-          {activeSection === "appearance" && <AppearanceSettings />}
+          {activeSection === 'profile' && <ProfileSettings user={user} />}
+          {activeSection === 'account' && <AccountSettings user={user} />}
+          {activeSection === 'notifications' && <NotificationSettings />}
+          {activeSection === 'privacy' && <PrivacySettings />}
+          {activeSection === 'appearance' && <AppearanceSettings />}
         </div>
       </div>
     </div>
@@ -196,7 +195,7 @@ function ProfileSettings({
   const [avatarUrl, setAvatarUrl] = useState<string>();
   const [bannerUrl, setBannerUrl] = useState<string>();
   const [displayName, setDisplayName] = useState(user.username);
-  const [bio, setBio] = useState("");
+  const [bio, setBio] = useState('');
 
   return (
     <div className="space-y-6">
@@ -237,7 +236,7 @@ function ProfileSettings({
             <Input
               id="displayName"
               value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
+              onChange={e => setDisplayName(e.target.value)}
               placeholder="Your display name"
               maxLength={30}
             />
@@ -271,7 +270,7 @@ function ProfileSettings({
             <Textarea
               id="bio"
               value={bio}
-              onChange={(e) => setBio(e.target.value)}
+              onChange={e => setBio(e.target.value)}
               placeholder="Tell us about yourself..."
               rows={4}
               maxLength={200}
@@ -334,7 +333,7 @@ function AccountSettings({
               <Input
                 id="email"
                 type="email"
-                value={user.email || ""}
+                value={user.email || ''}
                 placeholder="your@email.com"
                 className="pl-10"
               />
@@ -479,14 +478,14 @@ function NotificationToggle({
         aria-checked={checked}
         onClick={() => setChecked(!checked)}
         className={cn(
-          "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
-          checked ? "bg-brand" : "bg-muted"
+          'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
+          checked ? 'bg-brand' : 'bg-muted'
         )}
       >
         <span
           className={cn(
-            "inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow-sm",
-            checked ? "translate-x-6" : "translate-x-1"
+            'inline-block h-4 w-4 transform rounded-full bg-white transition-transform shadow-sm',
+            checked ? 'translate-x-6' : 'translate-x-1'
           )}
         />
       </button>
@@ -535,7 +534,7 @@ function PrivacySettings() {
 }
 
 function AppearanceSettings() {
-  const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
+  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
 
   return (
     <Card>
@@ -550,34 +549,34 @@ function AppearanceSettings() {
           <p className="font-medium mb-3">Theme</p>
           <div className="grid grid-cols-3 gap-3">
             {[
-              { icon: Sun, label: "Light", value: "light" as const },
-              { icon: Moon, label: "Dark", value: "dark" as const },
-              { icon: Monitor, label: "System", value: "system" as const },
-            ].map((option) => (
+              { icon: Sun, label: 'Light', value: 'light' as const },
+              { icon: Moon, label: 'Dark', value: 'dark' as const },
+              { icon: Monitor, label: 'System', value: 'system' as const },
+            ].map(option => (
               <button
                 key={option.value}
                 onClick={() => setTheme(option.value)}
                 className={cn(
-                  "flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all",
+                  'flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all',
                   theme === option.value
-                    ? "border-brand bg-brand/5"
-                    : "border-border hover:border-muted-foreground/30"
+                    ? 'border-brand bg-brand/5'
+                    : 'border-border hover:border-muted-foreground/30'
                 )}
               >
                 <option.icon
                   className={cn(
-                    "h-6 w-6",
+                    'h-6 w-6',
                     theme === option.value
-                      ? "text-brand"
-                      : "text-muted-foreground"
+                      ? 'text-brand'
+                      : 'text-muted-foreground'
                   )}
                 />
                 <span
                   className={cn(
-                    "text-sm font-medium",
+                    'text-sm font-medium',
                     theme === option.value
-                      ? "text-foreground"
-                      : "text-muted-foreground"
+                      ? 'text-foreground'
+                      : 'text-muted-foreground'
                   )}
                 >
                   {option.label}

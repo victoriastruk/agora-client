@@ -1,9 +1,18 @@
-import { useNavigate } from "@tanstack/react-router";
-import { User, LogOut, Settings, Bookmark, FileText, MessageSquare } from "lucide-react";
-
-import { useSessionUser, useIsAuthenticated, useLogoutMutation } from "@/entities/session";
-import { ROUTES } from "@/shared/config";
-import { Button } from "@/shared/ui/button";
+import { useNavigate } from '@tanstack/react-router';
+import {
+  User,
+  LogOut,
+  Settings,
+  Bookmark,
+  FileText,
+  MessageSquare,
+} from 'lucide-react';
+import {
+  useSessionUser,
+  useIsAuthenticated,
+  useLogoutMutation,
+} from '@/entities/session';
+import { Button } from '@/shared/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,10 +20,10 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/shared/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/shared/ui/avatar";
-import { logger } from "@/shared/services/logger";
-import { getInitials } from "@/shared/services";
+} from '@/shared/ui/dropdown-menu';
+import { Avatar, AvatarFallback } from '@/shared/ui/avatar';
+import { logger } from '@/shared/services/logger';
+import { getInitials } from '@/shared/services';
 
 export const UserMenuWidget = () => {
   const user = useSessionUser();
@@ -25,10 +34,10 @@ export const UserMenuWidget = () => {
   const handleLogout = async () => {
     try {
       await logoutMutation.mutateAsync();
-      navigate({ to: ROUTES.HOME });
+      navigate({ to: '/' });
     } catch (error) {
-      logger.error("Error during logout:", error);
-      navigate({ to: ROUTES.HOME });
+      logger.error('Error during logout:', error);
+      navigate({ to: '/' });
     }
   };
 
@@ -65,14 +74,14 @@ export const UserMenuWidget = () => {
           onClick={() =>
             navigate({
               params: { username: user.username },
-              to: "/u/$username",
+              to: '/u/$username',
             })
           }
         >
           <User className="mr-2 h-4 w-4" />
           Profile
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => navigate({ to: ROUTES.SETTINGS })}>
+        <DropdownMenuItem onClick={() => navigate({ to: '/settings' })}>
           <Settings className="mr-2 h-4 w-4" />
           Settings
         </DropdownMenuItem>
@@ -81,18 +90,18 @@ export const UserMenuWidget = () => {
           onClick={() =>
             navigate({
               params: { username: user.username },
-              to: "/u/$username",
+              to: '/u/$username',
             })
           }
         >
           <FileText className="mr-2 h-4 w-4" />
           My Posts
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => navigate({ to: ROUTES.MESSAGES })}>
+        <DropdownMenuItem onClick={() => navigate({ to: '/messages'})}>
           <MessageSquare className="mr-2 h-4 w-4" />
           Messages
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => navigate({ to: ROUTES.SAVED })}>
+        <DropdownMenuItem onClick={() => navigate({ to: '/saved' })}>
           <Bookmark className="mr-2 h-4 w-4" />
           Saved
         </DropdownMenuItem>

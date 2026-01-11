@@ -10,7 +10,7 @@
     "build:prod": "rsbuild build --mode production",
     "build:analyze": "BUNDLE_ANALYZE=true rsbuild build",
     "preview": "rsbuild preview",
-    "generate:routes": "bunx @tanstack/router-cli generate",
+    "generate:routes": "bunx @tanstack/router-cli generate"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

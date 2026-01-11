@@ -4,7 +4,6 @@ import type { QueryClient } from "@tanstack/react-query";
 import { Card, CardContent } from "@/shared/ui/card";
 import { Button } from "@/shared/ui/button";
 import { ErrorBoundary } from "@/shared/ui";
-import { ROUTES } from "@/shared/config";
 import { isDevelopment } from "@/shared/utils/env";
 
 interface RouterContext {
@@ -24,7 +23,7 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 function RootComponent() {
   return (
     <div className="min-h-screen bg-background">
-      <ErrorBoundary showDetails={isDevelopment} fallbackRoute={ROUTES.HOME}>
+      <ErrorBoundary showDetails={isDevelopment} fallbackRoute='/'>
         <Outlet />
       </ErrorBoundary>
     </div>
@@ -38,7 +37,7 @@ function NotFound() {
         <CardContent className="p-6 text-center space-y-4">
           <h1 className="text-4xl font-bold">404</h1>
           <p className="text-muted-foreground">The page you're looking for doesn't exist.</p>
-          <Link to={ROUTES.HOME}>
+          <Link to='/'>
             <Button>Go Home</Button>
           </Link>
         </CardContent>

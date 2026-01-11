@@ -1,6 +1,5 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState, Suspense } from "react";
-import { ROUTES } from "@/shared/config";
 import { formatDistanceToNow } from "date-fns";
 import {
   Bell,
@@ -178,7 +177,7 @@ function NotificationItem({
       )}
       onClick={() => !notification.read && onMarkRead(notification.id)}
     >
-      <div className={cn("flex-shrink-0 p-2.5 rounded-full", colorClass)}>
+      <div className={cn("shrink-0 p-2.5 rounded-full", colorClass)}>
         <Icon className="h-5 w-5" />
       </div>
 
@@ -198,7 +197,7 @@ function NotificationItem({
             </p>
           </div>
           {!notification.read && (
-            <span className="flex-shrink-0 h-2 w-2 rounded-full bg-brand" />
+            <span className="shrink-0 h-2 w-2 rounded-full bg-brand" />
           )}
         </div>
         <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
@@ -289,7 +288,7 @@ function NotificationsPageContent() {
           </p>
         </div>
         <Button variant="ghost" size="icon-sm" asChild>
-          <Link to={ROUTES.SETTINGS}>
+          <Link to='/search' search={{ q: "", type: "posts" }}>
             <Settings className="h-5 w-5" />
           </Link>
         </Button>

@@ -1,6 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
-import { ROUTES } from "@/shared/config";
 import {
   Card,
   CardContent,
@@ -24,7 +23,6 @@ const MessagesPage = () => {
 
 const MessagesPageContent = () => {
   const isAuthenticated = useIsAuthenticated();
-  const navigate = useNavigate();
 
   if (!isAuthenticated) {
     return (
