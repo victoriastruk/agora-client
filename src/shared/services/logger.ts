@@ -24,16 +24,14 @@ const toContext = (payload: unknown[]): Record<string, unknown> | undefined => {
     payload: payload.map(value =>
       value instanceof Error
         ? { message: value.message, name: value.name, stack: value.stack }
-        : value
+        : value,
     ),
   };
 };
 
 const formatMessage = (message: string, context?: Record<string, unknown>) => {
   if (typeof sentryLogger.fmt === 'function') {
-    return context
-      ? sentryLogger.fmt`${message} ${context}`
-      : sentryLogger.fmt`${message}`;
+    return context ? sentryLogger.fmt`${message} ${context}` : sentryLogger.fmt`${message}`;
   }
 
   return message;
@@ -55,14 +53,10 @@ const log = (level: LogLevel, message: string, ...payload: unknown[]) => {
 };
 
 export const logger = {
-  debug: (message: string, ...payload: unknown[]) =>
-    log('debug', message, ...payload),
-  info: (message: string, ...payload: unknown[]) =>
-    log('info', message, ...payload),
-  warn: (message: string, ...payload: unknown[]) =>
-    log('warn', message, ...payload),
-  error: (message: string, ...payload: unknown[]) =>
-    log('error', message, ...payload),
+  debug: (message: string, ...payload: unknown[]) => log('debug', message, ...payload),
+  info: (message: string, ...payload: unknown[]) => log('info', message, ...payload),
+  warn: (message: string, ...payload: unknown[]) => log('warn', message, ...payload),
+  error: (message: string, ...payload: unknown[]) => log('error', message, ...payload),
   fmt: sentryLogger.fmt,
 };
 

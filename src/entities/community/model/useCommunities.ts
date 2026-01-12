@@ -1,14 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { communityQueries } from "../api/queries";
-import { mapCommunity } from "../api/mappers";
+import { useQuery } from '@tanstack/react-query';
+
+import { mapCommunity } from '../api/mappers';
+import { communityQueries } from '../api/queries';
 
 export const useCommunities = (limit = 20, offset = 0) => {
   const { data: communities = [], ...queryInfo } = useQuery({
     ...communityQueries.allSubreddits(),
-    select: (data) =>
-      Array.isArray(data)
-        ? data.slice(offset, offset + limit).map(mapCommunity)
-        : [],
+    select: data =>
+      Array.isArray(data) ? data.slice(offset, offset + limit).map(mapCommunity) : [],
   });
 
   return { communities, ...queryInfo };
@@ -18,7 +17,7 @@ export const usePopularCommunities = (limit = 10) => {
   const { data: communities = [], ...queryInfo } = useQuery({
     ...communityQueries.allSubreddits(),
 
-    select: (data) =>
+    select: data =>
       Array.isArray(data)
         ? [...data]
             .map(mapCommunity)
@@ -33,7 +32,7 @@ export const usePopularCommunities = (limit = 10) => {
 export const useCommunity = (communityId: string) =>
   useQuery({
     ...communityQueries.subredditById(communityId),
-    select: (data) => (data ? mapCommunity(data) : undefined),
+    select: data => (data ? mapCommunity(data) : undefined),
   });
 
 // Mock flairs
@@ -42,7 +41,7 @@ export const useFlairsByCommunity = (communityId: string) => ({
     ? Array.from({ length: 5 }, (_, i) => ({
         id: `mock-flair-${i + 1}`,
         name: `Flair ${i + 1}`,
-        color: ["red", "blue", "green", "yellow", "purple"][i % 5],
+        color: ['red', 'blue', 'green', 'yellow', 'purple'][i % 5],
       }))
     : [],
   error: null,

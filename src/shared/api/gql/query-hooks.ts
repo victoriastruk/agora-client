@@ -4,8 +4,8 @@ export const useCommentsQuery = (postId: string, params: any, options: any) => {
     id: `mock-comment-${i + 1}`,
     content: `This is a mock comment ${i + 1} on post ${postId}`,
     author: {
-      id: `mock-user-${i % 5 + 1}`,
-      name: `user${i % 5 + 1}`,
+      id: `mock-user-${(i % 5) + 1}`,
+      name: `user${(i % 5) + 1}`,
     },
     createdAt: new Date(Date.now() - Math.random() * 24 * 60 * 60 * 1000).toISOString(),
     score: Math.floor(Math.random() * 100),
@@ -26,8 +26,8 @@ export const useCommentQuery = (commentId: string, options: any) => {
     id: commentId,
     content: `This is mock content for comment ${commentId}`,
     author: {
-      id: "mock-user-1",
-      name: "mockuser",
+      id: 'mock-user-1',
+      name: 'mockuser',
     },
     createdAt: new Date().toISOString(),
     score: 42,

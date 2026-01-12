@@ -1,7 +1,7 @@
-import { Store } from "@tanstack/store";
-import { toast } from "sonner";
+import { Store } from '@tanstack/store';
+import { toast } from 'sonner';
 
-type NotificationType = "success" | "error" | "warning" | "info";
+type NotificationType = 'success' | 'error' | 'warning' | 'info';
 
 interface NotificationOptions {
   title: string;
@@ -33,19 +33,19 @@ const showNotification = (type: NotificationType, options: NotificationOptions) 
   }));
 
   switch (type) {
-    case "success": {
+    case 'success': {
       toast.success(title, { description, duration });
       break;
     }
-    case "error": {
+    case 'error': {
       toast.error(title, { description, duration });
       break;
     }
-    case "warning": {
+    case 'warning': {
       toast.warning(title, { description, duration });
       break;
     }
-    case "info": {
+    case 'info': {
       toast.info(title, { description, duration });
       break;
     }
@@ -54,12 +54,12 @@ const showNotification = (type: NotificationType, options: NotificationOptions) 
 
 export const notificationActions = {
   error: (title: string, description?: string) =>
-    showNotification("error", { description, duration: 8000, title }),
-  info: (title: string, description?: string) => showNotification("info", { description, title }),
+    showNotification('error', { description, duration: 8000, title }),
+  info: (title: string, description?: string) => showNotification('info', { description, title }),
   success: (title: string, description?: string) =>
-    showNotification("success", { description, title }),
+    showNotification('success', { description, title }),
   warning: (title: string, description?: string) =>
-    showNotification("warning", { description, title }),
+    showNotification('warning', { description, title }),
 };
 
 export { notificationStore };

@@ -1,8 +1,10 @@
-import { useForm } from "@tanstack/react-form";
-import { useNavigate } from "@tanstack/react-router";
-import { useRegisterMutation, useLoginMutation } from "@/entities/session";
-import { registerSchema } from "../lib/schemas";
-import { logger } from "@/shared/services";
+import { useForm } from '@tanstack/react-form';
+import { useNavigate } from '@tanstack/react-router';
+
+import { registerSchema } from '../lib/schemas';
+
+import { useRegisterMutation, useLoginMutation } from '@/entities/session';
+import { logger } from '@/shared/services';
 
 interface UseRegisterFormOptions {
   redirect?: string;
@@ -16,12 +18,12 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
 
   const form = useForm({
     defaultValues: {
-      email: "",
-      password: "",
-      username: "",
+      email: '',
+      password: '',
+      username: '',
     },
     onSubmit: async ({ value, formApi }) => {
-      console.log("Register form submitted with values:", JSON.stringify(value, null, 2));
+      console.log('Register form submitted with values:', JSON.stringify(value, null, 2));
       try {
         const result = await registerMutation.mutateAsync({
           email: value.email,
@@ -29,9 +31,9 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
           username: value.username,
         });
 
-        console.log("Registration result:", JSON.stringify(result, null, 2));
+        console.log('Registration result:', JSON.stringify(result, null, 2));
 
-        if (result.message === "Registration successful") {
+        if (result.message === 'Registration successful') {
           try {
             const loginResult = await loginMutation.mutateAsync({
               email: value.email,
@@ -39,17 +41,17 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
             });
 
             onSuccess?.();
-            const targetUrl = redirect ?? "/";
+            const targetUrl = redirect ?? '/';
             navigate({ to: targetUrl });
           } catch (loginError) {
-            console.error("Auto-login failed:", loginError);
+            console.error('Auto-login failed:', loginError);
 
-            logger.error("Auto-login after registration failed", loginError);
+            logger.error('Auto-login after registration failed', loginError);
             onSuccess?.();
-            const targetUrl = redirect ?? "/";
+            const targetUrl = redirect ?? '/';
             navigate({ to: targetUrl });
           }
-        } else if (result.error === "Validation failed" && result.details) {
+        } else if (result.error === 'Validation failed' && result.details) {
           result.details.forEach((detail: any) => {
             const fieldName = detail.field;
             console.log(`Setting error for field ${fieldName}: ${detail.message}`);
@@ -68,10 +70,10 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
             }
           });
         } else {
-          throw new Error(result.error || "Registration failed");
+          throw new Error(result.error || 'Registration failed');
         }
       } catch (error: any) {
-        logger.error("Registration failed", error);
+        logger.error('Registration failed', error);
         throw error;
       }
     },

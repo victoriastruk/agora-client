@@ -1,8 +1,10 @@
-import { useForm } from "@tanstack/react-form";
-import { useNavigate } from "@tanstack/react-router";
-import { useLoginMutation } from "@/entities/session";
-import { loginSchema } from "../lib/schemas";
-import { logger } from "@/shared/services";
+import { useForm } from '@tanstack/react-form';
+import { useNavigate } from '@tanstack/react-router';
+
+import { loginSchema } from '../lib/schemas';
+
+import { useLoginMutation } from '@/entities/session';
+import { logger } from '@/shared/services';
 
 interface UseLoginFormOptions {
   redirect?: string;
@@ -15,8 +17,8 @@ export const useLoginForm = ({ redirect, onSuccess }: UseLoginFormOptions = {}) 
 
   const form = useForm({
     defaultValues: {
-      password: "",
-      email: "",
+      password: '',
+      email: '',
     },
     onSubmit: async ({ value, formApi }) => {
       try {
@@ -28,17 +30,17 @@ export const useLoginForm = ({ redirect, onSuccess }: UseLoginFormOptions = {}) 
         const result = await loginMutation.mutateAsync(loginData);
 
         // Check if login was successful
-        if (result.message === "Login successful") {
+        if (result.message === 'Login successful') {
           onSuccess?.();
-          const targetUrl = redirect ?? "/";
+          const targetUrl = redirect ?? '/';
           navigate({ to: targetUrl });
-        } else if (result.error === "Validation failed" && result.details) {
+        } else if (result.error === 'Validation failed' && result.details) {
           // Handle validation errors - set them on form fields
           result.details.forEach((detail: any) => {
             let fieldName = detail.field;
 
-            if (fieldName === "email") {
-              fieldName = "email";
+            if (fieldName === 'email') {
+              fieldName = 'email';
             }
 
             if (fieldName && formApi.getFieldMeta) {
@@ -54,10 +56,10 @@ export const useLoginForm = ({ redirect, onSuccess }: UseLoginFormOptions = {}) 
           });
         } else {
           // Other errors
-          throw new Error(result.error || "Login failed");
+          throw new Error(result.error || 'Login failed');
         }
       } catch (error: any) {
-        logger.error("Login failed", error);
+        logger.error('Login failed', error);
         throw error;
       }
     },

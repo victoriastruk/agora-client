@@ -1,18 +1,19 @@
-import { useMemo } from "react";
-import type { Post } from "./types";
+import { useMemo } from 'react';
+
+import type { Post } from './types';
 
 const mockPosts: Post[] = Array.from({ length: 20 }, (_, i) => ({
   id: `mock-post-${i + 1}`,
   title: `Mock Post Title ${i + 1}`,
   content: `This is mock content for post ${i + 1}. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
   community: {
-    id: `mock-community-${i % 5 + 1}`,
-    name: `community${i % 5 + 1}`,
+    id: `mock-community-${(i % 5) + 1}`,
+    name: `community${(i % 5) + 1}`,
     iconUrl: null,
   },
   author: {
-    id: `mock-user-${i % 10 + 1}`,
-    name: `user${i % 10 + 1}`,
+    id: `mock-user-${(i % 10) + 1}`,
+    name: `user${(i % 10) + 1}`,
   },
   score: Math.floor(Math.random() * 1000),
   commentCount: Math.floor(Math.random() * 50),

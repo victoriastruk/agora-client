@@ -1,1 +1,1 @@
-export { PostDetailWidget } from "./ui/PostDetailWidget";
+export { PostDetailWidget } from './ui/PostDetailWidget';

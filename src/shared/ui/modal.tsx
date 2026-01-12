@@ -1,8 +1,9 @@
-import * as React from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
-import { cn } from "../lib";
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import * as React from 'react';
+
+import { cn } from '../lib';
 
 const overlayVariants = {
   exit: { opacity: 0 },
@@ -16,7 +17,7 @@ const contentVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { damping: 25, stiffness: 300, type: "spring" },
+    transition: { damping: 25, stiffness: 300, type: 'spring' },
     y: 0,
   },
 };
@@ -31,7 +32,7 @@ const ModalContext = React.createContext<ModalContextValue | null>(null);
 const useModalContext = () => {
   const context = React.useContext(ModalContext);
   if (!context) {
-    throw new Error("Modal components must be used within a Modal");
+    throw new Error('Modal components must be used within a Modal');
   }
   return context;
 };
@@ -55,7 +56,7 @@ const Modal = ({ children, open, onOpenChange, defaultOpen }: ModalProps) => {
       }
       onOpenChange?.(newOpen);
     },
-    [isControlled, onOpenChange]
+    [isControlled, onOpenChange],
   );
 
   return (
@@ -72,22 +73,22 @@ const ModalTrigger = DialogPrimitive.Trigger;
 interface ModalContentProps {
   children: React.ReactNode;
   className?: string;
-  size?: "sm" | "md" | "lg" | "xl" | "full";
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   showCloseButton?: boolean;
 }
 
 const sizeClasses = {
-  full: "max-w-4xl",
-  lg: "max-w-lg",
-  md: "max-w-md",
-  sm: "max-w-sm",
-  xl: "max-w-xl",
+  full: 'max-w-4xl',
+  lg: 'max-w-lg',
+  md: 'max-w-md',
+  sm: 'max-w-sm',
+  xl: 'max-w-xl',
 };
 
 const ModalContent = ({
   children,
   className,
-  size = "lg",
+  size = 'lg',
   showCloseButton = true,
 }: ModalContentProps) => {
   const { open, onOpenChange } = useModalContext();
@@ -98,54 +99,54 @@ const ModalContent = ({
         <DialogPrimitive.Portal forceMount>
           <DialogPrimitive.Overlay asChild>
             <motion.div
-              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
+              className='fixed inset-0 z-50 bg-black/60 backdrop-blur-sm'
               variants={overlayVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+              initial='hidden'
+              animate='visible'
+              exit='exit'
               onClick={() => onOpenChange(false)}
             />
           </DialogPrimitive.Overlay>
 
           <DialogPrimitive.Content asChild>
             <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+              className='fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6'
               variants={overlayVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+              initial='hidden'
+              animate='visible'
+              exit='exit'
             >
               <motion.div
                 className={cn(
-                  "relative w-full rounded-2xl bg-white shadow-2xl dark:bg-zinc-900",
-                  "ring-1 ring-black/5 dark:ring-white/10",
-                  "max-h-[90vh] overflow-hidden",
+                  'relative w-full rounded-2xl bg-white shadow-2xl dark:bg-zinc-900',
+                  'ring-1 ring-black/5 dark:ring-white/10',
+                  'max-h-[90vh] overflow-hidden',
                   sizeClasses[size],
-                  className
+                  className,
                 )}
                 variants={contentVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                onClick={(e) => e.stopPropagation()}
+                initial='hidden'
+                animate='visible'
+                exit='exit'
+                onClick={e => e.stopPropagation()}
               >
                 {showCloseButton && (
                   <DialogPrimitive.Close asChild>
                     <button
-                      aria-label="Close modal"
+                      aria-label='Close modal'
                       className={cn(
-                        "absolute right-4 top-4 z-10",
-                        "flex h-8 w-8 items-center justify-center rounded-full",
-                        "bg-zinc-100 text-zinc-500 transition-all",
-                        "hover:bg-zinc-200 hover:text-zinc-700",
-                        "dark:bg-zinc-800 dark:text-zinc-400",
-                        "dark:hover:bg-zinc-700 dark:hover:text-zinc-200",
-                        "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
-                        "dark:focus:ring-offset-zinc-900",
-                        "cursor-pointer"
+                        'absolute right-4 top-4 z-10',
+                        'flex h-8 w-8 items-center justify-center rounded-full',
+                        'bg-zinc-100 text-zinc-500 transition-all',
+                        'hover:bg-zinc-200 hover:text-zinc-700',
+                        'dark:bg-zinc-800 dark:text-zinc-400',
+                        'dark:hover:bg-zinc-700 dark:hover:text-zinc-200',
+                        'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
+                        'dark:focus:ring-offset-zinc-900',
+                        'cursor-pointer',
                       )}
                     >
-                      <X className="h-4 w-4" />
+                      <X className='h-4 w-4' />
                     </button>
                   </DialogPrimitive.Close>
                 )}
@@ -167,8 +168,8 @@ interface ModalHeaderProps {
 const ModalHeader = ({ children, className }: ModalHeaderProps) => (
   <div
     className={cn(
-      "sticky top-0 z-10 border-b border-zinc-200 bg-white px-6 py-5 dark:border-zinc-800 dark:bg-zinc-900",
-      className
+      'sticky top-0 z-10 border-b border-zinc-200 bg-white px-6 py-5 dark:border-zinc-800 dark:bg-zinc-900',
+      className,
     )}
   >
     {children}
@@ -183,8 +184,8 @@ interface ModalTitleProps {
 const ModalTitle = ({ children, className }: ModalTitleProps) => (
   <DialogPrimitive.Title
     className={cn(
-      "text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50",
-      className
+      'text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50',
+      className,
     )}
   >
     {children}
@@ -198,7 +199,7 @@ interface ModalDescriptionProps {
 
 const ModalDescription = ({ children, className }: ModalDescriptionProps) => (
   <DialogPrimitive.Description
-    className={cn("mt-1 text-sm text-zinc-500 dark:text-zinc-400", className)}
+    className={cn('mt-1 text-sm text-zinc-500 dark:text-zinc-400', className)}
   >
     {children}
   </DialogPrimitive.Description>
@@ -210,7 +211,7 @@ interface ModalBodyProps {
 }
 
 const ModalBody = ({ children, className }: ModalBodyProps) => (
-  <div className={cn("overflow-y-auto px-6 py-6", className)}>{children}</div>
+  <div className={cn('overflow-y-auto px-6 py-6', className)}>{children}</div>
 );
 
 interface ModalFooterProps {
@@ -221,8 +222,8 @@ interface ModalFooterProps {
 const ModalFooter = ({ children, className }: ModalFooterProps) => (
   <div
     className={cn(
-      "sticky bottom-0 flex items-center justify-end gap-3 border-t border-zinc-200 bg-zinc-50 px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900/50",
-      className
+      'sticky bottom-0 flex items-center justify-end gap-3 border-t border-zinc-200 bg-zinc-50 px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900/50',
+      className,
     )}
   >
     {children}

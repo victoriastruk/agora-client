@@ -1,1 +1,1 @@
-export { UserMenuWidget } from "./ui/UserMenuWidget";
+export { UserMenuWidget } from './ui/UserMenuWidget';

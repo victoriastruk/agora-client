@@ -14,7 +14,7 @@ export interface Post {
   title: string;
   content?: string;
   media?: {
-    type: "image" | "video" | "link";
+    type: 'image' | 'video' | 'link';
     url: string;
     thumb?: string;
   };
@@ -26,6 +26,6 @@ export interface Post {
   isSaved?: boolean;
 }
 
-import type { Community } from "@/community";
+import type { Community } from '@/community';
 
 export type { Community };

@@ -1,14 +1,13 @@
-import { useCallback, useEffect, useMemo } from "react";
-import { useQueryClient } from "@tanstack/react-query";
-import {
-  useVotePostMutation,
-  useVoteCommentMutation,
-} from "@/shared/api/gql/query-hooks";
-import { queryKeys } from "@/shared/api/query-keys";
-import { VoteType } from "@/shared/api/gql";
-import { usePostVote, clientStateActions } from "@/shared/stores";
-import { calculateVoteValue, getVoteState } from "../lib/vote-utils";
-import { logger } from "@/shared/services/logger";
+import { useQueryClient } from '@tanstack/react-query';
+import { useCallback, useEffect, useMemo } from 'react';
+
+import { calculateVoteValue, getVoteState } from '../lib/vote-utils';
+
+import { VoteType } from '@/shared/api/gql';
+import { useVotePostMutation, useVoteCommentMutation } from '@/shared/api/gql/query-hooks';
+import { queryKeys } from '@/shared/api/query-keys';
+import { logger } from '@/shared/services/logger';
+import { usePostVote, clientStateActions } from '@/shared/stores';
 
 export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
   const storedVote = usePostVote(postId);
@@ -34,11 +33,8 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
   }, [storedVote, initialVote]);
 
   const vote = useCallback(
-    async (direction: "up" | "down") => {
-      if (
-        votePostMutation.isPending ||
-        currentVote === (direction === "up" ? 1 : -1)
-      ) {
+    async (direction: 'up' | 'down') => {
+      if (votePostMutation.isPending || currentVote === (direction === 'up' ? 1 : -1)) {
         return;
       }
 
@@ -48,8 +44,7 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
       clientStateActions.votePost(postId, newVote);
 
       try {
-        const voteType =
-          direction === "up" ? VoteType.Upvote : VoteType.Downvote;
+        const voteType = direction === 'up' ? VoteType.Upvote : VoteType.Downvote;
 
         await votePostMutation.mutateAsync({
           postId,
@@ -58,19 +53,19 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
 
         queryClient.invalidateQueries({
           queryKey: queryKeys.posts.lists(),
-          refetchType: "none",
+          refetchType: 'none',
         });
         queryClient.invalidateQueries({
           queryKey: queryKeys.posts.detail(postId),
-          refetchType: "none",
+          refetchType: 'none',
         });
       } catch (error) {
         clientStateActions.votePost(postId, oldVote);
-        logger.error("Failed to vote on post:", error);
+        logger.error('Failed to vote on post:', error);
         throw error;
       }
     },
-    [postId, currentVote, votePostMutation, queryClient]
+    [postId, currentVote, votePostMutation, queryClient],
   );
 
   return {
@@ -86,14 +81,13 @@ export const useCommentVote = (commentId: string, postId: string) => {
   const voteCommentMutation = useVoteCommentMutation();
 
   const vote = useCallback(
-    async (direction: "up" | "down") => {
+    async (direction: 'up' | 'down') => {
       if (voteCommentMutation.isPending) {
         return;
       }
 
       try {
-        const voteType =
-          direction === "up" ? VoteType.Upvote : VoteType.Downvote;
+        const voteType = direction === 'up' ? VoteType.Upvote : VoteType.Downvote;
 
         await voteCommentMutation.mutateAsync({
           commentId,
@@ -104,11 +98,11 @@ export const useCommentVote = (commentId: string, postId: string) => {
           queryKey: queryKeys.comments.byPost(postId),
         });
       } catch (error) {
-        logger.error("Failed to vote on comment:", error);
+        logger.error('Failed to vote on comment:', error);
         throw error;
       }
     },
-    [commentId, postId, voteCommentMutation, queryClient]
+    [commentId, postId, voteCommentMutation, queryClient],
   );
 
   return {

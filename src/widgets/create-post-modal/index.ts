@@ -1,1 +1,1 @@
-export { CreatePostModal } from "./ui/CreatePostModal";
+export { CreatePostModal } from './ui/CreatePostModal';

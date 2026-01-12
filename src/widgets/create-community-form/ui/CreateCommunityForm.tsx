@@ -1,15 +1,9 @@
-import { Globe, Eye, Lock, Users, Sparkles } from "lucide-react";
-import {
-  Button,
-  Input,
-  Textarea,
-  ImageUpload,
-  RadioCardGroup,
-  FormField,
-} from "@/shared/ui";
-import { useCreateCommunityForm } from "@/features/create-community";
+import { Globe, Eye, Lock, Users, Sparkles } from 'lucide-react';
 
-type CommunityType = "public" | "restricted" | "private";
+import { useCreateCommunityForm } from '@/features/create-community';
+import { Button, Input, Textarea, ImageUpload, RadioCardGroup, FormField } from '@/shared/ui';
+
+type CommunityType = 'public' | 'restricted' | 'private';
 
 const VISIBILITY_OPTIONS: {
   value: CommunityType;
@@ -18,22 +12,22 @@ const VISIBILITY_OPTIONS: {
   icon: React.ElementType;
 }[] = [
   {
-    description: "Anyone can view, post, and comment",
+    description: 'Anyone can view, post, and comment',
     icon: Globe,
-    label: "Public",
-    value: "public",
+    label: 'Public',
+    value: 'public',
   },
   {
-    description: "Anyone can view, but only approved users can post",
+    description: 'Anyone can view, but only approved users can post',
     icon: Eye,
-    label: "Restricted",
-    value: "restricted",
+    label: 'Restricted',
+    value: 'restricted',
   },
   {
-    description: "Only approved users can view and participate",
+    description: 'Only approved users can view and participate',
     icon: Lock,
-    label: "Private",
-    value: "private",
+    label: 'Private',
+    value: 'private',
   },
 ];
 
@@ -42,42 +36,42 @@ export const CreateCommunityForm = () => {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={e => {
         e.preventDefault();
         e.stopPropagation();
         form.handleSubmit();
       }}
-      className="space-y-8"
+      className='space-y-8'
     >
       {/* Appearance */}
-      <section className="space-y-4">
-        <h3 className="text-sm font-medium flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-amber-500" />
+      <section className='space-y-4'>
+        <h3 className='text-sm font-medium flex items-center gap-2'>
+          <Sparkles className='h-4 w-4 text-amber-500' />
           Customize appearance
         </h3>
         <form.Field
-          name="bannerUrl"
-          children={(field) => (
+          name='bannerUrl'
+          children={field => (
             <ImageUpload
-              value={field.state.value || ""}
-              onChange={(value) => field.handleChange(value || "")}
-              variant="banner"
-              size="lg"
-              placeholder="Add a banner image"
-              className="w-full"
+              value={field.state.value || ''}
+              onChange={value => field.handleChange(value || '')}
+              variant='banner'
+              size='lg'
+              placeholder='Add a banner image'
+              className='w-full'
             />
           )}
         />
-        <div className="-mt-12 ml-4 relative z-10 inline-block rounded-full bg-background p-1 shadow-lg">
+        <div className='-mt-12 ml-4 relative z-10 inline-block rounded-full bg-background p-1 shadow-lg'>
           <form.Field
-            name="avatarUrl"
-            children={(field) => (
+            name='avatarUrl'
+            children={field => (
               <ImageUpload
-                value={field.state.value || ""}
-                onChange={(value) => field.handleChange(value || "")}
-                variant="circle"
-                size="lg"
-                placeholder="Avatar"
+                value={field.state.value || ''}
+                onChange={value => field.handleChange(value || '')}
+                variant='circle'
+                size='lg'
+                placeholder='Avatar'
               />
             )}
           />
@@ -86,19 +80,19 @@ export const CreateCommunityForm = () => {
 
       {/* Community Name */}
       <form.Field
-        name="name"
-        children={(field) => (
+        name='name'
+        children={field => (
           <FormField
-            label="Community name"
-            hint="Choose a unique name. This cannot be changed later."
-            htmlFor="community-name"
+            label='Community name'
+            hint='Choose a unique name. This cannot be changed later.'
+            htmlFor='community-name'
             error={field.state.meta.errors?.[0]?.message}
           >
             <Input
-              id="community-name"
-              placeholder="community_name"
+              id='community-name'
+              placeholder='community_name'
               value={field.state.value}
-              onChange={(e) => field.handleChange(e.target.value)}
+              onChange={e => field.handleChange(e.target.value)}
               onBlur={field.handleBlur}
             />
           </FormField>
@@ -107,19 +101,19 @@ export const CreateCommunityForm = () => {
 
       {/* Display Name */}
       <form.Field
-        name="displayName"
-        children={(field) => (
+        name='displayName'
+        children={field => (
           <FormField
-            label="Display name"
-            hint="This is how your community will appear to users."
-            htmlFor="display-name"
+            label='Display name'
+            hint='This is how your community will appear to users.'
+            htmlFor='display-name'
             error={field.state.meta.errors?.[0]?.message}
           >
             <Input
-              id="display-name"
-              placeholder="My Awesome Community"
+              id='display-name'
+              placeholder='My Awesome Community'
               value={field.state.value}
-              onChange={(e) => field.handleChange(e.target.value)}
+              onChange={e => field.handleChange(e.target.value)}
               onBlur={field.handleBlur}
             />
           </FormField>
@@ -128,19 +122,19 @@ export const CreateCommunityForm = () => {
 
       {/* Description */}
       <form.Field
-        name="description"
-        children={(field) => (
+        name='description'
+        children={field => (
           <FormField
-            label="Description"
-            hint="Help people understand what your community is about."
-            htmlFor="description"
+            label='Description'
+            hint='Help people understand what your community is about.'
+            htmlFor='description'
             error={field.state.meta.errors?.[0]?.message}
           >
             <Textarea
-              id="description"
-              placeholder="Tell potential members what makes your community special..."
+              id='description'
+              placeholder='Tell potential members what makes your community special...'
               value={field.state.value}
-              onChange={(e) => field.handleChange(e.target.value)}
+              onChange={e => field.handleChange(e.target.value)}
               onBlur={field.handleBlur}
               rows={4}
             />
@@ -150,32 +144,28 @@ export const CreateCommunityForm = () => {
 
       {/* Community Type */}
       <form.Field
-        name="communityType"
-        children={(field) => (
-          <section className="space-y-3">
-            <h3 className="text-sm font-medium flex items-center gap-2">
-              <Users className="h-4 w-4 text-primary" />
+        name='communityType'
+        children={field => (
+          <section className='space-y-3'>
+            <h3 className='text-sm font-medium flex items-center gap-2'>
+              <Users className='h-4 w-4 text-primary' />
               Community type
             </h3>
             <RadioCardGroup
               value={field.state.value}
-              onChange={(value) => field.handleChange(value)}
+              onChange={value => field.handleChange(value)}
               options={VISIBILITY_OPTIONS}
-              size="md"
+              size='md'
             />
           </section>
         )}
       />
 
       <form.Subscribe
-        selector={(state) => [state.canSubmit, state.isSubmitting]}
+        selector={state => [state.canSubmit, state.isSubmitting]}
         children={([canSubmit, isSubmitting]) => (
-          <Button
-            type="submit"
-            className="min-w-35"
-            disabled={!canSubmit || isSubmitting}
-          >
-            {isSubmitting ? "Creating..." : "Create Community"}
+          <Button type='submit' className='min-w-35' disabled={!canSubmit || isSubmitting}>
+            {isSubmitting ? 'Creating...' : 'Create Community'}
           </Button>
         )}
       />

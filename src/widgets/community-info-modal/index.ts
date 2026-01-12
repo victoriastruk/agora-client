@@ -1,1 +1,1 @@
-export { CommunityInfoModal } from "./ui/CommunityInfoModal";
+export { CommunityInfoModal } from './ui/CommunityInfoModal';

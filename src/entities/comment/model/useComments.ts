@@ -1,16 +1,18 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
+
+import { mapComment } from '../api/mappers';
+
 import {
   useCommentsQuery as useCommentsGql,
   useCommentQuery as useCommentGql,
   useUserCommentsQuery as useUserCommentsGql,
-} from "@/shared/api/gql/query-hooks";
-import { mapComment } from "../api/mappers";
+} from '@/shared/api/gql/query-hooks';
 
 export const useComments = (postId: string, limit = 50, offset = 0) => {
   const { data, isLoading, error, refetch } = useCommentsGql(
     postId,
     { limit, offset },
-    { enabled: Boolean(postId) }
+    { enabled: Boolean(postId) },
   );
 
   const comments = useMemo(() => (data ?? []).map(mapComment), [data]);

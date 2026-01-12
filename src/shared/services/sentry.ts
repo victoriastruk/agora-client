@@ -1,10 +1,10 @@
 import * as Sentry from '@sentry/react';
-import type { Integration } from '@sentry/types';
+
 import { env } from '../utils/env';
 
-type ConsoleIntegrationFactory = (options: {
-  levels: Array<'log' | 'warn' | 'error'>;
-}) => unknown;
+import type { Integration } from '@sentry/types';
+
+type ConsoleIntegrationFactory = (options: { levels: Array<'log' | 'warn' | 'error'> }) => unknown;
 type BrowserTracingFactory = (options?: {
   tracePropagationTargets?: Array<string | RegExp>;
 }) => unknown;
@@ -31,7 +31,7 @@ const tracingIntegration = sentryWithIntegrations.browserTracingIntegration?.({
 });
 
 const customIntegrations = [consoleIntegration, tracingIntegration].filter(
-  Boolean
+  Boolean,
 ) as Integration[];
 
 const dsn = env.SENTRY_DSN;
@@ -49,11 +49,7 @@ Sentry.init({
   enableLogs: true,
   integrations: defaults => [...defaults, ...customIntegrations],
   beforeSend(event) {
-    if (
-      event.exception?.values?.some(value =>
-        value.value?.includes('status: 401')
-      )
-    ) {
+    if (event.exception?.values?.some(value => value.value?.includes('status: 401'))) {
       return null;
     }
     return event;

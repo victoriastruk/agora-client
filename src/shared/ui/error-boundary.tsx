@@ -1,16 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import type { ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
-import {
-  ErrorBoundary as ReactErrorBoundary,
-  useErrorBoundary,
-} from 'react-error-boundary';
-import type { FallbackProps } from 'react-error-boundary';
 import { AlertTriangle, ArrowLeft, Info, RefreshCw } from 'lucide-react';
-import { logger } from '../services/logger';
+import { useEffect, useRef, useState } from 'react';
+import { ErrorBoundary as ReactErrorBoundary, useErrorBoundary } from 'react-error-boundary';
+
 import { cn } from '../lib';
-import { Card, CardContent, CardHeader, CardTitle } from './card';
+import { logger } from '../services/logger';
+
 import { Button } from './button';
+import { Card, CardContent, CardHeader, CardTitle } from './card';
+
+import type { ReactNode } from 'react';
+import type { FallbackProps } from 'react-error-boundary';
 
 interface AppErrorBoundaryProps {
   children: ReactNode;
@@ -27,7 +27,7 @@ interface AppErrorBoundaryProps {
           reason: 'keys';
           prev: unknown[] | undefined;
           next: unknown[] | undefined;
-        }
+        },
   ) => void;
   onError?: (error: Error, errorInfo: { componentStack: string }) => void;
   className?: string;
@@ -67,83 +67,72 @@ const ErrorFallback = ({
   };
 
   return (
-    <div className="min-h-[50vh] bg-muted/20 px-4 py-12">
+    <div className='min-h-[50vh] bg-muted/20 px-4 py-12'>
       <Card
         ref={cardRef}
         tabIndex={-1}
-        role="alert"
-        aria-live="polite"
-        className={cn(
-          'mx-auto w-full max-w-xl border-border/80 shadow-sm',
-          className
-        )}
+        role='alert'
+        aria-live='polite'
+        className={cn('mx-auto w-full max-w-xl border-border/80 shadow-sm', className)}
       >
-        <CardHeader className="space-y-2">
-          <CardTitle className="flex items-center gap-2 text-foreground">
-            <AlertTriangle
-              className="h-5 w-5 text-amber-500"
-              aria-hidden="true"
-            />
+        <CardHeader className='space-y-2'>
+          <CardTitle className='flex items-center gap-2 text-foreground'>
+            <AlertTriangle className='h-5 w-5 text-amber-500' aria-hidden='true' />
             {title}
           </CardTitle>
-          <p className="text-sm leading-6 text-muted-foreground">
-            {description}
-          </p>
+          <p className='text-sm leading-6 text-muted-foreground'>{description}</p>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2">
+        <CardContent className='space-y-4'>
+          <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2'>
             <Button
               onClick={handleRetry}
-              className="w-full sm:w-auto"
-              aria-label="Retry loading this view"
+              className='w-full sm:w-auto'
+              aria-label='Retry loading this view'
             >
-              <RefreshCw className="h-4 w-4" />
+              <RefreshCw className='h-4 w-4' />
               {resetLabel}
             </Button>
             <Button
               asChild
-              variant="ghost"
-              className="w-full justify-center text-muted-foreground sm:w-auto"
-              aria-label="Return to a safe page"
+              variant='ghost'
+              className='w-full justify-center text-muted-foreground sm:w-auto'
+              aria-label='Return to a safe page'
             >
               <Link to={fallbackRoute}>
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className='h-4 w-4' />
                 {fallbackLabel}
               </Link>
             </Button>
           </div>
 
-          <div className="flex flex-col gap-3 rounded-lg border border-dashed border-border/70 bg-background/60 p-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-muted-foreground">
-              If this keeps happening, try again or head back home. Your content
-              stays safe.
+          <div className='flex flex-col gap-3 rounded-lg border border-dashed border-border/70 bg-background/60 p-3 sm:flex-row sm:items-center sm:justify-between'>
+            <p className='text-xs text-muted-foreground'>
+              If this keeps happening, try again or head back home. Your content stays safe.
             </p>
             <Button
-              variant="outline"
-              size="sm"
-              className="gap-2"
+              variant='outline'
+              size='sm'
+              className='gap-2'
               onClick={() => setShowDetails(prev => !prev)}
               aria-expanded={showDetails}
-              aria-controls="error-details"
+              aria-controls='error-details'
             >
-              <Info className="h-4 w-4" />
+              <Info className='h-4 w-4' />
               {showDetails ? 'Hide details' : 'Show details'}
             </Button>
           </div>
 
           {showDetails && (
             <div
-              id="error-details"
-              className="rounded-lg border border-border/70 bg-muted/70 p-3 text-left"
+              id='error-details'
+              className='rounded-lg border border-border/70 bg-muted/70 p-3 text-left'
             >
-              <p className="text-xs font-semibold text-foreground">
-                Technical details
-              </p>
-              <p className="mt-2 wrap-break-word font-mono text-[11px] leading-relaxed text-muted-foreground">
+              <p className='text-xs font-semibold text-foreground'>Technical details</p>
+              <p className='mt-2 wrap-break-word font-mono text-[11px] leading-relaxed text-muted-foreground'>
                 {error?.message ?? 'Unknown error'}
               </p>
               {error?.stack && (
-                <pre className="mt-3 max-h-48 overflow-auto whitespace-pre-wrap wrap-break-word font-mono text-[11px] leading-relaxed text-muted-foreground/90">
+                <pre className='mt-3 max-h-48 overflow-auto whitespace-pre-wrap wrap-break-word font-mono text-[11px] leading-relaxed text-muted-foreground/90'>
                   {error.stack}
                 </pre>
               )}
@@ -155,7 +144,7 @@ const ErrorFallback = ({
   );
 };
 
-export function ErrorBoundary({
+export const ErrorBoundary = ({
   children,
   title = 'We hit a snag',
   description = 'Something broke while loading this page. You can try again or go back to a safe place.',
@@ -166,7 +155,7 @@ export function ErrorBoundary({
   onReset,
   onError,
   className,
-}: AppErrorBoundaryProps) {
+}: AppErrorBoundaryProps) => {
   return (
     <ReactErrorBoundary
       fallbackRender={fallbackProps => (
@@ -190,14 +179,13 @@ export function ErrorBoundary({
       {children}
     </ReactErrorBoundary>
   );
-}
+};
 
 export const useErrorHandler = () => {
   const { showBoundary } = useErrorBoundary();
 
   return (error: unknown) => {
-    const normalizedError =
-      error instanceof Error ? error : new Error('Unexpected error');
+    const normalizedError = error instanceof Error ? error : new Error('Unexpected error');
 
     logger.error('Error caught by error handler:', normalizedError, {
       original: error,

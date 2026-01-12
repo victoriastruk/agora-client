@@ -1,5 +1,5 @@
-import type { Community } from "../model/types";
-import type { SubredditResponse } from "./types";
+import type { SubredditResponse } from './types';
+import type { Community } from '../model/types';
 
 export const mapCommunity = (data: SubredditResponse): Community => ({
   id: data.id,

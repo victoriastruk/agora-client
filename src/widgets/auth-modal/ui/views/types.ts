@@ -1,4 +1,4 @@
-import type { AuthView } from "@/shared/stores";
+import type { AuthView } from '@/shared/stores';
 
 interface AuthViewProps {
   onSuccess: VoidFunction;

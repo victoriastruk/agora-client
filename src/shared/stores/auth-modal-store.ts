@@ -1,49 +1,49 @@
-import { Store } from "@tanstack/store";
-import { useStore } from "@tanstack/react-store";
+import { useStore } from '@tanstack/react-store';
+import { Store } from '@tanstack/store';
 
-export type AuthView = "login" | "register" | "reset" | "phone";
+export type AuthView = 'login' | 'register' | 'reset' | 'phone';
 
 interface AuthModalState {
   isOpen: boolean;
   view: AuthView;
-  phoneMode?: "login" | "register";
+  phoneMode?: 'login' | 'register';
 }
 
 const initialState: AuthModalState = {
   isOpen: false,
-  view: "login",
+  view: 'login',
   phoneMode: undefined,
 };
 
 export const authModalStore = new Store<AuthModalState>(initialState);
 
 export const authModalActions = {
-  open: (view: AuthView = "login") => {
-    authModalStore.setState((prev) => ({
+  open: (view: AuthView = 'login') => {
+    authModalStore.setState(prev => ({
       ...prev,
       isOpen: true,
       view,
     }));
   },
 
-  openPhone: (mode: "login" | "register") => {
-    authModalStore.setState((prev) => ({
+  openPhone: (mode: 'login' | 'register') => {
+    authModalStore.setState(prev => ({
       ...prev,
       isOpen: true,
-      view: "phone",
+      view: 'phone',
       phoneMode: mode,
     }));
   },
 
   close: () => {
-    authModalStore.setState((prev) => ({
+    authModalStore.setState(prev => ({
       ...prev,
       isOpen: false,
     }));
   },
 
   setView: (view: AuthView) => {
-    authModalStore.setState((prev) => {
+    authModalStore.setState(prev => {
       if (prev.view === view) {
         return prev;
       }
@@ -51,7 +51,7 @@ export const authModalActions = {
       return {
         ...prev,
         view,
-        phoneMode: view === "phone" ? prev.phoneMode : undefined,
+        phoneMode: view === 'phone' ? prev.phoneMode : undefined,
       };
     });
   },
@@ -64,13 +64,13 @@ export const authModalActions = {
 export const useAuthModalState = () => useStore(authModalStore);
 
 export const useAuthModalOpen = () => {
-  return useStore(authModalStore, (state) => state.isOpen);
+  return useStore(authModalStore, state => state.isOpen);
 };
 
 export const useAuthModalView = () => {
-  return useStore(authModalStore, (state) => state.view);
+  return useStore(authModalStore, state => state.view);
 };
 
 export const useAuthModalPhoneMode = () => {
-  return useStore(authModalStore, (state) => state.phoneMode);
+  return useStore(authModalStore, state => state.phoneMode);
 };

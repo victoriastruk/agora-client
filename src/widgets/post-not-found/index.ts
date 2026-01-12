@@ -1,1 +1,1 @@
-export { PostNotFoundWidget } from "./ui/PostNotFoundWidget";
+export { PostNotFoundWidget } from './ui/PostNotFoundWidget';

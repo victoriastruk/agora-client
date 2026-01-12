@@ -1,1 +1,1 @@
-export { AuthModal, AuthTrigger } from "./ui/AuthModal";
+export { AuthModal, AuthTrigger } from './ui/AuthModal';

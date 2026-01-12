@@ -1,14 +1,15 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Suspense } from "react";
-import { usePost } from "@/entities/post";
-import { useComments } from "@/entities/comment";
-import { PostDetailWidget } from "@/widgets/post-detail";
-import { CommentSectionWidget } from "@/widgets/comment-section";
-import { PostLoadingSkeletonWidget } from "@/widgets/post-loading-skeleton";
-import { PostNotFoundWidget } from "@/widgets/post-not-found";
-import { Spinner } from "@/shared/ui";
+import { createFileRoute } from '@tanstack/react-router';
+import { Suspense } from 'react';
 
-export const Route = createFileRoute("/_main/post/$postId")({
+import { useComments } from '@/entities/comment';
+import { usePost } from '@/entities/post';
+import { Spinner } from '@/shared/ui';
+import { CommentSectionWidget } from '@/widgets/comment-section';
+import { PostDetailWidget } from '@/widgets/post-detail';
+import { PostLoadingSkeletonWidget } from '@/widgets/post-loading-skeleton';
+import { PostNotFoundWidget } from '@/widgets/post-not-found';
+
+export const Route = createFileRoute('/_main/post/$postId')({
   component: PostDetailPage,
   loader: async ({ context, params }) => {
     const { queryClient } = context;
@@ -24,15 +25,15 @@ export const Route = createFileRoute("/_main/post/$postId")({
   staleTime: 2 * 60 * 1000,
 });
 
-function PostDetailPage() {
+const PostDetailPage = () => {
   return (
     <Suspense fallback={<Spinner />}>
       <PostDetailPageContent />
     </Suspense>
   );
-}
+};
 
-function PostDetailPageContent() {
+const PostDetailPageContent = () => {
   const { postId } = Route.useParams();
   const { post, isLoading: postLoading } = usePost(postId);
   const { comments, isLoading: commentsLoading } = useComments(postId);
@@ -47,9 +48,9 @@ function PostDetailPageContent() {
   }
 
   return (
-    <div className="container mx-auto max-w-4xl p-4 space-y-6">
+    <div className='container mx-auto max-w-4xl p-4 space-y-6'>
       <PostDetailWidget post={post} />
       <CommentSectionWidget postId={postId} />
     </div>
   );
-}
+};

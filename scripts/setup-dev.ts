@@ -1,7 +1,7 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as process from "process";
-import { fileURLToPath } from "url";
+import * as fs from 'fs';
+import * as path from 'path';
+import * as process from 'process';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,7 +10,7 @@ function findEnvExampleFiles(dir: string, r: string[] = []): string[] {
   const items = fs.readdirSync(dir);
 
   for (const item of items) {
-    if (["node_modules", ".git", "dist", "dev-dist", ".cursor"].includes(item)) {
+    if (['node_modules', '.git', 'dist', 'dev-dist', '.cursor'].includes(item)) {
       continue;
     }
 
@@ -19,7 +19,7 @@ function findEnvExampleFiles(dir: string, r: string[] = []): string[] {
 
     if (stats.isDirectory()) {
       findEnvExampleFiles(fullPath, r);
-    } else if (item === ".env.example") {
+    } else if (item === '.env.example') {
       r.push(fullPath);
     }
   }
@@ -28,7 +28,7 @@ function findEnvExampleFiles(dir: string, r: string[] = []): string[] {
 }
 
 function createEnvFile(envExamplePath: string): boolean {
-  const envPath = path.join(path.dirname(envExamplePath), ".env");
+  const envPath = path.join(path.dirname(envExamplePath), '.env');
 
   if (fs.existsSync(envPath)) {
     return false;
@@ -47,12 +47,12 @@ function createEnvFile(envExamplePath: string): boolean {
 }
 
 function setupDev(): void {
-  const projectRoot = path.join(__dirname, "..");
+  const projectRoot = path.join(__dirname, '..');
 
   const envExampleFiles = findEnvExampleFiles(projectRoot);
 
   if (envExampleFiles.length === 0) {
-    console.log("No .env.example files found");
+    console.log('No .env.example files found');
     return;
   }
 
@@ -62,7 +62,7 @@ function setupDev(): void {
   if (createdCount > 0) {
     console.log(`✅ Development environment setup complete! Created ${createdCount} .env file(s)`);
   } else {
-    console.log("✅ All .env files already exist");
+    console.log('✅ All .env files already exist');
   }
 }
 

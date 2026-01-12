@@ -1,5 +1,6 @@
-import { useMemo } from "react";
-import type { User } from "./types";
+import { useMemo } from 'react';
+
+import type { User } from './types';
 
 const mockUsers: User[] = Array.from({ length: 20 }, (_, i) => ({
   id: `mock-user-${i + 1}`,

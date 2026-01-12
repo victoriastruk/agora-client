@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useMemo } from "react";
-import { usePostVote, clientStateActions } from "@/shared/stores";
-import { calculateVoteValue, getVoteState } from "../lib/vote-utils";
+import { useCallback, useEffect, useMemo } from 'react';
+
+import { calculateVoteValue, getVoteState } from '../lib/vote-utils';
+
+import { usePostVote, clientStateActions } from '@/shared/stores';
 
 // TODO(mock-env): replace with real vote gql mutations
 export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
@@ -14,20 +16,17 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
     }
   }, [postId, initialVote, storedVote]);
 
-  const currentVote = useMemo(
-    () => storedVote ?? initialVote,
-    [storedVote, initialVote]
-  );
+  const currentVote = useMemo(() => storedVote ?? initialVote, [storedVote, initialVote]);
 
   const vote = useCallback(
-    async (direction: "up" | "down") => {
+    async (direction: 'up' | 'down') => {
       const newVote = calculateVoteValue(currentVote, direction);
       clientStateActions.votePost(postId, newVote);
 
       // TODO(mock-env): simulate backend delay / error if needed
       await Promise.resolve();
     },
-    [postId, currentVote]
+    [postId, currentVote],
   );
 
   return {
@@ -39,7 +38,7 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
 };
 // TODO(mock-env): replace with real comment vote mutation
 export const useCommentVote = (_commentId: string, _postId: string) => {
-  const vote = useCallback(async (_direction: "up" | "down") => {
+  const vote = useCallback(async (_direction: 'up' | 'down') => {
     // noop — comment voting mocked
     await Promise.resolve();
   }, []);

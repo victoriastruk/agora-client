@@ -1,5 +1,6 @@
-import { useState, useCallback, useMemo } from "react";
-import { useTopStories } from "../api/topStoriesApi";
+import { useState, useCallback, useMemo } from 'react';
+
+import { useTopStories } from '../api/topStoriesApi';
 
 const VISIBLE_STORIES_COUNT = 3;
 const TOP_STORIES_LIMIT = 6;
@@ -14,14 +15,14 @@ export const useHeroCarousel = () => {
     if (!canNavigate) {
       return;
     }
-    setCurrentIndex((prev) => (prev + 1) % stories.length);
+    setCurrentIndex(prev => (prev + 1) % stories.length);
   }, [canNavigate, stories.length]);
 
   const prevSlide = useCallback(() => {
     if (!canNavigate) {
       return;
     }
-    setCurrentIndex((prev) => (prev - 1 + stories.length) % stories.length);
+    setCurrentIndex(prev => (prev - 1 + stories.length) % stories.length);
   }, [canNavigate, stories.length]);
 
   const visibleStories = useMemo(() => {

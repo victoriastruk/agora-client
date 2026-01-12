@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback } from 'react';
 
 export interface UseInfiniteScrollOptions {
   hasMore: boolean;
@@ -9,9 +9,9 @@ export interface UseInfiniteScrollOptions {
 
 export const useInfiniteScroll = <T extends HTMLElement = HTMLDivElement>(
   onLoadMore: VoidFunction,
-  options: UseInfiniteScrollOptions
+  options: UseInfiniteScrollOptions,
 ) => {
-  const { hasMore, isLoading, threshold = 0.1, rootMargin = "0px" } = options;
+  const { hasMore, isLoading, threshold = 0.1, rootMargin = '0px' } = options;
   const targetRef = useRef<T>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -22,7 +22,7 @@ export const useInfiniteScroll = <T extends HTMLElement = HTMLDivElement>(
         onLoadMore();
       }
     },
-    [onLoadMore, hasMore, isLoading]
+    [onLoadMore, hasMore, isLoading],
   );
 
   useEffect(() => {

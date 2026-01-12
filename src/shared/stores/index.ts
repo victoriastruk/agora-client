@@ -7,9 +7,9 @@ export {
   usePostVote,
   useSidebarCollapsed,
   useTheme,
-} from "./client-state";
-export type { ClientState } from "./client-state";
-export { notificationStore, notificationActions } from "./notification-store";
+} from './client-state';
+export type { ClientState } from './client-state';
+export { notificationStore, notificationActions } from './notification-store';
 export {
   authModalStore,
   authModalActions,
@@ -17,5 +17,5 @@ export {
   useAuthModalOpen,
   useAuthModalView,
   useAuthModalPhoneMode,
-} from "./auth-modal-store";
-export type { AuthView } from "./auth-modal-store";
+} from './auth-modal-store';
+export type { AuthView } from './auth-modal-store';

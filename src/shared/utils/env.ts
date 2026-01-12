@@ -27,7 +27,7 @@ function parseEnv(): EnvConfig {
 
       throw new Error(
         `Environment validation failed:\n${errorMessages}\n\n` +
-          'Please check your .env file and ensure all required variables are set correctly.'
+          'Please check your .env file and ensure all required variables are set correctly.',
       );
     }
 

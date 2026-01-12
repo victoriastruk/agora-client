@@ -1,8 +1,9 @@
-import { memo } from "react";
-import { PostCardContent, type Post } from "@/entities/post";
-import { VoteColumn } from "@/features/vote";
-import { PostActions } from "@/features/post-actions";
-import { PostMenu } from "@/features/post-menu";
+import { memo } from 'react';
+
+import { PostCardContent, type Post } from '@/entities/post';
+import { PostActions } from '@/features/post-actions';
+import { PostMenu } from '@/features/post-menu';
+import { VoteColumn } from '@/features/vote';
 
 interface PostCardProps {
   post: Post;
@@ -19,6 +20,6 @@ const PostCard = memo(({ post, showCommunity = true }: PostCardProps) => (
   />
 ));
 
-PostCard.displayName = "PostCard";
+PostCard.displayName = 'PostCard';
 
 export { PostCard };

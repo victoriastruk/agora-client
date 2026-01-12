@@ -1,5 +1,6 @@
-import { VOTE_VALUES } from "@/shared/constants";
-import type { VoteDirection } from "@/shared/constants";
+import type { VoteDirection } from '@/shared/constants';
+
+import { VOTE_VALUES } from '@/shared/constants';
 
 export interface VoteState {
   currentVotes: number;
@@ -19,7 +20,7 @@ export function calculateVoteChange(currentState: VoteState, direction: VoteDire
       newUserVote: null,
       newVoteCount:
         currentVotes +
-        (direction === "up" ? -VOTE_VALUES.UP_INCREMENT : -VOTE_VALUES.DOWN_INCREMENT),
+        (direction === 'up' ? -VOTE_VALUES.UP_INCREMENT : -VOTE_VALUES.DOWN_INCREMENT),
     };
   }
 
@@ -27,12 +28,12 @@ export function calculateVoteChange(currentState: VoteState, direction: VoteDire
     return {
       newUserVote: direction,
       newVoteCount:
-        currentVotes + (direction === "up" ? VOTE_VALUES.UP_INCREMENT : VOTE_VALUES.DOWN_INCREMENT),
+        currentVotes + (direction === 'up' ? VOTE_VALUES.UP_INCREMENT : VOTE_VALUES.DOWN_INCREMENT),
     };
   }
 
   const voteChange =
-    direction === "up" ? VOTE_VALUES.VOTE_CHANGE_MULTIPLIER : -VOTE_VALUES.VOTE_CHANGE_MULTIPLIER;
+    direction === 'up' ? VOTE_VALUES.VOTE_CHANGE_MULTIPLIER : -VOTE_VALUES.VOTE_CHANGE_MULTIPLIER;
 
   return {
     newUserVote: direction,

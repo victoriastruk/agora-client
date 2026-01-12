@@ -1,10 +1,12 @@
-import { createRootRouteWithContext, Outlet, Link } from "@tanstack/react-router";
-import type { SessionState } from "@/entities/session";
-import type { QueryClient } from "@tanstack/react-query";
-import { Card, CardContent } from "@/shared/ui/card";
-import { Button } from "@/shared/ui/button";
-import { ErrorBoundary } from "@/shared/ui";
-import { isDevelopment } from "@/shared/utils/env";
+import { createRootRouteWithContext, Outlet, Link } from '@tanstack/react-router';
+
+import type { SessionState } from '@/entities/session';
+import type { QueryClient } from '@tanstack/react-query';
+
+import { ErrorBoundary } from '@/shared/ui';
+import { Button } from '@/shared/ui/button';
+import { Card, CardContent } from '@/shared/ui/card';
+import { isDevelopment } from '@/shared/utils/env';
 
 interface RouterContext {
   queryClient: QueryClient;
@@ -20,23 +22,23 @@ export const Route = createRootRouteWithContext<RouterContext>()({
   notFoundComponent: NotFound,
 });
 
-function RootComponent() {
+const RootComponent = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className='min-h-screen bg-background'>
       <ErrorBoundary showDetails={isDevelopment} fallbackRoute='/'>
         <Outlet />
       </ErrorBoundary>
     </div>
   );
-}
+};
 
-function NotFound() {
+const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="max-w-md w-full">
-        <CardContent className="p-6 text-center space-y-4">
-          <h1 className="text-4xl font-bold">404</h1>
-          <p className="text-muted-foreground">The page you're looking for doesn't exist.</p>
+    <div className='min-h-screen flex items-center justify-center p-4'>
+      <Card className='max-w-md w-full'>
+        <CardContent className='p-6 text-center space-y-4'>
+          <h1 className='text-4xl font-bold'>404</h1>
+          <p className='text-muted-foreground'>The page you're looking for doesn't exist.</p>
           <Link to='/'>
             <Button>Go Home</Button>
           </Link>
@@ -44,4 +46,4 @@ function NotFound() {
       </Card>
     </div>
   );
-}
+};

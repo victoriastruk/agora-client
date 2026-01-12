@@ -1,10 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { lazy, Suspense } from "react";
-import { Spinner } from "@/shared/ui";
+import { createFileRoute } from '@tanstack/react-router';
+import { lazy, Suspense } from 'react';
 
-const Feed = lazy(() => import("../widgets/feed").then((module) => ({ default: module.Feed })));
+import { Spinner } from '@/shared/ui';
 
-export const Route = createFileRoute("/_main/")({
+const Feed = lazy(() => import('../widgets/feed').then(module => ({ default: module.Feed })));
+
+export const Route = createFileRoute('/_main/')({
   component: HomePage,
   loader: async ({ context }) => {
     const { queryClient } = context;
@@ -20,12 +21,12 @@ export const Route = createFileRoute("/_main/")({
   staleTime: 1 * 60 * 1000,
 });
 
-function HomePage() {
+const HomePage = () => {
   return (
-    <div className="space-y-4">
+    <div className='space-y-4'>
       <Suspense fallback={<Spinner />}>
         <Feed />
       </Suspense>
     </div>
   );
-}
+};

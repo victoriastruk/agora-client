@@ -1,1 +1,1 @@
-export { HeaderSearchWidget } from "./ui/HeaderSearchWidget";
+export { HeaderSearchWidget } from './ui/HeaderSearchWidget';

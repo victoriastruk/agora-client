@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+
 import { useSessionUser } from '@/entities/session';
 import { logger } from '@/shared/services/logger';
 
@@ -37,9 +38,7 @@ export const useCreateComment = (postId: string) => {
   const createComment = useCallback(
     async (content: string, parentId?: string) => {
       if (!user) {
-        const authError = new Error(
-          'User must be authenticated to create comments'
-        );
+        const authError = new Error('User must be authenticated to create comments');
         logger.error('Create comment failed:', authError);
         throw authError;
       }
@@ -60,7 +59,7 @@ export const useCreateComment = (postId: string) => {
         throw error instanceof Error ? error : new Error(String(error));
       }
     },
-    [postId, user, createCommentMutation]
+    [postId, user, createCommentMutation],
   );
 
   return {

@@ -1,8 +1,11 @@
-import { useEffect, useRef } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { sessionQueries } from "../api/queries";
-import { sessionActions, useSessionState } from "./session-store";
-import type { SessionUser } from "./types";
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useRef } from 'react';
+
+import { sessionQueries } from '../api/queries';
+
+import { sessionActions, useSessionState } from './session-store';
+
+import type { SessionUser } from './types';
 
 const mapToSessionUser = (data: any): SessionUser => ({
   id: String(data.id),

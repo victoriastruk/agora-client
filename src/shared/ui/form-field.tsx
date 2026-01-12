@@ -1,7 +1,8 @@
-import * as React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { AlertCircle, Check } from "lucide-react";
-import { cn } from "../lib";
+import { motion, AnimatePresence } from 'framer-motion';
+import { AlertCircle, Check } from 'lucide-react';
+import * as React from 'react';
+
+import { cn } from '../lib';
 
 interface FormFieldProps {
   label?: string;
@@ -30,21 +31,21 @@ export const FormField = ({
 }: FormFieldProps) => {
   const showCounter = charCount !== undefined && charMax !== undefined;
   const isOverLimit = showCounter && charCount > charMax;
-  const successMessage = typeof success === "string" ? success : undefined;
+  const successMessage = typeof success === 'string' ? success : undefined;
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn('space-y-2', className)}>
       {label && (
-        <div className="flex items-baseline justify-between gap-2">
-          <label htmlFor={htmlFor} className="text-sm font-medium text-foreground">
+        <div className='flex items-baseline justify-between gap-2'>
+          <label htmlFor={htmlFor} className='text-sm font-medium text-foreground'>
             {label}
-            {required && <span className="ml-1 text-destructive">*</span>}
+            {required && <span className='ml-1 text-destructive'>*</span>}
           </label>
           {showCounter && (
             <span
               className={cn(
-                "text-xs tabular-nums transition-colors",
-                isOverLimit ? "text-destructive font-medium" : "text-muted-foreground"
+                'text-xs tabular-nums transition-colors',
+                isOverLimit ? 'text-destructive font-medium' : 'text-muted-foreground',
               )}
             >
               {charCount}/{charMax}
@@ -53,35 +54,35 @@ export const FormField = ({
         </div>
       )}
 
-      {hint && !error && <p className="text-xs text-muted-foreground">{hint}</p>}
+      {hint && !error && <p className='text-xs text-muted-foreground'>{hint}</p>}
 
-      <div className="relative">{children}</div>
+      <div className='relative'>{children}</div>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode='wait'>
         {error && (
           <motion.div
-            key="error"
+            key='error'
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="flex items-start gap-1.5 text-destructive"
+            className='flex items-start gap-1.5 text-destructive'
           >
-            <AlertCircle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
-            <span className="text-xs">{error}</span>
+            <AlertCircle className='h-3.5 w-3.5 shrink-0 mt-0.5' />
+            <span className='text-xs'>{error}</span>
           </motion.div>
         )}
         {!error && success && (
           <motion.div
-            key="success"
+            key='success'
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="flex items-start gap-1.5 text-emerald-600 dark:text-emerald-400"
+            className='flex items-start gap-1.5 text-emerald-600 dark:text-emerald-400'
           >
-            <Check className="h-3.5 w-3.5 shrink-0 mt-0.5" />
-            <span className="text-xs">{successMessage ?? "Looks good!"}</span>
+            <Check className='h-3.5 w-3.5 shrink-0 mt-0.5' />
+            <span className='text-xs'>{successMessage ?? 'Looks good!'}</span>
           </motion.div>
         )}
       </AnimatePresence>

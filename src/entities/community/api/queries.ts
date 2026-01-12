@@ -1,6 +1,7 @@
-import { queryOptions } from "@tanstack/react-query";
-import { communityKeys } from "./query-keys";
-import { communityApi } from "./communityApi";
+import { queryOptions } from '@tanstack/react-query';
+
+import { communityApi } from './communityApi';
+import { communityKeys } from './query-keys';
 
 export const communityQueries = {
   allSubreddits: () =>

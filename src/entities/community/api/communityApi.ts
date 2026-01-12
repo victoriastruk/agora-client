@@ -1,14 +1,12 @@
-import { apiClient } from '@/shared/api/client';
 import type { SubredditResponse, SubredditsApiResponse } from './types';
+
+import { apiClient } from '@/shared/api/client';
 
 export const communityApi = {
   getSubreddits: async (): Promise<SubredditResponse[]> => {
-    const { subreddits } = await apiClient.request<SubredditsApiResponse>(
-      '/subreddits',
-      {
-        method: 'GET',
-      }
-    );
+    const { subreddits } = await apiClient.request<SubredditsApiResponse>('/subreddits', {
+      method: 'GET',
+    });
     return subreddits;
   },
 

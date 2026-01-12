@@ -1,5 +1,5 @@
-import { Store } from '@tanstack/store';
 import { useStore } from '@tanstack/react-store';
+import { Store } from '@tanstack/store';
 
 export interface ClientState {
   optimistic: {
@@ -39,10 +39,7 @@ export const clientStateActions = {
         ...prev,
         optimistic: {
           ...prev.optimistic,
-          joinedCommunities: new Set([
-            ...prev.optimistic.joinedCommunities,
-            communityId,
-          ]),
+          joinedCommunities: new Set([...prev.optimistic.joinedCommunities, communityId]),
         },
       };
     });
@@ -151,21 +148,15 @@ export const clientStateActions = {
 export const useClientState = () => useStore(clientStateStore);
 
 export const useIsCommunityJoined = (communityId: string) => {
-  return useStore(clientStateStore, state =>
-    state.optimistic.joinedCommunities.has(communityId)
-  );
+  return useStore(clientStateStore, state => state.optimistic.joinedCommunities.has(communityId));
 };
 
 export const useIsPostSaved = (postId: string) => {
-  return useStore(clientStateStore, state =>
-    state.optimistic.savedPosts.has(postId)
-  );
+  return useStore(clientStateStore, state => state.optimistic.savedPosts.has(postId));
 };
 
 export const usePostVote = (postId: string) => {
-  return useStore(clientStateStore, state =>
-    state.optimistic.postVotes.get(postId)
-  );
+  return useStore(clientStateStore, state => state.optimistic.postVotes.get(postId));
 };
 
 export const useSidebarCollapsed = () => {

@@ -1,8 +1,9 @@
-import { useForm } from "@tanstack/react-form";
-import { FloatingInput } from "@/shared/ui/floating-input";
-import { Button } from "@/shared/ui/button";
-import { resetSchema } from "@/features/auth/lib/schemas";
-import { logger } from "@/shared/services/logger";
+import { useForm } from '@tanstack/react-form';
+
+import { resetSchema } from '@/features/auth/lib/schemas';
+import { logger } from '@/shared/services/logger';
+import { Button } from '@/shared/ui/button';
+import { FloatingInput } from '@/shared/ui/floating-input';
 
 export const ResetForm = () => {
   const isFormValid = (values: { email: string }) => {
@@ -15,9 +16,9 @@ export const ResetForm = () => {
   };
 
   const form = useForm({
-    defaultValues: { email: "" },
+    defaultValues: { email: '' },
     onSubmit: async ({ value }) => {
-      logger.debug("Password reset request", {
+      logger.debug('Password reset request', {
         email: value.email,
       });
     },
@@ -28,21 +29,21 @@ export const ResetForm = () => {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={e => {
         e.preventDefault();
         form.handleSubmit();
       }}
-      className="space-y-4"
+      className='space-y-4'
     >
-      <div className="flex flex-col space-y-1">
-        <form.Field name="email">
-          {(field) => (
+      <div className='flex flex-col space-y-1'>
+        <form.Field name='email'>
+          {field => (
             <FloatingInput
               id={field.name}
-              type="email"
-              label="Email"
+              type='email'
+              label='Email'
               value={field.state.value}
-              onChange={(e) => field.setValue(e.target.value)}
+              onChange={e => field.setValue(e.target.value)}
               required
               error={field.state.meta.errors?.[0]?.message}
             />
@@ -50,21 +51,21 @@ export const ResetForm = () => {
         </form.Field>
 
         <a
-          href="/help"
-          className="text-blue-600 hover:underline dark:text-blue-400 dark:text-[#b7cad4] text-left pl-4 pt-4 pb-4"
+          href='/help'
+          className='text-blue-600 hover:underline dark:text-blue-400 dark:text-[#b7cad4] text-left pl-4 pt-4 pb-4'
         >
           Need help?
         </a>
       </div>
 
       <Button
-        type="submit"
-        variant={isFormValid(form.state.values) ? "reddit" : "redditDisabled"}
+        type='submit'
+        variant={isFormValid(form.state.values) ? 'reddit' : 'redditDisabled'}
         disabled={!isFormValid(form.state.values)}
-        className="w-full p-6"
+        className='w-full p-6'
       >
-        {" "}
-        Reset password{" "}
+        {' '}
+        Reset password{' '}
       </Button>
     </form>
   );

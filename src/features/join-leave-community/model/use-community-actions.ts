@@ -1,12 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
 import { logger } from '@/shared/services/logger';
+import { clientStateActions, clientStateStore, useIsCommunityJoined } from '@/shared/stores';
 import { notificationActions } from '@/shared/stores/notification-store';
-import {
-  clientStateActions,
-  clientStateStore,
-  useIsCommunityJoined,
-} from '@/shared/stores';
 
 export const queryKeys = {
   communities: {
@@ -33,10 +30,7 @@ const useMockLeaveCommunityMutation = () => {
   return { mutateAsync, isPending: false };
 };
 
-export const useCommunityActions = (
-  communityId: string,
-  initialIsJoined = false
-) => {
+export const useCommunityActions = (communityId: string, initialIsJoined = false) => {
   const [joined, setJoined] = useState<boolean>(initialIsJoined);
   const optimisticJoined = useIsCommunityJoined(communityId);
   const queryClient = useQueryClient();
@@ -70,12 +64,7 @@ export const useCommunityActions = (
     if (!initialIsJoined && isOptimisticallyJoined) {
       clientStateActions.leaveCommunity(communityId);
     }
-  }, [
-    communityId,
-    initialIsJoined,
-    joinMutation.isPending,
-    leaveMutation.isPending,
-  ]);
+  }, [communityId, initialIsJoined, joinMutation.isPending, leaveMutation.isPending]);
 
   useEffect(() => {
     return () => {
@@ -130,7 +119,7 @@ export const useCommunityActions = (
       logger.error('Failed to join community:', error);
       notificationActions.error(
         'Failed to join community',
-        error instanceof Error ? error.message : undefined
+        error instanceof Error ? error.message : undefined,
       );
       throw error;
     } finally {
@@ -175,7 +164,7 @@ export const useCommunityActions = (
       logger.error('Failed to leave community:', error);
       notificationActions.error(
         'Failed to leave community',
-        error instanceof Error ? error.message : undefined
+        error instanceof Error ? error.message : undefined,
       );
       throw error;
     } finally {

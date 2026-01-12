@@ -1,20 +1,23 @@
-import { useMemo } from "react";
-import { useUserPlaceQuery } from "@/shared/services";
-import { REGION_OPTIONS } from "../lib/constants";
-import type { RegionOption } from "@/shared/types";
+import { useMemo } from 'react';
+
+import { REGION_OPTIONS } from '../lib/constants';
+
+import type { RegionOption } from '@/shared/types';
+
+import { useUserPlaceQuery } from '@/shared/services';
 
 interface UseSortBarOptions {
   region: RegionOption;
 }
 
 export const useSortBar = ({ region }: UseSortBarOptions) => {
-  const { data: place } = useUserPlaceQuery(region === "my-country");
+  const { data: place } = useUserPlaceQuery(region === 'my-country');
 
   const currentRegionLabel = useMemo(() => {
-    if (region === "my-country") {
-      return place?.displayName ?? REGION_OPTIONS.find((opt) => opt.value === region)?.label;
+    if (region === 'my-country') {
+      return place?.displayName ?? REGION_OPTIONS.find(opt => opt.value === region)?.label;
     }
-    return REGION_OPTIONS.find((opt) => opt.value === region)?.label ?? "Global";
+    return REGION_OPTIONS.find(opt => opt.value === region)?.label ?? 'Global';
   }, [region, place?.displayName]);
 
   return {

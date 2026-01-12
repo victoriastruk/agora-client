@@ -1,1 +1,1 @@
-export { RightSidebar } from "./ui/RightSidebar";
+export { RightSidebar } from './ui/RightSidebar';

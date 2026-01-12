@@ -1,1 +1,1 @@
-export { CommentSectionWidget } from "./ui/CommentSectionWidget";
+export { CommentSectionWidget } from './ui/CommentSectionWidget';

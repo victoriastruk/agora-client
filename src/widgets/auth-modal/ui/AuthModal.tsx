@@ -1,16 +1,19 @@
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '@/shared/ui/button';
+
 import { LoginView, RegisterView, ResetView, PhoneView } from './views';
+
+import type { AuthView } from '@/shared/stores';
+
 import {
   authModalActions,
   useAuthModalOpen,
   useAuthModalView,
   useAuthModalPhoneMode,
 } from '@/shared/stores';
-import type { AuthView } from '@/shared/stores';
+import { Button } from '@/shared/ui/button';
 
 const fadeAnimation = {
   animate: { opacity: 1 },
@@ -22,10 +25,10 @@ const fadeAnimation = {
 const CloseButton = () => (
   <DialogPrimitive.Close asChild>
     <button
-      aria-label="Close"
-      className="absolute right-4 top-4 flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-[#2a3236] dark:text-white dark:hover:bg-gray-600 transition-all duration-200 cursor-pointer"
+      aria-label='Close'
+      className='absolute right-4 top-4 flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-[#2a3236] dark:text-white dark:hover:bg-gray-600 transition-all duration-200 cursor-pointer'
     >
-      <X className="h-4 w-4" />
+      <X className='h-4 w-4' />
     </button>
   </DialogPrimitive.Close>
 );
@@ -45,21 +48,11 @@ const BackButton = () => {
   return (
     <button
       onClick={handleBack}
-      className="absolute left-4 top-4 flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-[#2a3236] dark:text-white dark:hover:bg-gray-600 transition-all duration-200 cursor-pointer"
-      aria-label="Back"
+      className='absolute left-4 top-4 flex items-center justify-center h-8 w-8 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-[#2a3236] dark:text-white dark:hover:bg-gray-600 transition-all duration-200 cursor-pointer'
+      aria-label='Back'
     >
-      <svg
-        className="h-4 w-4"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M15 19l-7-7 7-7"
-        />
+      <svg className='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M15 19l-7-7 7-7' />
       </svg>
     </button>
   );
@@ -93,20 +86,10 @@ export const AuthModal = () => {
   const renderView = () => {
     switch (view) {
       case 'login': {
-        return (
-          <LoginView
-            onSuccess={handleSuccess}
-            onViewChange={handleViewChange}
-          />
-        );
+        return <LoginView onSuccess={handleSuccess} onViewChange={handleViewChange} />;
       }
       case 'register': {
-        return (
-          <RegisterView
-            onSuccess={handleSuccess}
-            onViewChange={handleViewChange}
-          />
-        );
+        return <RegisterView onSuccess={handleSuccess} onViewChange={handleViewChange} />;
       }
       case 'reset': {
         return <ResetView onViewChange={handleViewChange} />;
@@ -133,7 +116,7 @@ export const AuthModal = () => {
           <DialogPrimitive.Portal forceMount>
             <DialogPrimitive.Overlay asChild>
               <motion.div
-                className="fixed inset-0 bg-black/70 z-40"
+                className='fixed inset-0 bg-black/70 z-40'
                 onClick={handleOverlayClick}
                 {...fadeAnimation}
               />
@@ -143,9 +126,9 @@ export const AuthModal = () => {
               <motion.div
                 key={view}
                 {...fadeAnimation}
-                className="fixed inset-0 flex items-center justify-center z-50"
+                className='fixed inset-0 flex items-center justify-center z-50'
               >
-                <div className="relative w-full max-w-lg rounded-xl bg-white text-gray-900 dark:bg-[#181c1f] dark:text-[#D7DADC] pt-20 pb-6 px-16 shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-200">
+                <div className='relative w-full max-w-lg rounded-xl bg-white text-gray-900 dark:bg-[#181c1f] dark:text-[#D7DADC] pt-20 pb-6 px-16 shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-200'>
                   <CloseButton />
                   <BackButton />
                   {renderView()}
@@ -160,12 +143,7 @@ export const AuthModal = () => {
 };
 
 export const AuthTrigger = () => (
-  <Button
-    variant="ghost"
-    size="sm"
-    className="text-lg"
-    onClick={() => authModalActions.open()}
-  >
+  <Button variant='ghost' size='sm' className='text-lg' onClick={() => authModalActions.open()}>
     Log In
   </Button>
 );

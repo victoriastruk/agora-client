@@ -1,10 +1,11 @@
-import { useMemo } from "react";
-import { useDebounce } from "@/shared/hooks";
-import { mapPost } from "@/entities/post";
-import { mapCommunity } from "@/entities/community/api/mappers";
-import { mapUser } from "@/entities/user";
+import { useMemo } from 'react';
 
-export type SearchType = "posts" | "communities" | "users";
+import { mapCommunity } from '@/entities/community/api/mappers';
+import { mapPost } from '@/entities/post';
+import { mapUser } from '@/entities/user';
+import { useDebounce } from '@/shared/hooks';
+
+export type SearchType = 'posts' | 'communities' | 'users';
 
 const SEARCH_DEBOUNCE_MS = 300;
 const MIN_SEARCH_LENGTH = 2;
@@ -12,7 +13,7 @@ const MIN_SEARCH_LENGTH = 2;
 const useMockSearchPostsQuery = (
   query: string,
   { limit }: { limit: number },
-  { enabled }: { enabled: boolean }
+  { enabled }: { enabled: boolean },
 ) => {
   const data = enabled
     ? Array.from({ length: limit }, (_, i) => ({
@@ -38,7 +39,7 @@ const useMockSearchPostsQuery = (
 const useMockSearchCommunitiesQuery = (
   query: string,
   { limit }: { limit: number },
-  { enabled }: { enabled: boolean }
+  { enabled }: { enabled: boolean },
 ) => {
   const data = enabled
     ? Array.from({ length: limit }, (_, i) => ({
@@ -60,7 +61,7 @@ const useMockSearchCommunitiesQuery = (
 const useMockSearchUsersQuery = (
   query: string,
   { limit }: { limit: number },
-  { enabled }: { enabled: boolean }
+  { enabled }: { enabled: boolean },
 ) => {
   const data = enabled
     ? Array.from({ length: limit }, (_, i) => ({
@@ -82,12 +83,11 @@ export const useSearchPosts = (query: string, limit = 20, offset = 0) => {
   const debouncedQuery = useDebounce(query, SEARCH_DEBOUNCE_MS);
   const isValidQuery = debouncedQuery.length >= MIN_SEARCH_LENGTH;
 
-  const { data, isLoading, isFetching, error, refetch } =
-    useMockSearchPostsQuery(
-      debouncedQuery,
-      { limit, offset },
-      { enabled: isValidQuery }
-    );
+  const { data, isLoading, isFetching, error, refetch } = useMockSearchPostsQuery(
+    debouncedQuery,
+    { limit, offset },
+    { enabled: isValidQuery },
+  );
 
   const posts = useMemo(() => (data ?? []).map(mapPost), [data]);
 
@@ -105,12 +105,11 @@ export const useSearchCommunities = (query: string, limit = 20, offset = 0) => {
   const debouncedQuery = useDebounce(query, SEARCH_DEBOUNCE_MS);
   const isValidQuery = debouncedQuery.length >= MIN_SEARCH_LENGTH;
 
-  const { data, isLoading, isFetching, error, refetch } =
-    useMockSearchCommunitiesQuery(
-      debouncedQuery,
-      { limit, offset },
-      { enabled: isValidQuery }
-    );
+  const { data, isLoading, isFetching, error, refetch } = useMockSearchCommunitiesQuery(
+    debouncedQuery,
+    { limit, offset },
+    { enabled: isValidQuery },
+  );
 
   const communities = useMemo(() => (data ?? []).map(mapCommunity), [data]);
 
@@ -128,12 +127,11 @@ export const useSearchUsers = (query: string, limit = 20, offset = 0) => {
   const debouncedQuery = useDebounce(query, SEARCH_DEBOUNCE_MS);
   const isValidQuery = debouncedQuery.length >= MIN_SEARCH_LENGTH;
 
-  const { data, isLoading, isFetching, error, refetch } =
-    useMockSearchUsersQuery(
-      debouncedQuery,
-      { limit, offset },
-      { enabled: isValidQuery }
-    );
+  const { data, isLoading, isFetching, error, refetch } = useMockSearchUsersQuery(
+    debouncedQuery,
+    { limit, offset },
+    { enabled: isValidQuery },
+  );
 
   const users = useMemo(() => (data ?? []).map(mapUser), [data]);
 
@@ -155,44 +153,27 @@ export const useSearch = (query: string, limit = 10) => {
     data: postsData,
     isLoading: postsLoading,
     isFetching: postsFetching,
-  } = useMockSearchPostsQuery(
-    debouncedQuery,
-    { limit },
-    { enabled: isValidQuery }
-  );
+  } = useMockSearchPostsQuery(debouncedQuery, { limit }, { enabled: isValidQuery });
 
   const {
     data: communitiesData,
     isLoading: communitiesLoading,
     isFetching: communitiesFetching,
-  } = useMockSearchCommunitiesQuery(
-    debouncedQuery,
-    { limit },
-    { enabled: isValidQuery }
-  );
+  } = useMockSearchCommunitiesQuery(debouncedQuery, { limit }, { enabled: isValidQuery });
 
   const {
     data: usersData,
     isLoading: usersLoading,
     isFetching: usersFetching,
-  } = useMockSearchUsersQuery(
-    debouncedQuery,
-    { limit },
-    { enabled: isValidQuery }
-  );
+  } = useMockSearchUsersQuery(debouncedQuery, { limit }, { enabled: isValidQuery });
 
   const posts = useMemo(() => (postsData ?? []).map(mapPost), [postsData]);
-  const communities = useMemo(
-    () => (communitiesData ?? []).map(mapCommunity),
-    [communitiesData]
-  );
+  const communities = useMemo(() => (communitiesData ?? []).map(mapCommunity), [communitiesData]);
   const users = useMemo(() => (usersData ?? []).map(mapUser), [usersData]);
 
-  const isLoading =
-    isValidQuery && (postsLoading || communitiesLoading || usersLoading);
+  const isLoading = isValidQuery && (postsLoading || communitiesLoading || usersLoading);
   const isFetching = postsFetching || communitiesFetching || usersFetching;
-  const isPending =
-    query !== debouncedQuery && query.length >= MIN_SEARCH_LENGTH;
+  const isPending = query !== debouncedQuery && query.length >= MIN_SEARCH_LENGTH;
 
   return {
     communities,

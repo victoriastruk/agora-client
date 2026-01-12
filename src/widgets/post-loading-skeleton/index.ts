@@ -1,1 +1,1 @@
-export { PostLoadingSkeletonWidget } from "./ui/PostLoadingSkeletonWidget";
+export { PostLoadingSkeletonWidget } from './ui/PostLoadingSkeletonWidget';

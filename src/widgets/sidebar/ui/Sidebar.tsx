@@ -1,19 +1,4 @@
 import { Link, useLocation } from '@tanstack/react-router';
-import { useState } from 'react';
-import { useCommunities } from '@/entities/community';
-import type { Community } from '@/entities/community';
-import { useIsAuthenticated } from '@/entities/session';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-  Badge,
-  Input,
-} from '@/shared/ui';
 import {
   Home,
   TrendingUp,
@@ -25,8 +10,25 @@ import {
   Flame,
   Sparkles,
 } from 'lucide-react';
-import { CommunityInfoModal } from '@/widgets/community-info-modal';
+import { useState } from 'react';
+
+import type { Community } from '@/entities/community';
+
+import { useCommunities } from '@/entities/community';
+import { useIsAuthenticated } from '@/entities/session';
 import { cn } from '@/shared/lib/utils';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Badge,
+  Input,
+} from '@/shared/ui';
+import { CommunityInfoModal } from '@/widgets/community-info-modal';
 
 interface NavItemProps {
   to: string;
@@ -37,18 +39,10 @@ interface NavItemProps {
   search?: Record<string, unknown>;
 }
 
-const NavItem = ({
-  to,
-  icon: Icon,
-  label,
-  badge,
-  params,
-  search,
-}: NavItemProps) => {
+const NavItem = ({ to, icon: Icon, label, badge, params, search }: NavItemProps) => {
   const location = useLocation();
   const isActive =
-    location.pathname === to ||
-    (params && location.pathname.startsWith(to.replace(/\$\w+/g, '')));
+    location.pathname === to || (params && location.pathname.startsWith(to.replace(/\$\w+/g, '')));
 
   return (
     <Link
@@ -60,13 +54,13 @@ const NavItem = ({
         'transition-all duration-150',
         isActive
           ? 'bg-accent text-foreground'
-          : 'text-muted-foreground hover:bg-accent/30 hover:text-foreground'
+          : 'text-muted-foreground hover:bg-accent/30 hover:text-foreground',
       )}
     >
       <Icon className={cn('h-5 w-5', isActive && 'text-brand')} />
-      <span className="flex-1">{label}</span>
+      <span className='flex-1'>{label}</span>
       {badge !== undefined && (
-        <Badge variant="secondary" className="ml-auto">
+        <Badge variant='secondary' className='ml-auto'>
           {badge}
         </Badge>
       )}
@@ -80,60 +74,46 @@ export const Sidebar = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredCommunities = communities.filter((c: Community) =>
-    c.name.toLowerCase().includes(searchQuery.toLowerCase())
+    c.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
-    <aside className="space-y-6">
-      <nav className="space-y-1">
-        <NavItem to={'/'} icon={Home} label="Home" />
+    <aside className='space-y-6'>
+      <nav className='space-y-1'>
+        <NavItem to='/' icon={Home} label='Home' />
         <NavItem
-          to="/r/$communityId"
+          to='/r/$communityId'
           params={{ communityId: 'popular' }}
           icon={TrendingUp}
-          label="Popular"
+          label='Popular'
         />
-        <NavItem
-          to="/r/$communityId"
-          params={{ communityId: 'all' }}
-          icon={Flame}
-          label="All"
-        />
+        <NavItem to='/r/$communityId' params={{ communityId: 'all' }} icon={Flame} label='All' />
         {isAuthenticated && (
           <>
-            <NavItem to='/saved' icon={Bookmark} label="Saved" />
-            <NavItem
-              to='/notifications'
-              icon={Bell}
-              label="Notifications"
-              badge={3}
-            />
+            <NavItem to='/saved' icon={Bookmark} label='Saved' />
+            <NavItem to='/notifications' icon={Bell} label='Notifications' badge={3} />
           </>
         )}
       </nav>
 
-      <hr className="border-border" />
+      <hr className='border-border' />
 
-      <Accordion
-        type="multiple"
-        defaultValue={['communities']}
-        className="w-full"
-      >
-        <AccordionItem value="communities" className="border-none">
-          <AccordionTrigger className="text-xs font-semibold uppercase tracking-wider text-muted-foreground py-2 hover:no-underline">
+      <Accordion type='multiple' defaultValue={['communities']} className='w-full'>
+        <AccordionItem value='communities' className='border-none'>
+          <AccordionTrigger className='text-xs font-semibold uppercase tracking-wider text-muted-foreground py-2 hover:no-underline'>
             Communities
           </AccordionTrigger>
-          <AccordionContent className="space-y-3 pt-1">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <AccordionContent className='space-y-3 pt-1'>
+            <div className='relative'>
+              <Search className='absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground' />
               <Input
-                type="text"
-                placeholder="Search communities"
+                type='text'
+                placeholder='Search communities'
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                size="sm"
-                variant="filled"
-                className="pl-9"
+                size='sm'
+                variant='filled'
+                className='pl-9'
               />
             </div>
             {isAuthenticated && (
@@ -143,36 +123,32 @@ export const Sidebar = () => {
                   'text-sm transition-all cursor-pointer',
                   'bg-linear-to-r from-brand/3 to-orange-500/3',
                   'hover:from-brand/8 hover:to-orange-500/8',
-                  'border border-brand/15 hover:border-brand/30'
+                  'border border-brand/15 hover:border-brand/30',
                 )}
               >
                 <div
                   className={cn(
                     'flex h-9 w-9 items-center justify-center rounded-full',
                     'bg-brand/90 text-white shadow-sm',
-                    'group-hover:scale-105 group-hover:bg-brand transition-transform'
+                    'group-hover:scale-105 group-hover:bg-brand transition-transform',
                   )}
                 >
-                  <Plus className="h-5 w-5" />
+                  <Plus className='h-5 w-5' />
                 </div>
-                <Link to='/r/create-community' className="flex-1 text-left">
-                  <p className="font-medium text-foreground">
-                    Create a community
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Start your own space
-                  </p>
+                <Link to='/r/create-community' className='flex-1 text-left'>
+                  <p className='font-medium text-foreground'>Create a community</p>
+                  <p className='text-xs text-muted-foreground'>Start your own space</p>
                 </Link>
               </button>
             )}
-            <div className="space-y-1">
+            <div className='space-y-1'>
               {isLoading ? (
-                <div className="space-y-2">
+                <div className='space-y-2'>
                   {[1, 2, 3, 4, 5].map(i => (
-                    <div key={i} className="flex items-center gap-3 p-2">
-                      <div className="h-8 w-8 bg-muted animate-pulse rounded-full" />
-                      <div className="flex-1">
-                        <div className="h-4 bg-muted animate-pulse rounded w-24" />
+                    <div key={i} className='flex items-center gap-3 p-2'>
+                      <div className='h-8 w-8 bg-muted animate-pulse rounded-full' />
+                      <div className='flex-1'>
+                        <div className='h-4 bg-muted animate-pulse rounded w-24' />
                       </div>
                     </div>
                   ))}
@@ -187,27 +163,20 @@ export const Sidebar = () => {
                         className={cn(
                           'flex items-center gap-3 w-full rounded-lg px-2 py-2',
                           'text-sm transition-colors cursor-pointer',
-                          'hover:bg-accent'
+                          'hover:bg-accent',
                         )}
                       >
-                        <Avatar className="h-8 w-8">
+                        <Avatar className='h-8 w-8'>
                           {community.iconUrl ? (
-                            <AvatarImage
-                              src={community.iconUrl}
-                              alt={community.name}
-                            />
+                            <AvatarImage src={community.iconUrl} alt={community.name} />
                           ) : (
-                            <AvatarFallback className="text-xs font-semibold bg-linear-to-br from-brand to-orange-400 text-white">
-                              {community.name
-                                ? community.name[0].toUpperCase()
-                                : '?'}
+                            <AvatarFallback className='text-xs font-semibold bg-linear-to-br from-brand to-orange-400 text-white'>
+                              {community.name ? community.name[0].toUpperCase() : '?'}
                             </AvatarFallback>
                           )}
                         </Avatar>
-                        <div className="flex-1 text-left min-w-0">
-                          <p className="font-medium text-foreground truncate">
-                            r/{community.name}
-                          </p>
+                        <div className='flex-1 text-left min-w-0'>
+                          <p className='font-medium text-foreground truncate'>r/{community.name}</p>
                         </div>
                       </button>
                     }
@@ -223,10 +192,10 @@ export const Sidebar = () => {
                 className={cn(
                   'flex items-center gap-2 px-3 py-2 rounded-lg text-sm',
                   'text-muted-foreground hover:text-foreground hover:bg-accent',
-                  'transition-colors'
+                  'transition-colors',
                 )}
               >
-                <Sparkles className="h-4 w-4" />
+                <Sparkles className='h-4 w-4' />
                 See all communities
               </Link>
             )}
@@ -236,9 +205,9 @@ export const Sidebar = () => {
 
       {isAuthenticated && (
         <>
-          <hr className="border-border" />
-          <nav className="space-y-1">
-            <NavItem to='/settings' icon={Settings} label="Settings" />
+          <hr className='border-border' />
+          <nav className='space-y-1'>
+            <NavItem to='/settings' icon={Settings} label='Settings' />
           </nav>
         </>
       )}

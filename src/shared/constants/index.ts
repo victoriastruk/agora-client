@@ -19,8 +19,7 @@ export const VOTE_DIRECTIONS = {
   UP: 'up',
 } as const;
 
-export type VoteDirection =
-  (typeof VOTE_DIRECTIONS)[keyof typeof VOTE_DIRECTIONS];
+export type VoteDirection = (typeof VOTE_DIRECTIONS)[keyof typeof VOTE_DIRECTIONS];
 
 export const VOTE_BUTTON_SIZES = {
   LG: 'lg',
@@ -28,8 +27,7 @@ export const VOTE_BUTTON_SIZES = {
   SM: 'sm',
 } as const;
 
-export type VoteButtonSize =
-  (typeof VOTE_BUTTON_SIZES)[keyof typeof VOTE_BUTTON_SIZES];
+export type VoteButtonSize = (typeof VOTE_BUTTON_SIZES)[keyof typeof VOTE_BUTTON_SIZES];
 
 export const VOTE_BUTTON_ORIENTATIONS = {
   HORIZONTAL: 'horizontal',

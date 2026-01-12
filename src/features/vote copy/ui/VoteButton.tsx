@@ -1,19 +1,15 @@
-import { useState, useEffect } from "react";
-import { ChevronUp, ChevronDown } from "lucide-react";
-import { Button } from "@/shared/ui/button";
-import { cn } from "@/shared/lib/utils";
-import { calculateVoteChange } from "../lib/vote-calculator";
-import {
-  VOTE_BUTTON_SIZES,
-  VOTE_BUTTON_ORIENTATIONS,
-} from "@/shared/constants";
-import type {
-  VoteButtonSize,
-  VoteButtonOrientation,
-  VoteDirection,
-} from "@/shared/constants";
-import { useIsAuthenticated } from "@/entities/session";
-import { authModalActions } from "@/shared/stores";
+import { ChevronUp, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+import { calculateVoteChange } from '../lib/vote-calculator';
+
+import type { VoteButtonSize, VoteButtonOrientation, VoteDirection } from '@/shared/constants';
+
+import { useIsAuthenticated } from '@/entities/session';
+import { VOTE_BUTTON_SIZES, VOTE_BUTTON_ORIENTATIONS } from '@/shared/constants';
+import { cn } from '@/shared/lib/utils';
+import { authModalActions } from '@/shared/stores';
+import { Button } from '@/shared/ui/button';
 
 interface VoteButtonProps {
   votes: number;
@@ -24,9 +20,9 @@ interface VoteButtonProps {
 }
 
 const SIZE_CLASSES: Record<VoteButtonSize, string> = {
-  [VOTE_BUTTON_SIZES.SM]: "h-4 w-4",
-  [VOTE_BUTTON_SIZES.MD]: "h-5 w-5",
-  [VOTE_BUTTON_SIZES.LG]: "h-6 w-6",
+  [VOTE_BUTTON_SIZES.SM]: 'h-4 w-4',
+  [VOTE_BUTTON_SIZES.MD]: 'h-5 w-5',
+  [VOTE_BUTTON_SIZES.LG]: 'h-6 w-6',
 } as const;
 
 export const VoteButton = ({
@@ -37,9 +33,7 @@ export const VoteButton = ({
   orientation = VOTE_BUTTON_ORIENTATIONS.VERTICAL,
 }: VoteButtonProps) => {
   const [localVotes, setLocalVotes] = useState(votes);
-  const [localUserVote, setLocalUserVote] = useState<VoteDirection | null>(
-    userVote ?? null
-  );
+  const [localUserVote, setLocalUserVote] = useState<VoteDirection | null>(userVote ?? null);
   const isAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
@@ -58,7 +52,7 @@ export const VoteButton = ({
 
     const result = calculateVoteChange(
       { currentVotes: localVotes, userVote: localUserVote },
-      direction
+      direction,
     );
 
     setLocalVotes(result.newVoteCount);
@@ -66,52 +60,50 @@ export const VoteButton = ({
     onVote(direction);
   };
 
-  const isUpVoted = localUserVote === "up";
-  const isDownVoted = localUserVote === "down";
+  const isUpVoted = localUserVote === 'up';
+  const isDownVoted = localUserVote === 'down';
   const isPositive = localVotes > 0;
   const isNegative = localVotes < 0;
 
-  const voteButtonBaseClasses = "h-8 w-8";
+  const voteButtonBaseClasses = 'h-8 w-8';
   const upVoteButtonClasses = cn(
     voteButtonBaseClasses,
-    isUpVoted && "text-orange-500 hover:text-orange-500"
+    isUpVoted && 'text-orange-500 hover:text-orange-500',
   );
   const downVoteButtonClasses = cn(
     voteButtonBaseClasses,
-    isDownVoted && "text-blue-500 hover:text-blue-500"
+    isDownVoted && 'text-blue-500 hover:text-blue-500',
   );
 
   const voteCountClasses = cn(
-    "text-sm font-medium",
-    isPositive && "text-orange-500",
-    isNegative && "text-blue-500"
+    'text-sm font-medium',
+    isPositive && 'text-orange-500',
+    isNegative && 'text-blue-500',
   );
 
   if (orientation === VOTE_BUTTON_ORIENTATIONS.HORIZONTAL) {
     return (
-      <div className="flex items-center gap-1">
+      <div className='flex items-center gap-1'>
         <Button
-          variant="ghost"
-          size="icon-sm"
-          onClick={(e) => {
+          variant='ghost'
+          size='icon-sm'
+          onClick={e => {
             e.stopPropagation();
-            handleVote("up");
+            handleVote('up');
           }}
-          className={cn(voteButtonBaseClasses, isUpVoted && "text-orange-500")}
+          className={cn(voteButtonBaseClasses, isUpVoted && 'text-orange-500')}
         >
           <ChevronUp className={SIZE_CLASSES[size]} />
         </Button>
-        <span className={cn(voteCountClasses, "min-w-[2ch] text-center")}>
-          {localVotes}
-        </span>
+        <span className={cn(voteCountClasses, 'min-w-[2ch] text-center')}>{localVotes}</span>
         <Button
-          variant="ghost"
-          size="icon-sm"
-          onClick={(e) => {
+          variant='ghost'
+          size='icon-sm'
+          onClick={e => {
             e.stopPropagation();
-            handleVote("down");
+            handleVote('down');
           }}
-          className={cn(voteButtonBaseClasses, isDownVoted && "text-blue-500")}
+          className={cn(voteButtonBaseClasses, isDownVoted && 'text-blue-500')}
         >
           <ChevronDown className={SIZE_CLASSES[size]} />
         </Button>
@@ -120,13 +112,13 @@ export const VoteButton = ({
   }
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className='flex flex-col items-center gap-1'>
       <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={(e) => {
+        variant='ghost'
+        size='icon-sm'
+        onClick={e => {
           e.stopPropagation();
-          handleVote("up");
+          handleVote('up');
         }}
         className={upVoteButtonClasses}
       >
@@ -134,11 +126,11 @@ export const VoteButton = ({
       </Button>
       <span className={voteCountClasses}>{localVotes}</span>
       <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={(e) => {
+        variant='ghost'
+        size='icon-sm'
+        onClick={e => {
           e.stopPropagation();
-          handleVote("down");
+          handleVote('down');
         }}
         className={downVoteButtonClasses}
       >

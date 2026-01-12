@@ -4,4 +4,4 @@ export {
   useSearchUsers,
   useSearch,
   type SearchType,
-} from "./model/use-search";
+} from './model/use-search';

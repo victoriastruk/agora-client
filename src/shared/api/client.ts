@@ -2,10 +2,7 @@ import { env } from '../utils';
 
 const baseUrl = env.BACKEND_URL;
 
-async function request<T>(
-  endpoint: string,
-  options: RequestInit = {}
-): Promise<T> {
+async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   // In development, use relative URLs for proxy
   // In production, use full URLs
   const isDevelopment = import.meta.env.DEV;

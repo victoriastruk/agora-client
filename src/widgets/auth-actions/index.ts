@@ -1,1 +1,1 @@
-export { AuthActionsWidget } from "./ui/AuthActionsWidget";
+export { AuthActionsWidget } from './ui/AuthActionsWidget';

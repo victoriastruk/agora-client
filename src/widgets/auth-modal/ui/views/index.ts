@@ -1,6 +1,6 @@
-export { LoginView } from "./LoginView";
-export { RegisterView } from "./RegisterView";
-export { ResetView } from "./ResetView";
-export { PhoneView } from "./PhoneView";
-export { PolicyLinks } from "./PolicyLinks";
-export type { AuthView, AuthViewProps } from "./types";
+export { LoginView } from './LoginView';
+export { RegisterView } from './RegisterView';
+export { ResetView } from './ResetView';
+export { PhoneView } from './PhoneView';
+export { PolicyLinks } from './PolicyLinks';
+export type { AuthView, AuthViewProps } from './types';

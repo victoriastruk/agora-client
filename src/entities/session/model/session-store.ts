@@ -1,8 +1,9 @@
-import { Store } from "@tanstack/store";
-import { useStore } from "@tanstack/react-store";
-import type { SessionState, SessionUser } from "./types";
+import { useStore } from '@tanstack/react-store';
+import { Store } from '@tanstack/store';
 
-const STORAGE_KEY = "session_user";
+import type { SessionState, SessionUser } from './types';
+
+const STORAGE_KEY = 'session_user';
 
 const loadUserFromStorage = (): SessionUser | null => {
   try {
@@ -12,12 +13,12 @@ const loadUserFromStorage = (): SessionUser | null => {
     const parsed = JSON.parse(raw) as unknown;
 
     if (
-      typeof parsed === "object" &&
+      typeof parsed === 'object' &&
       parsed !== null &&
-      "id" in parsed &&
-      "username" in parsed &&
-      typeof (parsed as any).id === "string" &&
-      typeof (parsed as any).username === "string"
+      'id' in parsed &&
+      'username' in parsed &&
+      typeof (parsed as any).id === 'string' &&
+      typeof (parsed as any).username === 'string'
     ) {
       return parsed as SessionUser;
     }
@@ -94,14 +95,14 @@ export const sessionActions = {
   },
 
   setLoading(isLoading: boolean) {
-    sessionStore.setState((prev) => ({
+    sessionStore.setState(prev => ({
       ...prev,
       isLoading,
     }));
   },
 
   setError(error: string | null) {
-    sessionStore.setState((prev) => ({
+    sessionStore.setState(prev => ({
       ...prev,
       error,
       isLoading: false,

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 const USERNAME_MIN_LENGTH = 3;
 const USERNAME_MAX_LENGTH = 30;
@@ -8,37 +8,37 @@ const registerSchema = z.object({
   email: z
     .string()
     .trim()
-    .nonempty("Please enter your email address.")
-    .email("Please enter a valid email address."),
+    .nonempty('Please enter your email address.')
+    .email('Please enter a valid email address.'),
   password: z
     .string()
     .trim()
-    .nonempty("Please enter a password.")
+    .nonempty('Please enter a password.')
     .min(PASSWORD_MIN_LENGTH, `Password must be at least ${PASSWORD_MIN_LENGTH} characters.`),
   username: z
     .string()
     .trim()
-    .nonempty("Please enter a username.")
+    .nonempty('Please enter a username.')
     .min(USERNAME_MIN_LENGTH, `Username must be at least ${USERNAME_MIN_LENGTH} characters.`)
     .max(USERNAME_MAX_LENGTH, `Username must be at most ${USERNAME_MAX_LENGTH} characters.`)
-    .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores."),
+    .regex(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscores.'),
 });
 
 const loginSchema = z.object({
   password: z
     .string()
     .trim()
-    .nonempty("Please enter your password.")
+    .nonempty('Please enter your password.')
     .min(PASSWORD_MIN_LENGTH, `Password must be at least ${PASSWORD_MIN_LENGTH} characters.`),
   email: z
     .string()
     .trim()
-    .nonempty("Please enter your email.")
-    .email("Please enter a valid email address."),
+    .nonempty('Please enter your email.')
+    .email('Please enter a valid email address.'),
 });
 
 const resetSchema = z.object({
-  email: z.string().trim().nonempty("Please enter your email."),
+  email: z.string().trim().nonempty('Please enter your email.'),
 });
 
 type LoginValues = z.infer<typeof loginSchema>;

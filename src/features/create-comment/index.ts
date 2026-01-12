@@ -1,1 +1,1 @@
-export { useCreateComment } from "./model/use-сreate-сomment";
+export { useCreateComment } from './model/use-сreate-сomment';

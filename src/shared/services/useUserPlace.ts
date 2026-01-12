@@ -1,8 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import { detectUserPlace } from "./geolocation";
-import type { UserPlace } from "./geolocation";
+import { useQuery } from '@tanstack/react-query';
 
-const userPlaceQueryKey = ["userPlace"] as const;
+import { detectUserPlace } from './geolocation';
+
+import type { UserPlace } from './geolocation';
+
+const userPlaceQueryKey = ['userPlace'] as const;
 
 export function useUserPlaceQuery(enabled: boolean) {
   return useQuery<UserPlace | null>({

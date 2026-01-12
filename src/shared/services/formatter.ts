@@ -1,6 +1,8 @@
-import { formatDistanceToNow } from "date-fns";
-import type { FormatDistanceToNowOptions } from "date-fns";
-import { UI_TEXT } from "../constants";
+import { formatDistanceToNow } from 'date-fns';
+
+import { UI_TEXT } from '../constants';
+
+import type { FormatDistanceToNowOptions } from 'date-fns';
 
 export function formatRelativeTime(dateString: string): string {
   const options: FormatDistanceToNowOptions = { addSuffix: true };
@@ -15,7 +17,7 @@ export function formatCommentCount(count: number): string {
   return formatCount(
     count,
     UI_TEXT.COMMENT.COMMENT_COUNT.SINGULAR,
-    UI_TEXT.COMMENT.COMMENT_COUNT.PLURAL
+    UI_TEXT.COMMENT.COMMENT_COUNT.PLURAL,
   );
 }
 
@@ -25,9 +27,9 @@ export function formatReplyCount(count: number): string {
 
 export function getInitials(name: string): string {
   return name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
+    .split(' ')
+    .map(n => n[0])
+    .join('')
     .toUpperCase()
     .slice(0, 2);
 }

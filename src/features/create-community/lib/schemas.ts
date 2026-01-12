@@ -11,16 +11,13 @@ const communityNameSchema = z
   .min(1, 'Please enter a community name.')
   .min(
     COMMUNITY_NAME_MIN_LENGTH,
-    `Community name must be at least ${COMMUNITY_NAME_MIN_LENGTH} characters.`
+    `Community name must be at least ${COMMUNITY_NAME_MIN_LENGTH} characters.`,
   )
   .max(
     COMMUNITY_NAME_MAX_LENGTH,
-    `Community name cannot exceed ${COMMUNITY_NAME_MAX_LENGTH} characters.`
+    `Community name cannot exceed ${COMMUNITY_NAME_MAX_LENGTH} characters.`,
   )
-  .regex(
-    /^[a-zA-Z0-9_]+$/,
-    'Community name can only contain letters, numbers, and underscores.'
-  );
+  .regex(/^[a-zA-Z0-9_]+$/, 'Community name can only contain letters, numbers, and underscores.');
 
 const createCommunitySchema = z.object({
   avatarUrl: z.string(),
@@ -29,17 +26,14 @@ const createCommunitySchema = z.object({
   description: z
     .string()
     .trim()
-    .max(
-      DESCRIPTION_MAX_LENGTH,
-      `Description cannot exceed ${DESCRIPTION_MAX_LENGTH} characters.`
-    ),
+    .max(DESCRIPTION_MAX_LENGTH, `Description cannot exceed ${DESCRIPTION_MAX_LENGTH} characters.`),
   displayName: z
     .string()
     .trim()
     .min(1, 'Please enter a display name.')
     .max(
       DISPLAY_NAME_MAX_LENGTH,
-      `Display name cannot exceed ${DISPLAY_NAME_MAX_LENGTH} characters.`
+      `Display name cannot exceed ${DISPLAY_NAME_MAX_LENGTH} characters.`,
     ),
   name: communityNameSchema,
 });

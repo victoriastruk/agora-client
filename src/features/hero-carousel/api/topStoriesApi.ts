@@ -1,15 +1,15 @@
-import type { TopStory } from "../lib/constants";
+import type { TopStory } from '../lib/constants';
 
 const DEFAULT_THUMBNAIL =
-  "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop&crop=center";
+  'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=225&fit=crop&crop=center';
 
 const sanitizeUrl = (url?: string | null): string | undefined => {
   if (!url) {
     return;
   }
   try {
-    const parsed = new URL(url, "http://localhost");
-    return parsed.protocol === "http:" || parsed.protocol === "https:" ? url : undefined;
+    const parsed = new URL(url, 'http://localhost');
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:' ? url : undefined;
   } catch {
     return;
   }
@@ -30,8 +30,8 @@ const mapPostToTopStory = (post: {
 
   return {
     community: {
-      id: post.community?.id ?? "",
-      name: post.community?.name ?? "unknown",
+      id: post.community?.id ?? '',
+      name: post.community?.name ?? 'unknown',
       iconUrl: sanitizeUrl(post.community?.iconUrl),
     },
     id: post.id,

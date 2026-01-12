@@ -1,13 +1,13 @@
-import { logger } from "./logger";
+import { logger } from './logger';
 
 // TODO(mock-env): replace with Region enum from gql schema
 export enum Region {
-  Africa = "Africa",
-  Asia = "Asia",
-  Europe = "Europe",
-  NorthAmerica = "NorthAmerica",
-  SouthAmerica = "SouthAmerica",
-  Australia = "Australia",
+  Africa = 'Africa',
+  Asia = 'Asia',
+  Europe = 'Europe',
+  NorthAmerica = 'NorthAmerica',
+  SouthAmerica = 'SouthAmerica',
+  Australia = 'Australia',
 }
 const countryCodeToRegion: Record<string, Region> = {
   AE: Region.Asia,
@@ -214,7 +214,7 @@ export interface UserPlace {
 
 async function reverseGeocode(
   latitude: number,
-  longitude: number
+  longitude: number,
 ): Promise<{
   countryCode: string | null;
   countryName: string | null;
@@ -223,7 +223,7 @@ async function reverseGeocode(
   try {
     const response = await fetch(
       `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`,
-      { signal: AbortSignal.timeout(7000) }
+      { signal: AbortSignal.timeout(7000) },
     );
 
     if (!response.ok) {
@@ -241,15 +241,15 @@ async function reverseGeocode(
 
     return { city, countryCode, countryName };
   } catch (error) {
-    logger.debug("reverseGeocode failed:", error);
+    logger.debug('reverseGeocode failed:', error);
     return { city: null, countryCode: null, countryName: null };
   }
 }
 
 async function getCurrentPosition(): Promise<GeolocationPosition> {
   return new Promise((resolve, reject) => {
-    if (typeof navigator === "undefined" || !navigator.geolocation) {
-      reject(new Error("Geolocation is not supported"));
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      reject(new Error('Geolocation is not supported'));
       return;
     }
 
@@ -283,7 +283,7 @@ export async function detectUserPlace(): Promise<UserPlace | null> {
       region,
     };
   } catch (error) {
-    logger.debug("detectUserPlace failed (permission denied or unavailable):", error);
+    logger.debug('detectUserPlace failed (permission denied or unavailable):', error);
     return null;
   }
 }

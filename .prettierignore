@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Generated files
+routeTree.gen.ts
+
+# Config files that should not be formatted
+*.config.js
+*.config.ts
+*.config.mjs
+
+# Lock files
+bun.lock
+package-lock.json
+yarn.lock
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Public assets
+public/
+
+# Type definitions
+*.d.ts

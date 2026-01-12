@@ -1,9 +1,10 @@
-import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
-import type { VariantProps } from 'class-variance-authority';
+import * as React from 'react';
 
 import { cn } from '../lib';
+
+import type { VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
   [
@@ -35,8 +36,7 @@ const buttonVariants = cva(
         xs: 'h-7 px-2 text-xs gap-1 rounded-md has-[>svg]:px-1.5',
       },
       variant: {
-        brand:
-          'bg-brand text-brand-foreground shadow-sm hover:bg-brand/90 active:scale-[0.98]',
+        brand: 'bg-brand text-brand-foreground shadow-sm hover:bg-brand/90 active:scale-[0.98]',
         brandOutline:
           'border-2 border-brand text-brand bg-transparent hover:bg-brand/10 active:scale-[0.98]',
         default:
@@ -53,11 +53,10 @@ const buttonVariants = cva(
           'rounded-full font-semibold border-2 border-brand text-brand bg-transparent hover:bg-brand/10 active:scale-[0.98]',
         secondary:
           'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 active:scale-[0.98]',
-        subtle:
-          'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground',
+        subtle: 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground',
       },
     },
-  }
+  },
 );
 
 type ButtonProps = React.ComponentProps<'button'> &
@@ -68,32 +67,23 @@ type ButtonProps = React.ComponentProps<'button'> &
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      className,
-      variant,
-      size,
-      asChild = false,
-      loading = false,
-      children,
-      disabled,
-      ...props
-    },
-    ref
+    { className, variant, size, asChild = false, loading = false, children, disabled, ...props },
+    ref,
   ) => {
     const Comp = asChild ? Slot : 'button';
 
     return (
       <Comp
         ref={ref}
-        data-slot="button"
+        data-slot='button'
         disabled={disabled || loading}
         className={cn(buttonVariants({ className, size, variant }))}
         {...props}
       >
         {loading ? (
           <>
-            <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-            <span className="sr-only">Loading...</span>
+            <span className='size-4 animate-spin rounded-full border-2 border-current border-t-transparent' />
+            <span className='sr-only'>Loading...</span>
             {children}
           </>
         ) : (
@@ -101,7 +91,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       </Comp>
     );
-  }
+  },
 );
 Button.displayName = 'Button';
 

@@ -1,7 +1,8 @@
-import { Outlet, createFileRoute } from "@tanstack/react-router";
-import { AppShell } from "@/widgets/app-shell";
-import { AuthModal } from "@/widgets/auth-modal";
-import { Spinner } from "@/shared/ui";
+import { Outlet, createFileRoute } from '@tanstack/react-router';
+
+import { Spinner } from '@/shared/ui';
+import { AppShell } from '@/widgets/app-shell';
+import { AuthModal } from '@/widgets/auth-modal';
 
 const MainLayout = () => (
   <>
@@ -12,7 +13,7 @@ const MainLayout = () => (
   </>
 );
 
-export const Route = createFileRoute("/_main")({
+export const Route = createFileRoute('/_main')({
   component: MainLayout,
   pendingComponent: () => <Spinner />,
 });

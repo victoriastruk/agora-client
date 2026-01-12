@@ -1,7 +1,9 @@
-import { FloatingInput } from '@/shared/ui/floating-input';
-import { Button } from '@/shared/ui/button';
 import { useRegisterForm } from '../model/use-register-form';
+
 import type { AuthView } from '@/shared/stores';
+
+import { Button } from '@/shared/ui/button';
+import { FloatingInput } from '@/shared/ui/floating-input';
 
 interface RegisterFormProps {
   setView?: (view: AuthView) => void;
@@ -9,27 +11,23 @@ interface RegisterFormProps {
   onSuccess?: VoidFunction;
 }
 
-export const RegisterForm = ({
-  setView,
-  redirect,
-  onSuccess,
-}: RegisterFormProps) => {
+export const RegisterForm = ({ setView, redirect, onSuccess }: RegisterFormProps) => {
   const { form, isPending } = useRegisterForm({ onSuccess, redirect });
 
   return (
-    <div className="space-y-6">
+    <div className='space-y-6'>
       <form
         onSubmit={e => {
           e.preventDefault();
           form.handleSubmit();
         }}
-        className="space-y-4"
+        className='space-y-4'
       >
-        <form.Field name="email">
+        <form.Field name='email'>
           {field => (
             <FloatingInput
               id={field.name}
-              type="email"
+              type='email'
               value={field.state.value}
               onChange={e => field.setValue(e.target.value)}
               onBlur={() =>
@@ -38,18 +36,18 @@ export const RegisterForm = ({
                   touched: true,
                 }))
               }
-              label="Email"
+              label='Email'
               required
               error={field.state.meta.errors?.[0]?.message}
             />
           )}
         </form.Field>
 
-        <form.Field name="username">
+        <form.Field name='username'>
           {field => (
             <FloatingInput
               id={field.name}
-              type="text"
+              type='text'
               value={field.state.value}
               onChange={e => field.setValue(e.target.value)}
               onBlur={() =>
@@ -58,18 +56,18 @@ export const RegisterForm = ({
                   touched: true,
                 }))
               }
-              label="Username"
+              label='Username'
               required
               error={field.state.meta.errors?.[0]?.message}
             />
           )}
         </form.Field>
 
-        <form.Field name="password">
+        <form.Field name='password'>
           {field => (
             <FloatingInput
               id={field.name}
-              type="password"
+              type='password'
               value={field.state.value}
               onChange={e => field.setValue(e.target.value)}
               onBlur={() =>
@@ -78,7 +76,7 @@ export const RegisterForm = ({
                   touched: true,
                 }))
               }
-              label="Password"
+              label='Password'
               required
               error={field.state.meta.errors?.[0]?.message}
             />
@@ -86,11 +84,11 @@ export const RegisterForm = ({
         </form.Field>
 
         {setView && (
-          <p className="text-sm text-gray-600 text-left space-y-2 pl-4 pb-4 dark:text-[#b7cad4]">
+          <p className='text-sm text-gray-600 text-left space-y-2 pl-4 pb-4 dark:text-[#b7cad4]'>
             Already have an account?{' '}
             <button
               onClick={() => setView('login')}
-              className="text-blue-600 hover:underline cursor-pointer dark:text-[#648efc]"
+              className='text-blue-600 hover:underline cursor-pointer dark:text-[#648efc]'
             >
               Log In
             </button>
@@ -108,14 +106,13 @@ export const RegisterForm = ({
             const username = values?.username ?? '';
             const email = values?.email ?? '';
             const password = values?.password ?? '';
-            const isEmpty =
-              !username.trim() || !password.trim() || !email.trim();
+            const isEmpty = !username.trim() || !password.trim() || !email.trim();
 
             const active = canSubmit && !isEmpty && !isSubmitting && !isPending;
 
             return (
               <Button
-                type="submit"
+                type='submit'
                 variant={active ? 'reddit' : 'redditDisabled'}
                 disabled={!active}
                 className={`w-full p-6 rounded-full font-semibold transition-colors duration-200
