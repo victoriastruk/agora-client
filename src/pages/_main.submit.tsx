@@ -7,10 +7,6 @@ import { authModalActions } from '@/shared/stores';
 import { Card, CardContent, Button, Spinner } from '@/shared/ui';
 import { CreatePostModal } from '@/widgets/create-post-modal';
 
-export const Route = createFileRoute('/_main/submit')({
-  component: CreatePostModalRoute,
-});
-
 const CreatePostModalRoute = () => {
   return (
     <Suspense fallback={<Spinner />}>
@@ -79,3 +75,8 @@ const CreatePostModalRouteContent = () => {
     />
   );
 };
+
+
+export const Route = createFileRoute('/_main/submit')({
+  component: CreatePostModalRoute,
+});

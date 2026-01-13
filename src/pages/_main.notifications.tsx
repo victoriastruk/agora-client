@@ -31,10 +31,6 @@ import {
   Spinner,
 } from '@/shared/ui';
 
-export const Route = createFileRoute('/_main/notifications')({
-  component: NotificationsPage,
-});
-
 type NotificationType = 'comment' | 'reply' | 'upvote' | 'mention' | 'follow' | 'award';
 
 interface Notification {
@@ -366,3 +362,7 @@ const NotificationsList = ({
     </Card>
   );
 };
+
+export const Route = createFileRoute('/_main/notifications')({
+  component: NotificationsPage,
+});

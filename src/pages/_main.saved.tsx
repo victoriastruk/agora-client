@@ -11,10 +11,6 @@ import { Button, Spinner } from '@/shared/ui';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 import { PostCard } from '@/widgets/post-card';
 
-export const Route = createFileRoute('/_main/saved')({
-  component: SavedPostsPage,
-});
-
 const redirectToLogin = () => {
   authModalActions.open('login');
 };
@@ -135,3 +131,7 @@ const SavedPostsPageContent = () => {
     </div>
   );
 };
+
+export const Route = createFileRoute('/_main/saved')({
+  component: SavedPostsPage,
+});

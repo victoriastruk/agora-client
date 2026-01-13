@@ -33,10 +33,6 @@ import {
   Spinner,
 } from '@/shared/ui';
 
-export const Route = createFileRoute('/_main/settings')({
-  component: SettingsPage,
-});
-
 type SettingsSection = 'profile' | 'account' | 'notifications' | 'privacy' | 'appearance';
 
 const settingsSections = [
@@ -545,3 +541,7 @@ const AppearanceSettings = () => {
     </Card>
   );
 };
+
+export const Route = createFileRoute('/_main/settings')({
+  component: SettingsPage,
+});

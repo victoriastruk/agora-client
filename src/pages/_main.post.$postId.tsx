@@ -9,22 +9,6 @@ import { PostDetailWidget } from '@/widgets/post-detail';
 import { PostLoadingSkeletonWidget } from '@/widgets/post-loading-skeleton';
 import { PostNotFoundWidget } from '@/widgets/post-not-found';
 
-export const Route = createFileRoute('/_main/post/$postId')({
-  component: PostDetailPage,
-  loader: async ({ context, params }) => {
-    const { queryClient } = context;
-    const { postId } = params;
-
-    // await Promise.all([
-    //   prefetchQueries.post(queryClient, postId),
-    //   prefetchQueries.comments(queryClient, postId),
-    // ]);
-
-    return { postId };
-  },
-  staleTime: 2 * 60 * 1000,
-});
-
 const PostDetailPage = () => {
   return (
     <Suspense fallback={<Spinner />}>
@@ -54,3 +38,19 @@ const PostDetailPageContent = () => {
     </div>
   );
 };
+
+export const Route = createFileRoute('/_main/post/$postId')({
+  component: PostDetailPage,
+  loader: async ({ context, params }) => {
+    const { queryClient } = context;
+    const { postId } = params;
+
+    // await Promise.all([
+    //   prefetchQueries.post(queryClient, postId),
+    //   prefetchQueries.comments(queryClient, postId),
+    // ]);
+
+    return { postId };
+  },
+  staleTime: 2 * 60 * 1000,
+});

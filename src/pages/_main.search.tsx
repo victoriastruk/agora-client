@@ -19,14 +19,6 @@ const PostCard = lazy(() =>
   })),
 );
 
-export const Route = createFileRoute('/_main/search')({
-  component: SearchPage,
-  validateSearch: (search: Record<string, unknown>) => ({
-    q: (search.q as string) || '',
-    type: (search.type as SearchType) || 'posts',
-  }),
-});
-
 const SearchPage = () => {
   return (
     <Suspense fallback={<Spinner />}>
@@ -287,3 +279,12 @@ const SearchPageContent = () => {
     </div>
   );
 };
+
+
+export const Route = createFileRoute('/_main/search')({
+  component: SearchPage,
+  validateSearch: (search: Record<string, unknown>) => ({
+    q: (search.q as string) || '',
+    type: (search.type as SearchType) || 'posts',
+  }),
+});

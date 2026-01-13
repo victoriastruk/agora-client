@@ -8,10 +8,6 @@ import { Button } from '@/shared/ui';
 import { Badge } from '@/shared/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 
-export const Route = createFileRoute('/_main/r/$communityId')({
-  component: CommunityPage,
-});
-
 const CommunityLoadingSkeleton = () => {
   return (
     <div className='space-y-4'>
@@ -99,3 +95,8 @@ const CommunityPageContent = () => {
     </div>
   );
 };
+
+
+export const Route = createFileRoute('/_main/r/$communityId')({
+  component: CommunityPage,
+});

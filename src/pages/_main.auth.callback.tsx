@@ -7,15 +7,6 @@ import { logger } from '@/shared/services/logger';
 import { Spinner } from '@/shared/ui';
 import { env } from '@/shared/utils/env';
 
-export const Route = createFileRoute('/_main/auth/callback')({
-  component: OAuthCallbackPage,
-  validateSearch: search => ({
-    code: (search.code as string) || undefined,
-    error: (search.error as string) || undefined,
-    state: (search.state as string) || undefined,
-  }),
-});
-
 const OAuthCallbackPage = () => {
   const { code, state, error } = useSearch({
     from: '/_main/auth/callback',
@@ -86,3 +77,12 @@ const OAuthCallbackPage = () => {
     </div>
   );
 };
+
+export const Route = createFileRoute('/_main/auth/callback')({
+  component: OAuthCallbackPage,
+  validateSearch: search => ({
+    code: (search.code as string) || undefined,
+    error: (search.error as string) || undefined,
+    state: (search.state as string) || undefined,
+  }),
+});

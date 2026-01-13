@@ -1,10 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 import { CreateCommunityForm } from '@/widgets/create-community-form';
-
-export const Route = createFileRoute('/_main/r/create-community')({
-  component: CreateCommunityPage,
-});
 
 const CreateCommunityPage = () => {
   return (
@@ -17,3 +12,7 @@ const CreateCommunityPage = () => {
     </div>
   );
 };
+
+export const Route = createFileRoute('/_main/r/create-community')({
+  component: CreateCommunityPage,
+});

@@ -17,11 +17,6 @@ interface RouterContext {
   };
 }
 
-export const Route = createRootRouteWithContext<RouterContext>()({
-  component: RootComponent,
-  notFoundComponent: NotFound,
-});
-
 const RootComponent = () => {
   return (
     <div className='min-h-screen bg-background'>
@@ -47,3 +42,8 @@ const NotFound = () => {
     </div>
   );
 };
+
+export const Route = createRootRouteWithContext<RouterContext>()({
+  component: RootComponent,
+  notFoundComponent: NotFound,
+});

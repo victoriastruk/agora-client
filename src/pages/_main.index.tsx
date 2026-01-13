@@ -5,6 +5,16 @@ import { Spinner } from '@/shared/ui';
 
 const Feed = lazy(() => import('../widgets/feed').then(module => ({ default: module.Feed })));
 
+const HomePage = () => {
+  return (
+    <div className='space-y-4'>
+      <Suspense fallback={<Spinner />}>
+        <Feed />
+      </Suspense>
+    </div>
+  );
+};
+
 export const Route = createFileRoute('/_main/')({
   component: HomePage,
   loader: async ({ context }) => {
@@ -20,13 +30,3 @@ export const Route = createFileRoute('/_main/')({
   },
   staleTime: 1 * 60 * 1000,
 });
-
-const HomePage = () => {
-  return (
-    <div className='space-y-4'>
-      <Suspense fallback={<Spinner />}>
-        <Feed />
-      </Suspense>
-    </div>
-  );
-};

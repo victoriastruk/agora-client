@@ -11,10 +11,6 @@ import { Badge } from '@/shared/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/ui/card';
 import { PostCard } from '@/widgets/post-card';
 
-export const Route = createFileRoute('/_main/u/$username')({
-  component: UserProfilePage,
-});
-
 const UserProfilePage = () => {
   return (
     <Suspense fallback={<Spinner />}>
@@ -166,3 +162,7 @@ const UserProfilePageContent = () => {
     </div>
   );
 };
+
+export const Route = createFileRoute('/_main/u/$username')({
+  component: UserProfilePage,
+});
