@@ -1,1 +1,1 @@
-export { useCommunityActions } from './model/use-community-actions';
+export { useCommunityActions } from './model/use-community-action';

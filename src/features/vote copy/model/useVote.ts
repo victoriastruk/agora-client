@@ -1,8 +1,6 @@
-import { useQueryClient } from '@tanstack/react-query';
+import { queryClient } from '@/shared/utils/query-client';
 import { useCallback, useEffect, useMemo } from 'react';
-
 import { calculateVoteValue, getVoteState } from '../lib/vote-utils';
-
 import { VoteType } from '@/shared/api/gql';
 import { useVotePostMutation, useVoteCommentMutation } from '@/shared/api/gql/query-hooks';
 import { queryKeys } from '@/shared/api/query-keys';
@@ -11,7 +9,6 @@ import { usePostVote, clientStateActions } from '@/shared/stores';
 
 export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
   const storedVote = usePostVote(postId);
-  const queryClient = useQueryClient();
   const votePostMutation = useVotePostMutation();
 
   useEffect(() => {
@@ -77,7 +74,6 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
 };
 
 export const useCommentVote = (commentId: string, postId: string) => {
-  const queryClient = useQueryClient();
   const voteCommentMutation = useVoteCommentMutation();
 
   const vote = useCallback(

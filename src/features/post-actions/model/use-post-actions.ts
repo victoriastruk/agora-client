@@ -1,8 +1,6 @@
-import { useQueryClient } from '@tanstack/react-query';
+import { queryClient } from '@/shared/utils/query-client';
 import { useCallback } from 'react';
-
 import { sharePost } from '../lib/share-utils';
-
 import { useIsAuthenticated } from '@/entities/session';
 import { logger } from '@/shared/services/logger';
 import { useIsPostSaved, clientStateActions, authModalActions } from '@/shared/stores';
@@ -34,7 +32,6 @@ const useMockUnsavePostMutation = () => {
 export const usePostActions = (postId: string) => {
   const isSaved = useIsPostSaved(postId);
   const isAuthenticated = useIsAuthenticated();
-  const queryClient = useQueryClient();
   const savePostMutation = useMockSavePostMutation();
   const unsavePostMutation = useMockUnsavePostMutation();
 

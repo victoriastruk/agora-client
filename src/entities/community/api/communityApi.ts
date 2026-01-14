@@ -1,4 +1,9 @@
-import type { CreateSubredditData, SubredditResponse, SubredditsApiResponse } from './types';
+import type {
+  ActionResponse,
+  CreateSubredditData,
+  SubredditResponse,
+  SubredditsApiResponse,
+} from './types';
 
 import { apiClient } from '@/shared/api/client';
 
@@ -40,4 +45,18 @@ export const communityApi = {
       body: formData,
     });
   },
+  joinSubreddit: (id: string): Promise<ActionResponse> =>
+    apiClient.request<ActionResponse>(`/subreddits/${id}/join`, {
+      method: 'POST',
+    }),
+
+  leaveSubreddit: (id: string): Promise<ActionResponse> =>
+    apiClient.request<ActionResponse>(`/subreddits/${id}/leave`, {
+      method: 'POST',
+    }),
+
+  deleteSubreddit: (id: string): Promise<void> =>
+    apiClient.request(`/subreddits/${id}`, {
+      method: 'DELETE',
+    }),
 } as const;

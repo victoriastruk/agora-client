@@ -1,7 +1,6 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { createFileRoute, useNavigate, useSearch } from '@tanstack/react-router';
 import { useEffect } from 'react';
-
+import { queryClient } from '@/shared/utils/query-client';
 import { sessionKeys } from '@/entities/session/api/query-keys';
 import { logger } from '@/shared/services/logger';
 import { Spinner } from '@/shared/ui';
@@ -13,7 +12,6 @@ const OAuthCallbackPage = () => {
   });
 
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (error) {

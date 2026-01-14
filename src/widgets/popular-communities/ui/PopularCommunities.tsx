@@ -1,10 +1,9 @@
 import { Link } from '@tanstack/react-router';
 import { Users } from 'lucide-react';
-
 import { Badge } from '@/shared/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
 
-const useMockPopularCommunitiesQuery = (limit: number) => {
+const usePopularCommunitiesQuery = (limit: number) => {
   const data = Array.from({ length: limit }, (_, i) => ({
     id: `mock-community-${i + 1}`,
     name: `mockcommunity${i + 1}`,
@@ -15,7 +14,7 @@ const useMockPopularCommunitiesQuery = (limit: number) => {
 };
 
 export const PopularCommunities = () => {
-  const { data: communities, isLoading, error } = useMockPopularCommunitiesQuery(5);
+  const { data: communities, isLoading, error } = usePopularCommunitiesQuery(5);
 
   if (isLoading) {
     return (

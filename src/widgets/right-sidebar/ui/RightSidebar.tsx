@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Plus, TrendingUp, Sparkles, ChevronRight, Trophy } from 'lucide-react';
-
+import { clientStateActions } from '@/shared/stores';
 import type { Community } from '@/entities/community';
-
 import { usePopularCommunities } from '@/entities/community';
 import { useIsAuthenticated } from '@/entities/session';
 import { useCommunityActions } from '@/features/join-leave-community';
@@ -23,14 +23,13 @@ import {
 
 const CommunityItem = ({ community, rank }: { community: Community; rank: number }) => {
   const isAuthenticated = useIsAuthenticated();
-  const { join, isJoined, isPending, joinLabel } = useCommunityActions(community.id, false);
+  const { action, isJoined, isPending, label } = useCommunityActions(community.id);
 
   const handleJoin = async () => {
-    if (isJoined) {
-      return;
-    }
+    if (isJoined) return;
+
     try {
-      await join();
+      await action();
     } catch (error) {
       logger.error('Failed to join community:', error);
     }
@@ -71,14 +70,11 @@ const CommunityItem = ({ community, rank }: { community: Community; rank: number
         <Button
           size='xs'
           variant={isJoined ? 'subtle' : 'brand'}
-          className={cn(
-            'opacity-0 group-hover:opacity-100 transition-opacity',
-            isJoined && 'opacity-100',
-          )}
+          className={cn('px-4')}
           onClick={handleJoin}
           disabled={isJoined || isPending}
         >
-          {joinLabel}
+          {label}
         </Button>
       )}
     </div>
@@ -86,7 +82,15 @@ const CommunityItem = ({ community, rank }: { community: Community; rank: number
 };
 
 export const RightSidebar = () => {
+  const isAuthenticated = useIsAuthenticated();
   const { communities, isLoading, error } = usePopularCommunities();
+  useEffect(() => {
+    communities.forEach(c => {
+      if (c.isJoined) {
+        clientStateActions.joinCommunity(c.id);
+      }
+    });
+  }, [communities]);
 
   return (
     <div className='space-y-4'>
@@ -134,31 +138,33 @@ export const RightSidebar = () => {
         </CardContent>
       </Card>
 
-      <Card className='overflow-hidden'>
-        <div className='bg-linear-to-br from-brand/8 via-orange-500/4 to-transparent p-6'>
-          <div className='flex items-center gap-4'>
-            <div
-              className={cn(
-                'flex h-12 w-12 items-center justify-center rounded-xl',
-                'bg-brand text-white shadow-lg',
-                'group-hover:scale-105 transition-transform',
-              )}
-            >
-              <Sparkles className='h-6 w-6' />
+      {!isAuthenticated && (
+        <Card className='overflow-hidden'>
+          <div className='bg-linear-to-br from-brand/8 via-orange-500/4 to-transparent p-6'>
+            <div className='flex items-center gap-4'>
+              <div
+                className={cn(
+                  'flex h-12 w-12 items-center justify-center rounded-xl',
+                  'bg-brand text-white shadow-lg',
+                  'group-hover:scale-105 transition-transform',
+                )}
+              >
+                <Sparkles className='h-6 w-6' />
+              </div>
+              <div className='flex-1'>
+                <h3 className='font-semibold text-foreground'>Create a Community</h3>
+                <p className='text-xs text-muted-foreground'>Build your own space</p>
+              </div>
             </div>
-            <div className='flex-1'>
-              <h3 className='font-semibold text-foreground'>Create a Community</h3>
-              <p className='text-xs text-muted-foreground'>Build your own space</p>
-            </div>
+            <Button variant='brand' size='sm' className='w-full mt-4' asChild>
+              <Link to='/submit'>
+                <Plus className='h-4 w-4 mr-2' />
+                Get Started
+              </Link>
+            </Button>
           </div>
-          <Button variant='brand' size='sm' className='w-full mt-4' asChild>
-            <Link to='/submit'>
-              <Plus className='h-4 w-4 mr-2' />
-              Get Started
-            </Link>
-          </Button>
-        </div>
-      </Card>
+        </Card>
+      )}
 
       <Card className='border-amber-500/30 bg-linear-to-br from-amber-500/5 to-transparent'>
         <CardContent className='p-5'>

@@ -143,6 +143,16 @@ export const clientStateActions = {
       };
     });
   },
+  resetOptimistic: () => {
+    clientStateStore.setState(prev => ({
+      ...prev,
+      optimistic: {
+        joinedCommunities: new Set(),
+        savedPosts: new Set(),
+        postVotes: new Map(),
+      },
+    }));
+  },
 } as const;
 
 export const useClientState = () => useStore(clientStateStore);

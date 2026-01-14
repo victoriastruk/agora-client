@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
+import { useMutation } from '@tanstack/react-query';
+import { clientStateActions } from '@/shared/stores';
 import { sessionActions } from '../model/session-store';
-
+import { queryClient } from '@/shared/utils/query-client';
 import { sessionKeys } from './query-keys';
 import { sessionApi } from './sessionApi';
 
@@ -10,8 +10,6 @@ import type { LoginRequest, RegisterRequest } from '@/shared/api/auth/types';
 import { logger } from '@/shared/services/logger';
 
 export const useLoginMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: (payload: LoginRequest) => sessionApi.login(payload),
 
@@ -56,8 +54,6 @@ export const useRegisterMutation = () => {
 };
 
 export const useLogoutMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: () => sessionApi.logout(),
 
@@ -67,7 +63,7 @@ export const useLogoutMutation = () => {
       await queryClient.removeQueries({
         queryKey: sessionKeys.all,
       });
-
+      clientStateActions.resetOptimistic();
       logger.info('Logout successful');
     },
 
@@ -79,8 +75,6 @@ export const useLogoutMutation = () => {
 };
 
 export const useRefreshMutation = () => {
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: () => sessionApi.refresh(),
 
