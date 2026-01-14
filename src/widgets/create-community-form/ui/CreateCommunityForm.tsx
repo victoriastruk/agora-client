@@ -1,9 +1,9 @@
-import { Globe, Eye, Lock, Users, Sparkles } from 'lucide-react';
+import { Globe, Lock, Users, Sparkles } from 'lucide-react';
 
-import { useCreateCommunityForm } from '@/features/create-community';
+import { useCreateCommunity } from '@/features/create-community';
 import { Button, Input, Textarea, ImageUpload, RadioCardGroup, FormField } from '@/shared/ui';
 
-type CommunityType = 'public' | 'restricted' | 'private';
+
 
 const VISIBILITY_OPTIONS: {
   value: CommunityType;
@@ -18,12 +18,6 @@ const VISIBILITY_OPTIONS: {
     value: 'public',
   },
   {
-    description: 'Anyone can view, but only approved users can post',
-    icon: Eye,
-    label: 'Restricted',
-    value: 'restricted',
-  },
-  {
     description: 'Only approved users can view and participate',
     icon: Lock,
     label: 'Private',
@@ -31,15 +25,16 @@ const VISIBILITY_OPTIONS: {
   },
 ];
 
+
 export const CreateCommunityForm = () => {
-  const { form, isSubmitting } = useCreateCommunityForm();
+  const { form, handleSubmit, isSubmitting } = useCreateCommunity();
 
   return (
     <form
       onSubmit={e => {
         e.preventDefault();
         e.stopPropagation();
-        form.handleSubmit();
+        handleSubmit();
       }}
       className='space-y-8'
     >
@@ -50,7 +45,7 @@ export const CreateCommunityForm = () => {
           Customize appearance
         </h3>
         <form.Field
-          name='bannerUrl'
+          name='banner_url'
           children={field => (
             <ImageUpload
               value={field.state.value || ''}
@@ -64,7 +59,7 @@ export const CreateCommunityForm = () => {
         />
         <div className='-mt-12 ml-4 relative z-10 inline-block rounded-full bg-background p-1 shadow-lg'>
           <form.Field
-            name='avatarUrl'
+            name='avatar_url'
             children={field => (
               <ImageUpload
                 value={field.state.value || ''}
@@ -144,7 +139,7 @@ export const CreateCommunityForm = () => {
 
       {/* Community Type */}
       <form.Field
-        name='communityType'
+        name='is_public'
         children={field => (
           <section className='space-y-3'>
             <h3 className='text-sm font-medium flex items-center gap-2'>
