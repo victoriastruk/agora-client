@@ -11,7 +11,6 @@ const buttonVariants = cva(
     'inline-flex cursor-pointer items-center justify-center gap-2',
     'whitespace-nowrap rounded-lg text-sm font-medium',
     'transition-all duration-150 ease-out',
-    'disabled:pointer-events-none disabled:opacity-50',
     "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
     'shrink-0 [&_svg]:shrink-0',
     'outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
@@ -55,6 +54,9 @@ const buttonVariants = cva(
           'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 active:scale-[0.98]',
         subtle: 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground',
       },
+      disabled: {
+        true: 'opacity-50 cursor-not-allowed',
+      },
     },
   },
 );
@@ -77,7 +79,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         data-slot='button'
         disabled={disabled || loading}
-        className={cn(buttonVariants({ className, size, variant }))}
+        className={cn(
+          buttonVariants({
+            className,
+            size,
+            variant,
+            disabled: disabled || loading ? true : undefined,
+          }),
+        )}
         {...props}
       >
         {loading ? (

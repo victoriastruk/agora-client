@@ -17,8 +17,8 @@ const contentVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { damping: 25, stiffness: 300, type: 'spring' },
     y: 0,
+    transition: { type: 'spring' as const, damping: 25, stiffness: 300 },
   },
 };
 

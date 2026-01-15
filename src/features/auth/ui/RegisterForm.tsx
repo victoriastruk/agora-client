@@ -113,15 +113,9 @@ export const RegisterForm = ({ setView, redirect, onSuccess }: RegisterFormProps
             return (
               <Button
                 type='submit'
-                variant={active ? 'reddit' : 'redditDisabled'}
+                variant='reddit'
                 disabled={!active}
-                className={`w-full p-6 rounded-full font-semibold transition-colors duration-200
-                  ${
-                    active
-                      ? 'bg-[#d93a00] hover:bg-[#bb3200] text-white'
-                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  }
-                `}
+                className='w-full p-6 rounded-full font-semibold'
               >
                 {isSubmitting || isPending ? 'Sign Up...' : 'Sign up'}
               </Button>

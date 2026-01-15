@@ -1,16 +1,26 @@
 import type { Comment } from '@/entities/comment/model/types';
-import type { Comment as GraphQLComment } from '@/shared/api/gql';
 
-export const mapComment = (comment: GraphQLComment): Comment => ({
+export interface ApiComment {
+  id: string;
+  postId: string;
+  content: string;
+  createdAt: string;
+  score: number;
+  parentId?: string | null;
   author: {
-    id: comment.author.id,
-    name: comment.author.name,
-  },
+    id: string;
+    name: string;
+  };
+  replies?: ApiComment[];
+}
+
+export const mapComment = (comment: ApiComment): Comment => ({
+  id: comment.id,
+  postId: comment.postId,
+  parentId: comment.parentId ?? undefined,
   content: comment.content,
   createdAt: comment.createdAt,
-  id: comment.id,
-  parentId: comment.parentId ?? undefined,
-  postId: comment.postId,
-  replies: comment.replies.map(mapComment),
   votes: comment.score,
+  author: comment.author,
+  replies: (comment.replies ?? []).map(mapComment),
 });

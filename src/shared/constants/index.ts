@@ -38,9 +38,7 @@ export type VoteButtonOrientation =
   (typeof VOTE_BUTTON_ORIENTATIONS)[keyof typeof VOTE_BUTTON_ORIENTATIONS];
 
 export const MAX_COMMENT_DEPTH = 3;
-export const COMMENT_FORM_ROWS = 3;
 export const COMMENT_FORM_PLACEHOLDER = 'Write a comment...';
-export const REPLY_FORM_PLACEHOLDER = 'Write a reply...';
 
 export const TIME_CONSTANTS = {
   DAY: 24 * 60 * 60 * 1000,

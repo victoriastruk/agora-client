@@ -106,33 +106,14 @@ const LoginSubmitButton = ({
       const isEmpty = !email.trim() || !password.trim();
       const active = canSubmit && !isEmpty && !isSubmitting && !isPending;
 
-      let buttonText;
-      if (isSubmitting || isPending) {
-        buttonText = 'Logging in...';
-      } else {
-        buttonText = 'Log In';
-      }
-
-      let buttonClassName;
-      if (active) {
-        buttonClassName = 'bg-[#d93a00] hover:bg-[#bb3200] text-white';
-      } else {
-        buttonClassName = 'bg-gray-300 text-gray-500 cursor-not-allowed';
-      }
-
-      let buttonVariant: 'reddit' | 'redditDisabled';
-      if (active) {
-        buttonVariant = 'reddit';
-      } else {
-        buttonVariant = 'redditDisabled';
-      }
+      const buttonText = isSubmitting || isPending ? 'Logging in...' : 'Log In';
 
       return (
         <Button
           type='submit'
-          variant={buttonVariant}
+          variant='reddit'
           disabled={!active}
-          className={`w-full p-6 font-semibold transition-colors duration-200 rounded-full ${buttonClassName}`}
+          className='w-full p-6 font-semibold rounded-full'
         >
           {buttonText}
         </Button>

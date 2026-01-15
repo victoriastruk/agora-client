@@ -18,7 +18,7 @@ export const PostDetailWidget = ({ post }: PostDetailWidgetProps) => {
     <Card>
       <CardHeader>
         <div className='flex gap-4'>
-          <div className='flex-shrink-0'>
+          <div className='shrink-0'>
             <VoteColumn postId={post.id} score={post.score} userVote={post.userVote ?? 0} />
           </div>
           <div className='flex-1 min-w-0'>
@@ -48,7 +48,7 @@ export const PostDetailWidget = ({ post }: PostDetailWidgetProps) => {
           <div className='flex items-center gap-4 text-sm text-muted-foreground'>
             <div className='flex items-center gap-1'>
               <MessageSquare className='h-4 w-4' />
-              <span>{formatCommentCount(post.comments)}</span>
+              <span>{formatCommentCount(post.commentCount)}</span>
             </div>
           </div>
         </div>

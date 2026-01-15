@@ -52,7 +52,7 @@ export const ResetForm = () => {
 
         <a
           href='/help'
-          className='text-blue-600 hover:underline dark:text-blue-400 dark:text-[#b7cad4] text-left pl-4 pt-4 pb-4'
+          className='text-blue-600 hover:underline dark:text-[#b7cad4] text-left pl-4 pt-4 pb-4'
         >
           Need help?
         </a>
@@ -60,12 +60,11 @@ export const ResetForm = () => {
 
       <Button
         type='submit'
-        variant={isFormValid(form.state.values) ? 'reddit' : 'redditDisabled'}
+        variant='reddit'
         disabled={!isFormValid(form.state.values)}
-        className='w-full p-6'
+        className='w-full p-6 font-semibold'
       >
-        {' '}
-        Reset password{' '}
+        Reset password
       </Button>
     </form>
   );

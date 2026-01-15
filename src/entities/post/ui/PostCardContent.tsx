@@ -28,7 +28,7 @@ export const PostCardContent = memo(
         className='group overflow-hidden focus-within:ring-2 focus-within:ring-brand/50'
       >
         <div className='flex'>
-          <div className='flex-shrink-0 bg-muted/30 dark:bg-muted/10 py-3 px-2'>{voteColumn}</div>
+          <div className='shrink-0 bg-muted/30 dark:bg-muted/10 py-3 px-2'>{voteColumn}</div>
 
           <div className='flex-1 min-w-0 p-4'>
             <header className='flex items-center gap-2 mb-3 text-xs'>
@@ -44,7 +44,7 @@ export const PostCardContent = memo(
                       src={post.community.iconUrl}
                       alt={`${post.community.name} community avatar`}
                     />
-                    <AvatarFallback className='text-[8px] font-semibold bg-gradient-to-br from-brand to-orange-400 text-white'>
+                    <AvatarFallback className='text-[8px] font-semibold bg-linear-to-br from-brand to-orange-400 text-white'>
                       {post.community.name.slice(0, 2).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
@@ -159,7 +159,7 @@ const MediaPreview = ({ media }: { media: Post['media'] }) => {
           className='w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]'
           loading='lazy'
         />
-        <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity' />
+        <div className='absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity' />
       </div>
     );
   }
@@ -167,7 +167,7 @@ const MediaPreview = ({ media }: { media: Post['media'] }) => {
   if (media.type === 'video') {
     return (
       <div
-        className='relative rounded-xl overflow-hidden bg-gradient-to-br from-muted to-muted/60 aspect-video flex items-center justify-center'
+        className='relative rounded-xl overflow-hidden bg-linear-to-br from-muted to-muted/60 aspect-video flex items-center justify-center'
         role='img'
         aria-label='Video content'
       >

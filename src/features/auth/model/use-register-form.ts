@@ -35,7 +35,7 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
 
         if (result.message === 'Registration successful') {
           try {
-            const loginResult = await loginMutation.mutateAsync({
+            await loginMutation.mutateAsync({
               email: value.email,
               password: value.password,
             });

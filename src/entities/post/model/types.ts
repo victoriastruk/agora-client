@@ -20,12 +20,12 @@ export interface Post {
   };
   flairs?: Flair[];
   score: number;
-  comments: number; // Will be calculated from comments array length
+  commentCount: number; // Will be calculated from comments array length
   createdAt: string;
   userVote?: -1 | 0 | 1;
   isSaved?: boolean;
 }
 
-import type { Community } from '@/community';
+import type { Community } from '@/entities/community';
 
 export type { Community };

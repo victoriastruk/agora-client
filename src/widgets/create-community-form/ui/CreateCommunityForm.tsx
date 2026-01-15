@@ -1,33 +1,24 @@
 import { Globe, Lock, Users, Sparkles } from 'lucide-react';
-
 import { useCreateCommunity } from '@/features/create-community';
 import { Button, Input, Textarea, ImageUpload, RadioCardGroup, FormField } from '@/shared/ui';
 
-
-
-const VISIBILITY_OPTIONS: {
-  value: CommunityType;
-  label: string;
-  description: string;
-  icon: React.ElementType;
-}[] = [
+const VISIBILITY_OPTIONS = [
   {
-    description: 'Anyone can view, post, and comment',
-    icon: Globe,
-    label: 'Public',
     value: 'public',
+    label: 'Public',
+    description: 'Anyone can view, post, and comment',
+    icon: Globe as React.FC<React.SVGProps<SVGSVGElement>>,
   },
   {
-    description: 'Only approved users can view and participate',
-    icon: Lock,
-    label: 'Private',
     value: 'private',
+    label: 'Private',
+    description: 'Only approved users can view and participate',
+    icon: Lock as React.FC<React.SVGProps<SVGSVGElement>>,
   },
 ];
 
-
 export const CreateCommunityForm = () => {
-  const { form, handleSubmit, isSubmitting } = useCreateCommunity();
+  const { form, handleSubmit } = useCreateCommunity();
 
   return (
     <form
@@ -44,9 +35,9 @@ export const CreateCommunityForm = () => {
           <Sparkles className='h-4 w-4 text-amber-500' />
           Customize appearance
         </h3>
-        <form.Field
-          name='banner_url'
-          children={field => (
+
+        <form.Field name='banner_url'>
+          {field => (
             <ImageUpload
               value={field.state.value || ''}
               onChange={value => field.handleChange(value || '')}
@@ -56,11 +47,11 @@ export const CreateCommunityForm = () => {
               className='w-full'
             />
           )}
-        />
+        </form.Field>
+
         <div className='-mt-12 ml-4 relative z-10 inline-block rounded-full bg-background p-1 shadow-lg'>
-          <form.Field
-            name='avatar_url'
-            children={field => (
+          <form.Field name='icon_url'>
+            {field => (
               <ImageUpload
                 value={field.state.value || ''}
                 onChange={value => field.handleChange(value || '')}
@@ -69,14 +60,13 @@ export const CreateCommunityForm = () => {
                 placeholder='Avatar'
               />
             )}
-          />
+          </form.Field>
         </div>
       </section>
 
       {/* Community Name */}
-      <form.Field
-        name='name'
-        children={field => (
+      <form.Field name='name'>
+        {field => (
           <FormField
             label='Community name'
             hint='Choose a unique name. This cannot be changed later.'
@@ -92,12 +82,11 @@ export const CreateCommunityForm = () => {
             />
           </FormField>
         )}
-      />
+      </form.Field>
 
       {/* Display Name */}
-      <form.Field
-        name='displayName'
-        children={field => (
+      <form.Field name='displayName'>
+        {field => (
           <FormField
             label='Display name'
             hint='This is how your community will appear to users.'
@@ -113,12 +102,11 @@ export const CreateCommunityForm = () => {
             />
           </FormField>
         )}
-      />
+      </form.Field>
 
       {/* Description */}
-      <form.Field
-        name='description'
-        children={field => (
+      <form.Field name='description'>
+        {field => (
           <FormField
             label='Description'
             hint='Help people understand what your community is about.'
@@ -135,12 +123,11 @@ export const CreateCommunityForm = () => {
             />
           </FormField>
         )}
-      />
+      </form.Field>
 
       {/* Community Type */}
-      <form.Field
-        name='is_public'
-        children={field => (
+      <form.Field name='is_public'>
+        {field => (
           <section className='space-y-3'>
             <h3 className='text-sm font-medium flex items-center gap-2'>
               <Users className='h-4 w-4 text-primary' />
@@ -148,22 +135,29 @@ export const CreateCommunityForm = () => {
             </h3>
             <RadioCardGroup
               value={field.state.value}
-              onChange={value => field.handleChange(value)}
+              onChange={field.handleChange}
               options={VISIBILITY_OPTIONS}
               size='md'
             />
           </section>
         )}
-      />
+      </form.Field>
 
+      {/* Submit */}
       <form.Subscribe
-        selector={state => [state.canSubmit, state.isSubmitting]}
-        children={([canSubmit, isSubmitting]) => (
-          <Button type='submit' className='min-w-35' disabled={!canSubmit || isSubmitting}>
+        selector={state => ({ canSubmit: state.canSubmit, isSubmitting: state.isSubmitting })}
+      >
+        {({ canSubmit, isSubmitting }) => (
+          <Button
+            type='submit'
+            variant='reddit'
+            disabled={!canSubmit || isSubmitting}
+            className='w-full'
+          >
             {isSubmitting ? 'Creating...' : 'Create Community'}
           </Button>
         )}
-      />
+      </form.Subscribe>
     </form>
   );
 };

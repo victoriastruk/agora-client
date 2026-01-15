@@ -7,9 +7,7 @@ export const useGoogleOAuth = () => {
     try {
       await googleOAuthMutation.mutateAsync();
     } catch (error) {
-      throw new Error('Unable to initiate Google authentication', {
-        cause: error,
-      });
+      throw new Error('Unable to initiate Google authentication');
     }
   };
 

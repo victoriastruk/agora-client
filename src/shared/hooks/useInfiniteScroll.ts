@@ -45,7 +45,7 @@ export const useInfiniteScroll = <T extends HTMLElement = HTMLDivElement>(
 
     return () => {
       observerRef.current?.disconnect();
-      observerRef.current = undefined;
+      observerRef.current = null;
     };
   }, [handleIntersection, hasMore, isLoading, threshold, rootMargin]);
 

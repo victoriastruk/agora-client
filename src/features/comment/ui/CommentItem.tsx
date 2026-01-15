@@ -1,14 +1,7 @@
 import { MessageSquare } from 'lucide-react';
 import { useState } from 'react';
-
 import type { Comment } from '@/entities/comment';
-
-import {
-  UI_TEXT,
-  MAX_COMMENT_DEPTH,
-  COMMENT_FORM_ROWS,
-  REPLY_FORM_PLACEHOLDER,
-} from '@/shared/constants';
+import { UI_TEXT, MAX_COMMENT_DEPTH } from '@/shared/constants';
 import { formatReplyCount, getInitials } from '@/shared/services';
 import { Avatar, AvatarFallback } from '@/shared/ui/avatar';
 import { Button } from '@/shared/ui/button';
@@ -21,13 +14,28 @@ interface CommentItemProps {
   depth?: number;
 }
 
-export const CommentForm = () => {
+interface CommentFormProps {
+  onSubmit: (content: string, parentId?: string) => void;
+  parentId?: string;
+}
+
+export const CommentForm = ({ onSubmit, parentId }: CommentFormProps) => {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = () => {
+    if (!value.trim()) return;
+    onSubmit(value, parentId);
+    setValue('');
+  };
+
   return (
     <Card className='mb-4'>
       <CardContent className='p-4'>
         <Textarea placeholder='Write a comment...' rows={4} className='resize-none w-full' />
         <div className='flex gap-2 mt-2'>
-          <Button size='sm'>Submit</Button>
+          <Button size='sm' onClick={handleSubmit}>
+            Submit
+          </Button>
           <Button size='sm' variant='outline'>
             Cancel
           </Button>
@@ -37,7 +45,7 @@ export const CommentForm = () => {
   );
 };
 
-export const CommentItem = ({ comment, depth = 0 }: CommentItemProps) => {
+export const CommentItem = ({ comment, onReply, depth = 0 }: CommentItemProps) => {
   const [isReplying, setIsReplying] = useState(false);
   const [showReplies, setShowReplies] = useState(true);
 
@@ -68,20 +76,14 @@ export const CommentItem = ({ comment, depth = 0 }: CommentItemProps) => {
                   {UI_TEXT.COMMENT.REPLY}
                 </Button>
               )}
-              {isReplying && (
-                <div className='mt-2'>
-                  <Textarea
-                    placeholder={REPLY_FORM_PLACEHOLDER}
-                    rows={COMMENT_FORM_ROWS}
-                    className='resize-none w-full'
-                  />
-                  <div className='flex gap-2 mt-2'>
-                    <Button size='sm'>{UI_TEXT.COMMENT.SUBMIT}</Button>
-                    <Button size='sm' variant='outline' onClick={() => setIsReplying(false)}>
-                      Cancel
-                    </Button>
-                  </div>
-                </div>
+              {isReplying && onReply && (
+                <CommentForm
+                  parentId={comment.id}
+                  onSubmit={content => {
+                    onReply(comment.id, content);
+                    setIsReplying(false);
+                  }}
+                />
               )}
             </div>
           </div>
@@ -102,7 +104,7 @@ export const CommentItem = ({ comment, depth = 0 }: CommentItemProps) => {
           {showReplies && (
             <div>
               {comment.replies.map(reply => (
-                <CommentItem key={reply.id} comment={reply} depth={depth + 1} />
+                <CommentItem key={reply.id} comment={reply} depth={depth + 1} onReply={onReply} />
               ))}
             </div>
           )}

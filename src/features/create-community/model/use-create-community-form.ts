@@ -8,7 +8,6 @@ export const useCreateCommunityForm = () => {
       display_name: '',
       description: '',
       icon_url: undefined,
-      banner_url: undefined,
       is_public: true,
       is_nsfw: false,
     },
