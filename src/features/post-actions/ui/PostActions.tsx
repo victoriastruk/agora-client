@@ -65,7 +65,7 @@ export const PostActions = ({ post }: PostActionsProps) => {
         )}
       >
         <MessageSquare className='h-4 w-4' />
-        <span>{formatCommentCount(post.comments)}</span>
+        <span>{formatCommentCount(post.commentsCount)}</span>
       </Link>
 
       {/* Share */}

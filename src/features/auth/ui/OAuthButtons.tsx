@@ -12,22 +12,6 @@ interface OAuthButtonsProps {
   mode?: 'login' | 'register';
 }
 
-// Mock hooks/state for phone auth
-let localPhoneNumber = '';
-let phoneUsername = '';
-let localVerificationCode = '';
-let step: 'phone' | 'code' = 'phone';
-
-const sendVerificationCode = async (phone: string) => {
-  console.log('[MOCK] send code to', phone);
-  step = 'code';
-};
-
-const verifyCode = async (code: string) => {
-  console.log('[MOCK] verify code', code);
-  return { success: code === '123456' };
-};
-
 export default function OAuthButtons({ showEmailLink = false, mode = 'login' }: OAuthButtonsProps) {
   const { initiateGoogleOAuth, isLoading: isGoogleLoading } = useGoogleOAuth();
   const { initiateAppleOAuth, isLoading: isAppleLoading } = useAppleOAuth();
@@ -38,40 +22,6 @@ export default function OAuthButtons({ showEmailLink = false, mode = 'login' }: 
 
   const handleAppleClick = () => {
     initiateAppleOAuth();
-  };
-
-  const handlePhoneSubmit = async () => {
-    if (step === 'phone') {
-      if (!localPhoneNumber.trim()) {
-        notificationActions.error('Validation', 'Please enter your phone number');
-        return;
-      }
-      if (mode === 'register' && !phoneUsername.trim()) {
-        notificationActions.error('Validation', 'Please enter a username');
-        return;
-      }
-      await sendVerificationCode(localPhoneNumber);
-      notificationActions.success('Code sent', 'Use 123456 as the mock verification code');
-    } else if (step === 'code') {
-      if (!localVerificationCode.trim()) {
-        notificationActions.error('Validation', 'Please enter the verification code');
-        return;
-      }
-      const result = await verifyCode(localVerificationCode);
-      if (result.success) {
-        notificationActions.success(
-          'Success',
-          `Phone ${mode === 'register' ? 'registration' : 'login'} successful!`,
-        );
-        // reset mock state
-        localPhoneNumber = '';
-        localVerificationCode = '';
-        phoneUsername = '';
-        step = 'phone';
-      } else {
-        notificationActions.error('Invalid code', 'The code is incorrect. Use 123456 for mock');
-      }
-    }
   };
 
   const handleEmailLinkClick = () => {

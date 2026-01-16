@@ -7,6 +7,7 @@ interface OAuthButtonProps {
   text: string;
   onClick?: VoidFunction;
   className?: string;
+  disabled?: boolean;
 }
 
 export const OAuthButton = ({ icon, text, onClick, className }: OAuthButtonProps) => (

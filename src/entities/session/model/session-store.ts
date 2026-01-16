@@ -1,7 +1,11 @@
 import { useStore } from '@tanstack/react-store';
 import { Store } from '@tanstack/store';
-
-import type { SessionState, SessionUser } from './types';
+import type {
+  SessionUser,
+  SessionState,
+  AuthenticatingSession,
+  UnauthenticatedSession,
+} from './types';
 
 const STORAGE_KEY = 'session_user';
 
@@ -41,12 +45,19 @@ const saveUserToStorage = (user: SessionUser | null) => {
 
 const initialUser = loadUserFromStorage();
 
-const initialState: SessionState = {
-  user: initialUser,
-  isAuthenticated: false,
-  isLoading: Boolean(initialUser),
-  error: null,
-};
+const initialState: SessionState = initialUser
+  ? ({
+      user: null,
+      isAuthenticated: true,
+      isLoading: true,
+      error: null,
+    } satisfies AuthenticatingSession)
+  : ({
+      user: null,
+      isAuthenticated: false,
+      isLoading: false,
+      error: null,
+    } satisfies UnauthenticatedSession);
 
 export const sessionStore = new Store<SessionState>(initialState);
 
@@ -68,12 +79,21 @@ sessionStore.subscribe(() => {
 
 export const sessionActions = {
   initialize(user: SessionUser | null) {
-    sessionStore.setState({
-      user,
-      isAuthenticated: Boolean(user),
-      isLoading: false,
-      error: null,
-    });
+    if (user) {
+      sessionStore.setState({
+        user,
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      });
+    } else {
+      sessionStore.setState({
+        user: null,
+        isAuthenticated: false,
+        isLoading: false,
+        error: null,
+      });
+    }
   },
 
   login(user: SessionUser) {

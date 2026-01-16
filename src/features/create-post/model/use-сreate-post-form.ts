@@ -19,7 +19,7 @@ const useMockCreatePostMutation = () => {
   const mutateAsync = async ({
     input,
   }: {
-    input: { communityId: string; title: string; content?: string; type: PostType };
+    input: { communityId: string; title: string; content?: string; type: 'text' };
   }) => {
     console.log('[MOCK] create post', input);
     await new Promise(res => setTimeout(res, 500));
@@ -65,7 +65,7 @@ export const useCreatePostForm = (options?: UseCreatePostFormOptions) => {
             communityId: value.communityId,
             content: value.content || undefined,
             title: value.title,
-            type: PostType.Text,
+            type: 'text',
           },
         });
 

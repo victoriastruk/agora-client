@@ -1,30 +1,28 @@
-interface SessionUser {
+export interface SessionUser {
   id: string;
   username: string;
   email?: string;
 }
 
-interface Session {
+export interface Session {
   user: SessionUser;
   isAuthenticated: true;
   isLoading?: boolean;
   error?: string | null;
 }
 
-interface UnauthenticatedSession {
+export interface UnauthenticatedSession {
   user: null;
   isAuthenticated: false;
   isLoading?: boolean;
   error?: string | null;
 }
 
-interface AuthenticatingSession {
+export interface AuthenticatingSession {
   user: null;
   isAuthenticated: true;
   isLoading?: boolean;
   error?: string | null;
 }
 
-type SessionState = Session | UnauthenticatedSession | AuthenticatingSession;
-
-export type { SessionUser, Session, UnauthenticatedSession, AuthenticatingSession, SessionState };
+export type SessionState = Session | UnauthenticatedSession | AuthenticatingSession;

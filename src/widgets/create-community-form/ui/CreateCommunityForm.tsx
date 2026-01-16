@@ -52,13 +52,7 @@ export const CreateCommunityForm = () => {
         <div className='-mt-12 ml-4 relative z-10 inline-block rounded-full bg-background p-1 shadow-lg'>
           <form.Field name='icon_url'>
             {field => (
-              <ImageUpload
-                value={field.state.value || ''}
-                onChange={value => field.handleChange(value || '')}
-                variant='circle'
-                size='lg'
-                placeholder='Avatar'
-              />
+              <ImageUpload value={field.state.value} onChange={file => field.handleChange(file)} />
             )}
           </form.Field>
         </div>

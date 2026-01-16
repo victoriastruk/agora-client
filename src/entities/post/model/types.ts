@@ -1,7 +1,11 @@
-export interface Flair {
+import type { Community } from '@/entities/community';
+import type { FlairVariant } from '@/shared/types/flair';
+
+export type { Community };
+
+export interface PostFlair {
   id: string;
-  label: string;
-  color?: string;
+  variant: FlairVariant;
 }
 
 export interface Post {
@@ -18,14 +22,10 @@ export interface Post {
     url: string;
     thumb?: string;
   };
-  flairs?: Flair[];
+  flairs?: PostFlair[];
   score: number;
-  commentCount: number; // Will be calculated from comments array length
+  commentsCount: number;
   createdAt: string;
   userVote?: -1 | 0 | 1;
   isSaved?: boolean;
 }
-
-import type { Community } from '@/entities/community';
-
-export type { Community };

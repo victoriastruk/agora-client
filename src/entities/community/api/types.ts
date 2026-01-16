@@ -20,7 +20,7 @@ export interface CreateSubredditData {
   name: string;
   display_name: string;
   description?: string;
-  icon_url?: File;
+  icon_url?: File | null;
   banner_url?: File;
   is_private: boolean;
   is_nsfw: boolean;

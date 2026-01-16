@@ -6,16 +6,17 @@ export const useCreateCommunity = () => {
   const mutation = useCreateCommunityMutation();
 
   const handleSubmit = async () => {
-    await form.handleSubmit(async values => {
-      mutation.mutate({
-        name: values.name,
-        display_name: values.display_name,
-        description: values.description,
-        icon_url: values.icon_url,
-        banner_url: values.banner_url,
-        is_private: values.is_private,
-        is_nsfw: values.is_nsfw,
-      });
+    await form.handleSubmit();
+
+    const values = form.state.values; 
+
+    mutation.mutate({
+      name: values.name,
+      display_name: values.display_name,
+      description: values.description,
+      icon_url: values.icon_url,
+      is_private: !values.is_public,
+      is_nsfw: values.is_nsfw,
     });
   };
 

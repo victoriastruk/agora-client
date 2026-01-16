@@ -78,7 +78,7 @@ export const PostCardContent = memo(
             {post.flairs && post.flairs.length > 0 && (
               <div className='flex gap-1.5 mb-2 flex-wrap'>
                 {post.flairs.map(flair => (
-                  <FlairBadge key={flair.id} flair={flair} size='sm' />
+                  <FlairBadge key={flair.id} variant={flair.variant} size='sm' />
                 ))}
               </div>
             )}
