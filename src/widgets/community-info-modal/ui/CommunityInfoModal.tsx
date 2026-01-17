@@ -26,7 +26,7 @@ export const CommunityInfoModal = ({ communityId, trigger }: CommunityInfoModalP
   const [open, setOpen] = useState(false);
   const { data: community, isLoading } = useCommunity(communityId);
   const isAuthenticated = useIsAuthenticated();
-  const { join, leave, isJoined, isPending, joinLabel } = useCommunityActions(communityId, false);
+  const { action, isJoined, isPending, label } = useCommunityActions(communityId);
 
   if (!community && !isLoading) {
     return null;
@@ -123,10 +123,10 @@ export const CommunityInfoModal = ({ communityId, trigger }: CommunityInfoModalP
                         <Button
                           variant={isJoined ? 'outline' : 'default'}
                           className='flex-1'
-                          onClick={isJoined ? leave : join}
+                          onClick={action}
                           disabled={isPending}
                         >
-                          {isPending ? 'Loading...' : joinLabel}
+                          {isPending ? 'Loading...' : label}
                         </Button>
                         <Button
                           variant='outline'

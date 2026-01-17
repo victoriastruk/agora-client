@@ -1,13 +1,31 @@
+import { useMemo } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Suspense } from 'react';
-
-import { useComments } from '@/entities/comment';
 import { usePost } from '@/entities/post';
 import { Spinner } from '@/shared/ui';
 import { CommentSectionWidget } from '@/widgets/comment-section';
 import { PostDetailWidget } from '@/widgets/post-detail';
 import { PostLoadingSkeletonWidget } from '@/widgets/post-loading-skeleton';
 import { PostNotFoundWidget } from '@/widgets/post-not-found';
+
+export const useComments = (postId: string) => {
+  const comments = useMemo(
+    () =>
+      Array.from({ length: 3 }, (_, i) => ({
+        id: `comment-${i + 1}`,
+        postId,
+        content: `This is comment ${i + 1} for post ${postId}`,
+        author: { id: `user-${i + 1}`, name: `User ${i + 1}` },
+        score: Math.floor(Math.random() * 50),
+      })),
+    [postId],
+  );
+
+  return {
+    comments,
+    isLoading: false,
+  };
+};
 
 const PostDetailPage = () => {
   return (

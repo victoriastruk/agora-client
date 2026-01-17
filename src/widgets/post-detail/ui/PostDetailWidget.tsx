@@ -48,7 +48,7 @@ export const PostDetailWidget = ({ post }: PostDetailWidgetProps) => {
           <div className='flex items-center gap-4 text-sm text-muted-foreground'>
             <div className='flex items-center gap-1'>
               <MessageSquare className='h-4 w-4' />
-              <span>{formatCommentCount(post.commentCount)}</span>
+              <span>{formatCommentCount(post.commentsCount)}</span>
             </div>
           </div>
         </div>

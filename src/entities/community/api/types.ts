@@ -9,7 +9,6 @@ export interface SubredditResponse {
   is_public: boolean;
   is_nsfw: boolean;
   created_at: string;
-  updated_at: string;
 }
 
 export interface SubredditsApiResponse {

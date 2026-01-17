@@ -3,9 +3,18 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { calculateVoteValue, getVoteState } from '../lib/vote-utils';
 import { VoteType } from '@/shared/api/gql';
 import { useVotePostMutation, useVoteCommentMutation } from '@/shared/api/gql/query-hooks';
-import { queryKeys } from '@/shared/api/query-keys';
 import { logger } from '@/shared/services/logger';
 import { usePostVote, clientStateActions } from '@/shared/stores';
+
+export const queryKeys = {
+  posts: {
+    lists: () => ['posts', 'lists'],
+    detail: (postId: string) => ['posts', 'detail', postId],
+  },
+  comments: {
+    byPost: (postId: string) => ['comments', 'byPost', postId],
+  },
+};
 
 export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
   const storedVote = usePostVote(postId);

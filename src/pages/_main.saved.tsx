@@ -86,7 +86,8 @@ const SavedPostsPageContent = () => {
             <AlertCircle className='h-12 w-12 mx-auto text-destructive mb-4' />
             <h2 className='text-xl font-semibold mb-2'>Failed to load saved posts</h2>
             <p className='text-muted-foreground mb-4'>
-              {error.message || 'Something went wrong. Please try again.'}
+              //TODO:properly type `error` in useSavedPosts hook (Error | null)
+              {(error as Error)?.message ?? 'Something went wrong'}
             </p>
             <Button onClick={handleRetry} disabled={isRetrying} className='gap-2'>
               <RefreshCw className={`h-4 w-4 ${isRetrying ? 'animate-spin' : ''}`} />

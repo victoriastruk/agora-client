@@ -12,7 +12,7 @@ const MIN_SEARCH_LENGTH = 2;
 
 const useMockSearchPostsQuery = (
   query: string,
-  { limit }: { limit: number },
+  { limit }: { limit: number; offset?: number },
   { enabled }: { enabled: boolean },
 ) => {
   const data = enabled
@@ -45,8 +45,14 @@ const useMockSearchCommunitiesQuery = (
     ? Array.from({ length: limit }, (_, i) => ({
         id: `mock-community-${i + 1}`,
         name: `Mock Community ${i + 1} for "${query}"`,
+        display_name: `Mock Community ${i + 1}`,
         description: `Description for community ${i + 1}`,
-        iconUrl: null,
+        icon_url: undefined,
+        member_count: Math.floor(Math.random() * 1000),
+        post_count: Math.floor(Math.random() * 100),
+        is_public: true,
+        is_nsfw: false,
+        created_at: new Date().toISOString(),
       }))
     : [];
   return {
@@ -101,13 +107,13 @@ export const useSearchPosts = (query: string, limit = 20, offset = 0) => {
   };
 };
 
-export const useSearchCommunities = (query: string, limit = 20, offset = 0) => {
+export const useSearchCommunities = (query: string, limit = 20) => {
   const debouncedQuery = useDebounce(query, SEARCH_DEBOUNCE_MS);
   const isValidQuery = debouncedQuery.length >= MIN_SEARCH_LENGTH;
 
   const { data, isLoading, isFetching, error, refetch } = useMockSearchCommunitiesQuery(
     debouncedQuery,
-    { limit, offset },
+    { limit },
     { enabled: isValidQuery },
   );
 
@@ -123,13 +129,13 @@ export const useSearchCommunities = (query: string, limit = 20, offset = 0) => {
   };
 };
 
-export const useSearchUsers = (query: string, limit = 20, offset = 0) => {
+export const useSearchUsers = (query: string, limit = 20) => {
   const debouncedQuery = useDebounce(query, SEARCH_DEBOUNCE_MS);
   const isValidQuery = debouncedQuery.length >= MIN_SEARCH_LENGTH;
 
   const { data, isLoading, isFetching, error, refetch } = useMockSearchUsersQuery(
     debouncedQuery,
-    { limit, offset },
+    { limit },
     { enabled: isValidQuery },
   );
 
