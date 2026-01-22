@@ -64,7 +64,7 @@ const OAuthCallbackPage = () => {
     };
 
     completeOAuth();
-  }, [code, state, error, navigate, queryClient]);
+  }, [code, state, error, navigate]);
 
   return (
     <div className='flex min-h-[50vh] items-center justify-center'>

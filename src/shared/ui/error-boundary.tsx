@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { AlertTriangle, ArrowLeft, Info, RefreshCw } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { ErrorBoundary as ReactErrorBoundary, useErrorBoundary } from 'react-error-boundary';
+import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary';
 
 import { cn } from '../lib';
 import { logger } from '../services/logger';
@@ -181,16 +181,4 @@ export const ErrorBoundary = ({
   );
 };
 
-export const useErrorHandler = () => {
-  const { showBoundary } = useErrorBoundary();
-
-  return (error: unknown) => {
-    const normalizedError = error instanceof Error ? error : new Error('Unexpected error');
-
-    logger.error('Error caught by error handler:', normalizedError, {
-      original: error,
-    });
-
-    showBoundary(normalizedError);
-  };
-};
+// useErrorHandler moved to separate file to fix Fast Refresh warning

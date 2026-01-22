@@ -1,8 +1,10 @@
 import type { AuthView } from '@/shared/stores';
 
+type OnAuthViewChange = (view: AuthView) => void;
+
 interface AuthViewProps {
   onSuccess: VoidFunction;
-  onViewChange: (view: AuthView) => void;
+  onViewChange: OnAuthViewChange;
 }
 
 export type { AuthView, AuthViewProps };

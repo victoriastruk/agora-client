@@ -95,7 +95,37 @@ export const useSearchPosts = (query: string, limit = 20, offset = 0) => {
     { enabled: isValidQuery },
   );
 
-  const posts = useMemo(() => (data ?? []).map(mapPost), [data]);
+  const posts = useMemo(
+    () =>
+      (data ?? []).map(item =>
+        mapPost({
+          id: item.id,
+          title: item.title,
+          content: item.content,
+          community: item.communityId
+            ? {
+                id: item.communityId,
+                name: '',
+                displayName: '',
+                postCount: 0,
+                members: 0,
+                isJoined: false,
+                isPublic: true,
+                isNSFW: false,
+                createdAt: '',
+              }
+            : ({} as any),
+          author: item.author,
+          score: item.score,
+          commentCount: item.commentCount,
+          createdAt: '',
+          userVote: 0,
+          media: undefined,
+          flairs: undefined,
+        }),
+      ),
+    [data],
+  );
 
   return {
     error,
@@ -139,7 +169,22 @@ export const useSearchUsers = (query: string, limit = 20) => {
     { enabled: isValidQuery },
   );
 
-  const users = useMemo(() => (data ?? []).map(mapUser), [data]);
+  const users = useMemo(
+    () =>
+      (data ?? []).map(item =>
+        mapUser({
+          id: item.id,
+          username: '',
+          name: item.name,
+          email: '',
+          bio: undefined,
+          avatarUrl: item.avatarUrl || undefined,
+          karma: 0,
+          createdAt: '',
+        }),
+      ),
+    [data],
+  );
 
   return {
     error,
@@ -173,9 +218,54 @@ export const useSearch = (query: string, limit = 10) => {
     isFetching: usersFetching,
   } = useMockSearchUsersQuery(debouncedQuery, { limit }, { enabled: isValidQuery });
 
-  const posts = useMemo(() => (postsData ?? []).map(mapPost), [postsData]);
+  const posts = useMemo(
+    () =>
+      (postsData ?? []).map(item =>
+        mapPost({
+          id: item.id,
+          title: item.title,
+          content: item.content,
+          community: item.communityId
+            ? {
+                id: item.communityId,
+                name: '',
+                displayName: '',
+                postCount: 0,
+                members: 0,
+                isJoined: false,
+                isPublic: true,
+                isNSFW: false,
+                createdAt: '',
+              }
+            : ({} as any),
+          author: item.author,
+          score: item.score,
+          commentCount: item.commentCount,
+          createdAt: '',
+          userVote: 0,
+          media: undefined,
+          flairs: undefined,
+        }),
+      ),
+    [postsData],
+  );
   const communities = useMemo(() => (communitiesData ?? []).map(mapCommunity), [communitiesData]);
-  const users = useMemo(() => (usersData ?? []).map(mapUser), [usersData]);
+  const users = useMemo(
+    () =>
+      (usersData ?? []).map(item =>
+        mapUser({
+          id: item.id,
+          username: '',
+          name: item.name,
+          email: '',
+          bio: undefined,
+          avatarUrl: item.avatarUrl || undefined,
+          karma: 0,
+          createdAt: '',
+        }),
+      ),
+    [usersData],
+  );
 
   const isLoading = isValidQuery && (postsLoading || communitiesLoading || usersLoading);
   const isFetching = postsFetching || communitiesFetching || usersFetching;

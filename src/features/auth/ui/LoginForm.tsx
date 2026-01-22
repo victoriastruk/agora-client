@@ -8,7 +8,7 @@ import { FloatingInput } from '@/shared/ui/floating-input';
 const FIRST_ERROR_INDEX = 0;
 
 interface LoginFormProps {
-  setView?: (view: AuthView) => void;
+  setView?: (_view: AuthView) => void;
   redirect?: string;
   onSuccess?: VoidFunction;
 }
@@ -57,7 +57,7 @@ const LoginFormFields = ({ form }: { form: ReturnType<typeof useLoginForm>['form
   </>
 );
 
-const LoginFormFooter = ({ setView }: { setView?: (view: AuthView) => void }) => {
+const LoginFormFooter = ({ setView }: { setView?: (_view: AuthView) => void }) => {
   if (!setView) {
     return null;
   }

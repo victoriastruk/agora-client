@@ -1,19 +1,11 @@
-export { Button, buttonVariants } from './button';
-export { Input, inputVariants } from './input';
+export { Button } from './button';
+export { Input } from './input';
 export { Textarea } from './textarea';
 
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  cardVariants,
-} from './card';
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './card';
 
 export { Avatar, AvatarImage, AvatarFallback } from './avatar';
-export { Badge, badgeVariants } from './badge';
+export { Badge } from './badge';
 export { FlairBadge } from './flair-badge';
 
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion';
@@ -79,6 +71,7 @@ export {
   NoSavedPostsEmptyState,
 } from './empty-state';
 
-export { ErrorBoundary, useErrorHandler } from './error-boundary';
+export { ErrorBoundary } from './error-boundary';
+export { useErrorHandler } from './use-error-handler';
 export { ErrorButton } from './error-button';
 export { Spinner } from './spinner';

@@ -1,3 +1,4 @@
+import { logger } from '@sentry/react';
 import type { QueryClient } from '@tanstack/react-query';
 
 // Mock prefetch functions for now
@@ -6,31 +7,31 @@ import type { QueryClient } from '@tanstack/react-query';
 export const prefetchQueries = {
   feed: async (_queryClient: QueryClient, options: { limit: number }) => {
     // Mock prefetch - in real app this would prefetch posts
-    console.log(`[PREFETCH] Feed with limit ${options.limit}`);
+    logger.info(`[PREFETCH] Feed with limit ${options.limit}`);
     return Promise.resolve();
   },
 
   topStories: async (_queryClient: QueryClient, limit: number) => {
     // Mock prefetch - in real app this would prefetch top stories
-    console.log(`[PREFETCH] Top stories with limit ${limit}`);
+    logger.info(`[PREFETCH] Top stories with limit ${limit}`);
     return Promise.resolve();
   },
 
   popularCommunities: async (_queryClient: QueryClient, limit: number) => {
     // Mock prefetch - in real app this would prefetch popular communities
-    console.log(`[PREFETCH] Popular communities with limit ${limit}`);
+    logger.info(`[PREFETCH] Popular communities with limit ${limit}`);
     return Promise.resolve();
   },
 
   post: async (_queryClient: QueryClient, postId: string) => {
     // Mock prefetch - in real app this would prefetch single post
-    console.log(`[PREFETCH] Post with id ${postId}`);
+    logger.info(`[PREFETCH] Post with id ${postId}`);
     return Promise.resolve();
   },
 
   comments: async (_queryClient: QueryClient, postId: string) => {
     // Mock prefetch - in real app this would prefetch comments for post
-    console.log(`[PREFETCH] Comments for post ${postId}`);
+    logger.info(`[PREFETCH] Comments for post ${postId}`);
     return Promise.resolve();
   },
 };

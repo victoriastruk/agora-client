@@ -1,11 +1,13 @@
+import { logger } from '@/shared/services';
+
 //mock
 export const useAppleOAuth = () => {
   const initiateAppleOAuth = async () => {
-    console.log('[MOCK] Apple OAuth start');
+    logger.info('[MOCK] Apple OAuth start');
 
     await new Promise(res => setTimeout(res, 1000));
 
-    console.log('[MOCK] Apple OAuth success');
+    logger.info('[MOCK] Apple OAuth success');
 
     return {
       success: true,

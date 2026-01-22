@@ -16,7 +16,7 @@ interface Props {
   children?: ReactNode;
 }
 
-const AppRouter = ({ router, children }: { router: any; children?: ReactNode }) => {
+const AppRouter = ({ router, children }: { router: AnyRouter; children?: ReactNode }) => {
   const session = useSession();
 
   const context = useMemo(() => ({ queryClient, session }), [session]);

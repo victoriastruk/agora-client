@@ -6,7 +6,7 @@ import type {
   AuthenticatingSession,
   UnauthenticatedSession,
 } from './types';
-
+import { logger } from '@sentry/react';
 const STORAGE_KEY = 'session_user';
 
 const loadUserFromStorage = (): SessionUser | null => {
@@ -21,8 +21,10 @@ const loadUserFromStorage = (): SessionUser | null => {
       parsed !== null &&
       'id' in parsed &&
       'username' in parsed &&
-      typeof (parsed as any).id === 'string' &&
-      typeof (parsed as any).username === 'string'
+      'id' in parsed &&
+      'username' in parsed &&
+      typeof parsed.id === 'string' &&
+      typeof parsed.username === 'string'
     ) {
       return parsed as SessionUser;
     }
@@ -35,14 +37,16 @@ const loadUserFromStorage = (): SessionUser | null => {
 
 const saveUserToStorage = (user: SessionUser | null) => {
   try {
-    if (user) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
-    } else {
+    if (!user) {
       localStorage.removeItem(STORAGE_KEY);
+      return;
     }
-  } catch {}
-};
 
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+  } catch (_error) {
+    logger.error('localStorage error');
+  }
+};
 const initialUser = loadUserFromStorage();
 
 const initialState: SessionState = initialUser

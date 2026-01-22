@@ -24,7 +24,16 @@ export const useUserByUsername = (username: string) => {
   };
 };
 
-export const mapUser = (data: any): User => ({
+export const mapUser = (data: {
+  id: string;
+  username: string;
+  name: string;
+  email: string;
+  bio?: string;
+  avatarUrl?: string;
+  karma: number;
+  createdAt: string;
+}): User => ({
   id: data.id,
   username: data.username,
   name: data.name,

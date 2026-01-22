@@ -7,7 +7,11 @@ import { sessionActions, useSessionState } from './session-store';
 
 import type { SessionUser } from './types';
 
-const mapToSessionUser = (data: any): SessionUser => ({
+const mapToSessionUser = (data: {
+  id: string | number;
+  username: string;
+  email?: string;
+}): SessionUser => ({
   id: String(data.id),
   username: data.username,
   email: data.email ?? undefined,

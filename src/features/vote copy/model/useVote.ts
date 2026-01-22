@@ -54,7 +54,7 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
 
         await votePostMutation.mutateAsync({
           postId,
-          voteType,
+          vote: voteType === VoteType.Upvote ? 1 : -1,
         });
 
         queryClient.invalidateQueries({
@@ -71,7 +71,7 @@ export const useVote = (postId: string, initialVote: -1 | 0 | 1 = 0) => {
         throw error;
       }
     },
-    [postId, currentVote, votePostMutation, queryClient],
+    [postId, currentVote, votePostMutation],
   );
 
   return {
@@ -95,8 +95,8 @@ export const useCommentVote = (commentId: string, postId: string) => {
         const voteType = direction === 'up' ? VoteType.Upvote : VoteType.Downvote;
 
         await voteCommentMutation.mutateAsync({
-          commentId,
-          voteType,
+          postId: commentId,
+          vote: voteType === VoteType.Upvote ? 1 : -1,
         });
 
         queryClient.invalidateQueries({
@@ -107,7 +107,7 @@ export const useCommentVote = (commentId: string, postId: string) => {
         throw error;
       }
     },
-    [commentId, postId, voteCommentMutation, queryClient],
+    [commentId, postId, voteCommentMutation],
   );
 
   return {

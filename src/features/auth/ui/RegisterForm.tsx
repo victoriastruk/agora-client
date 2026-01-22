@@ -6,7 +6,7 @@ import { Button } from '@/shared/ui/button';
 import { FloatingInput } from '@/shared/ui/floating-input';
 
 interface RegisterFormProps {
-  setView?: (view: AuthView) => void;
+  setView?: (_view: AuthView) => void;
   redirect?: string;
   onSuccess?: VoidFunction;
 }

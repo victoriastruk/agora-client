@@ -9,7 +9,7 @@ const useMockCreateCommentMutation = () => {
   }: {
     input: { content: string; parentId?: string; postId: string };
   }) => {
-    console.log('[MOCK] create comment', input);
+    logger.info('[MOCK] create comment', input);
     await new Promise(res => setTimeout(res, 500));
     return {
       createComment: {

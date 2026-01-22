@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
-import type { Post } from './types';
+import type { Post, PostFlair } from './types';
+import type { Community } from '@/entities/community';
 
 const mockPosts: Post[] = Array.from({ length: 20 }, (_, i) => ({
   id: `mock-post-${i + 1}`,
@@ -79,7 +80,26 @@ export const useUserPosts = (userId: string, limit = 20, offset = 0) => {
   };
 };
 
-export const mapPost = (data: any): Post => ({
+export const mapPost = (data: {
+  id: string;
+  title: string;
+  content: string;
+  community: Community;
+  author: {
+    id: string;
+    name: string;
+  };
+  score: number;
+  commentCount: number;
+  createdAt: string;
+  userVote: number;
+  media?: {
+    type: 'image' | 'video' | 'link';
+    url: string;
+    thumb?: string;
+  };
+  flairs?: PostFlair[];
+}): Post => ({
   id: data.id,
   title: data.title,
   content: data.content,
@@ -88,7 +108,7 @@ export const mapPost = (data: any): Post => ({
   score: data.score,
   commentsCount: data.commentCount,
   createdAt: data.createdAt,
-  userVote: data.userVote,
+  userVote: data.userVote as -1 | 0 | 1 | undefined,
   media: data.media,
   flairs: data.flairs,
 });

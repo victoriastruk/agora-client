@@ -10,12 +10,12 @@ import { Textarea } from '@/shared/ui/textarea';
 
 interface CommentItemProps {
   comment: Comment;
-  onReply?: (parentId: string, content: string) => void;
+  onReply?: (_parentId: string, _content: string) => void;
   depth?: number;
 }
 
 interface CommentFormProps {
-  onSubmit: (content: string, parentId?: string) => void;
+  onSubmit: (_content: string, _parentId?: string) => void;
   parentId?: string;
 }
 

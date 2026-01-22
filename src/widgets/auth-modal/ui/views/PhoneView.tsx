@@ -55,7 +55,10 @@ export const PhoneView = ({ mode }: { mode: 'login' | 'register' }) => {
 
         {/* Phone number input */}
         <div className='space-y-2 relative'>
-          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 text-left'>
+          <label
+            htmlFor='phone-input'
+            className='block text-sm font-medium text-gray-700 dark:text-gray-300 text-left'
+          >
             Phone number
           </label>
           <div className='flex'>
@@ -68,6 +71,7 @@ export const PhoneView = ({ mode }: { mode: 'login' | 'register' }) => {
               <span className='text-xs'>{selectedCountry.dialCode}</span>
             </button>
             <input
+              id='phone-input'
               type='tel'
               placeholder='555 123 4567'
               value={localPhoneNumber}

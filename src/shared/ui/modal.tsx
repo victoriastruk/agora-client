@@ -24,7 +24,7 @@ const contentVariants = {
 
 interface ModalContextValue {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  onOpenChange: (_open: boolean) => void;
 }
 
 const ModalContext = React.createContext<ModalContextValue | null>(null);
@@ -40,7 +40,7 @@ const useModalContext = () => {
 interface ModalProps {
   children: React.ReactNode;
   open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+  onOpenChange?: (_open: boolean) => void;
   defaultOpen?: boolean;
 }
 

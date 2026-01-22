@@ -6,7 +6,7 @@ import { cn } from '../lib';
 
 interface ImageUploadProps {
   value?: string;
-  onChange?: (url: string | undefined) => void;
+  onChange?: (_url: string | undefined) => void;
   variant?: 'circle' | 'rectangle' | 'banner';
   size?: 'sm' | 'md' | 'lg';
   placeholder?: string;

@@ -13,7 +13,7 @@ const queryKeys = {
 
 const useMockSavePostMutation = () => {
   const mutateAsync = async ({ postId }: { postId: string }) => {
-    console.log('[MOCK] save post', postId);
+    logger.info('[MOCK] save post', postId);
     await new Promise(res => setTimeout(res, 300));
     return { success: true };
   };
@@ -22,7 +22,7 @@ const useMockSavePostMutation = () => {
 
 const useMockUnsavePostMutation = () => {
   const mutateAsync = async ({ postId }: { postId: string }) => {
-    console.log('[MOCK] unsave post', postId);
+    logger.info('[MOCK] unsave post', postId);
     await new Promise(res => setTimeout(res, 300));
     return { success: true };
   };
@@ -68,7 +68,7 @@ export const usePostActions = (postId: string) => {
       logger.error('Failed to save/unsave post:', error);
       throw error;
     }
-  }, [postId, isSaved, isAuthenticated, savePostMutation, unsavePostMutation, queryClient]);
+  }, [postId, isSaved, isAuthenticated, savePostMutation, unsavePostMutation]);
 
   const share = useCallback(async () => {
     await sharePost(postId);

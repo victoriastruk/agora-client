@@ -14,7 +14,7 @@ interface RadioOption {
 
 interface RadioCardGroupProps {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (_value: string) => void;
   options: RadioOption[];
   direction?: 'horizontal' | 'vertical';
   size?: 'sm' | 'md' | 'lg';

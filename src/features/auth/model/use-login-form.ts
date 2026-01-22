@@ -36,17 +36,17 @@ export const useLoginForm = ({ redirect, onSuccess }: UseLoginFormOptions = {}) 
           navigate({ to: targetUrl });
         } else if (result.error === 'Validation failed' && result.details) {
           // Handle validation errors - set them on form fields
-          result.details.forEach((detail: any) => {
+          result.details.forEach((detail: { field: string; message: string }) => {
             let fieldName = detail.field;
 
             if (fieldName === 'email') {
               fieldName = 'email';
             }
 
-            if (fieldName && formApi.getFieldMeta) {
-              const fieldMeta = formApi.getFieldMeta(fieldName);
+            if (fieldName) {
+              const fieldMeta = (formApi as any).getFieldMeta(fieldName);
               if (fieldMeta) {
-                formApi.setFieldMeta(fieldName, (prev: any) => ({
+                (formApi as any).setFieldMeta(fieldName, (prev: any) => ({
                   ...prev,
                   errors: [detail.message],
                   isValidating: false,
@@ -58,7 +58,7 @@ export const useLoginForm = ({ redirect, onSuccess }: UseLoginFormOptions = {}) 
           // Other errors
           throw new Error(result.error || 'Login failed');
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         logger.error('Login failed', error);
         throw error;
       }

@@ -25,20 +25,20 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   if (response.ok) {
     try {
       data = await response.json();
-    } catch (e) {
+    } catch (_e) {
       data = { message: 'Success but failed to parse response' };
     }
   } else {
     // For error responses, try to get error details
     try {
       data = await response.json();
-    } catch (e) {
+    } catch (_e) {
       try {
         const text = await response.text();
         data = {
           error: text || `HTTP ${response.status}: ${response.statusText}`,
         };
-      } catch (textError) {
+      } catch (_textError) {
         data = { error: `HTTP ${response.status}: ${response.statusText}` };
       }
     }

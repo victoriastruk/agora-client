@@ -2,6 +2,10 @@ import { apiClient } from '../client';
 
 import type { LoginRequest, RegisterRequest, AuthResponse } from './types';
 
+interface CurrentUserResponse extends AuthResponse {
+  // Additional fields if needed
+}
+
 export const authApi = {
   login: (credentials: LoginRequest): Promise<AuthResponse> =>
     apiClient.request<AuthResponse>('/auth/login', {
@@ -25,8 +29,8 @@ export const authApi = {
       method: 'POST',
     }),
 
-  getCurrentUser: (): Promise<any> =>
-    apiClient.request<any>('/me', {
+  getCurrentUser: (): Promise<CurrentUserResponse> =>
+    apiClient.request<CurrentUserResponse>('/me', {
       method: 'GET',
     }),
 

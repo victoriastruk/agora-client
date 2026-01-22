@@ -99,19 +99,5 @@ export default defineConfig(({ envMode }) => {
       strictPort: true,
       cors: true,
     },
-
-    tools: {
-      rspack: {
-        cache: true,
-        watchOptions: {
-          ignored: /node_modules/,
-          aggregateTimeout: 100,
-          poll: false,
-        },
-        optimization: {
-          sideEffects: true,
-        },
-      },
-    },
   };
 });

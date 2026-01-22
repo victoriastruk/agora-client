@@ -9,6 +9,7 @@ import { PostDetailWidget } from '@/widgets/post-detail';
 import { PostLoadingSkeletonWidget } from '@/widgets/post-loading-skeleton';
 import { PostNotFoundWidget } from '@/widgets/post-not-found';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useComments = (postId: string) => {
   const comments = useMemo(
     () =>

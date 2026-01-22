@@ -8,7 +8,7 @@ export const router = createRouter({
   routeTree,
   context: {
     queryClient,
-    session: undefined!,
+    session: undefined as never, // Will be provided by AppProviders
   },
 });
 

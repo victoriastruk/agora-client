@@ -41,7 +41,7 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
             const targetUrl = redirect ?? '/';
             navigate({ to: targetUrl });
           } catch (loginError) {
-            console.error('Auto-login failed:', loginError);
+            logger.error('Auto-login failed:', loginError);
 
             logger.error('Auto-login after registration failed', loginError);
             onSuccess?.();
@@ -49,25 +49,24 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
             navigate({ to: targetUrl });
           }
         } else if (result.error === 'Validation failed' && result.details) {
-          result.details.forEach((detail: any) => {
+          result.details.forEach((detail: { field: string; message: string }) => {
             const fieldName = detail.field;
 
-            if (fieldName && formApi.getFieldMeta) {
-              const fieldMeta = formApi.getFieldMeta(fieldName);
+            if (fieldName) {
+              const fieldMeta = (formApi as any).getFieldMeta(fieldName);
               if (fieldMeta) {
-                formApi.setFieldMeta(fieldName, (prev: any) => ({
+                (formApi as any).setFieldMeta(fieldName, (prev: any) => ({
                   ...prev,
                   errors: [detail.message],
                   isValidating: false,
                 }));
-              } else {
               }
             }
           });
         } else {
           throw new Error(result.error || 'Registration failed');
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         logger.error('Registration failed', error);
         throw error;
       }

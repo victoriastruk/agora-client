@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router';
 import { LogIn } from 'lucide-react';
 import { useEffect, Suspense } from 'react';
-
+import { logger } from '@sentry/react';
 import { useIsAuthenticated } from '@/entities/session';
 import { authModalActions } from '@/shared/stores';
 import { Card, CardContent, Button, Spinner } from '@/shared/ui';
@@ -22,7 +22,7 @@ const CreatePostModalRouteContent = () => {
 
   useEffect(() => {
     router.preloadRoute({ to: '/' }).catch(error => {
-      console.error(error);
+      logger.error(error);
     });
   }, [router]);
 

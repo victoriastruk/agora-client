@@ -11,7 +11,7 @@ import { notificationActions } from '@/shared/stores';
 
 interface UseCreatePostFormOptions {
   defaultCommunityId?: string;
-  onSuccess?: (postId: string) => void;
+  onSuccess?: (_postId: string) => void;
   navigateOnSuccess?: boolean;
 }
 
@@ -21,7 +21,7 @@ const useMockCreatePostMutation = () => {
   }: {
     input: { communityId: string; title: string; content?: string; type: 'text' };
   }) => {
-    console.log('[MOCK] create post', input);
+    logger.info('[MOCK] create post', input);
     await new Promise(res => setTimeout(res, 500));
     return {
       createPost: {

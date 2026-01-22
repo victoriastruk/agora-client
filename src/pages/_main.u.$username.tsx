@@ -24,7 +24,7 @@ const UserProfilePageContent = () => {
 
   const { user, isLoading: userLoading } = useUserByUsername(username);
   const { posts, isLoading: postsLoading } = useUserPosts(user?.id ?? '', 20, 0);
-  const comments: any[] = []; // TODO: Implement useUserComments
+  const comments: { id: string; createdAt: string; votes: number; content: string }[] = []; // TODO: Implement useUserComments
   const commentsLoading = false;
 
   if (userLoading) {
