@@ -280,7 +280,6 @@ const SearchPageContent = () => {
   );
 };
 
-
 export const Route = createFileRoute('/_main/search')({
   component: SearchPage,
   validateSearch: (search: Record<string, unknown>) => ({

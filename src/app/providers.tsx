@@ -1,6 +1,6 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { RouterProvider } from '@tanstack/react-router';
+import { RouterProvider, type AnyRouter } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import { Toaster } from 'sonner';
 
@@ -12,17 +12,14 @@ import { queryClient } from '@/shared/utils';
 import './global.css';
 
 interface Props {
-  router: any;
+  router: AnyRouter;
   children?: ReactNode;
 }
 
 const AppRouter = ({ router, children }: { router: any; children?: ReactNode }) => {
   const session = useSession();
 
-  const context = useMemo(
-    () => ({ queryClient, session }),
-    [session.isAuthenticated, session.user?.id],
-  );
+  const context = useMemo(() => ({ queryClient, session }), [session]);
 
   return (
     <>

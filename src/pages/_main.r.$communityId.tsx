@@ -96,7 +96,6 @@ const CommunityPageContent = () => {
   );
 };
 
-
 export const Route = createFileRoute('/_main/r/$communityId')({
   component: CommunityPage,
 });

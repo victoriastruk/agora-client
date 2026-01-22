@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/ui';
+import { notificationActions } from '@/shared/stores';
 
 interface Community {
   id: string;
@@ -40,7 +41,9 @@ export const CreatePostModal = ({ trigger, defaultCommunities = [] }: CreatePost
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Post created!\nCommunity: ${communityId}\nTitle: ${title}\nContent: ${content}`);
+    notificationActions.success(
+      `Post created!\nCommunity: ${communityId}\nTitle: ${title}\nContent: ${content}`,
+    );
     handleClose();
   };
 

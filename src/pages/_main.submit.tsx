@@ -65,17 +65,8 @@ const CreatePostModalRouteContent = () => {
     );
   }
 
-  return (
-    <CreatePostModal
-      defaultOpen
-      onClose={handleClose}
-      onSuccess={() => {
-        navigate({ to: '/' });
-      }}
-    />
-  );
+  return <CreatePostModal />;
 };
-
 
 export const Route = createFileRoute('/_main/submit')({
   component: CreatePostModalRoute,

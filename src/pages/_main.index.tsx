@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { lazy, Suspense } from 'react';
 
 import { Spinner } from '@/shared/ui';
+import { prefetchQueries } from '@/shared/utils';
 
 const Feed = lazy(() => import('../widgets/feed').then(module => ({ default: module.Feed })));
 
@@ -20,11 +21,11 @@ export const Route = createFileRoute('/_main/')({
   loader: async ({ context }) => {
     const { queryClient } = context;
 
-    // await Promise.all([
-    //   prefetchQueries.feed(queryClient, { limit: 20 }),
-    //   prefetchQueries.topStories(queryClient, 6),
-    //   prefetchQueries.popularCommunities(queryClient, 5),
-    // ]);
+    await Promise.all([
+      prefetchQueries.feed(queryClient, { limit: 20 }),
+      prefetchQueries.topStories(queryClient, 6),
+      prefetchQueries.popularCommunities(queryClient, 5),
+    ]);
 
     return {};
   },

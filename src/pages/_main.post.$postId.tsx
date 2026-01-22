@@ -3,6 +3,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { Suspense } from 'react';
 import { usePost } from '@/entities/post';
 import { Spinner } from '@/shared/ui';
+import { prefetchQueries } from '@/shared/utils';
 import { CommentSectionWidget } from '@/widgets/comment-section';
 import { PostDetailWidget } from '@/widgets/post-detail';
 import { PostLoadingSkeletonWidget } from '@/widgets/post-loading-skeleton';
@@ -38,7 +39,7 @@ const PostDetailPage = () => {
 const PostDetailPageContent = () => {
   const { postId } = Route.useParams();
   const { post, isLoading: postLoading } = usePost(postId);
-  const { comments, isLoading: commentsLoading } = useComments(postId);
+  const { isLoading: commentsLoading } = useComments(postId);
   const isLoading = postLoading || commentsLoading;
 
   if (isLoading) {
@@ -52,7 +53,7 @@ const PostDetailPageContent = () => {
   return (
     <div className='container mx-auto max-w-4xl p-4 space-y-6'>
       <PostDetailWidget post={post} />
-      <CommentSectionWidget postId={postId} />
+      <CommentSectionWidget />
     </div>
   );
 };
@@ -63,10 +64,10 @@ export const Route = createFileRoute('/_main/post/$postId')({
     const { queryClient } = context;
     const { postId } = params;
 
-    // await Promise.all([
-    //   prefetchQueries.post(queryClient, postId),
-    //   prefetchQueries.comments(queryClient, postId),
-    // ]);
+    await Promise.all([
+      prefetchQueries.post(queryClient, postId),
+      prefetchQueries.comments(queryClient, postId),
+    ]);
 
     return { postId };
   },

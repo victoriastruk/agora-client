@@ -21,11 +21,7 @@ export const useCommentSection = () => {
 
     if (parentId) {
       setComments(prev =>
-        prev.map(c =>
-          c.id === parentId
-            ? { ...c, replies: [...c.replies, newComment] }
-            : c,
-        ),
+        prev.map(c => (c.id === parentId ? { ...c, replies: [...c.replies, newComment] } : c)),
       );
     } else {
       setComments(prev => [newComment, ...prev]);

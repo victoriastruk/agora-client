@@ -95,13 +95,7 @@ export const AuthModal = () => {
         return <ResetView onViewChange={handleViewChange} />;
       }
       case 'phone': {
-        return (
-          <PhoneView
-            onSuccess={handleSuccess}
-            onViewChange={handleViewChange}
-            mode={phoneMode || 'login'}
-          />
-        );
+        return <PhoneView mode={phoneMode || 'login'} />;
       }
       default: {
         return;

@@ -23,15 +23,12 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
       username: '',
     },
     onSubmit: async ({ value, formApi }) => {
-      console.log('Register form submitted with values:', JSON.stringify(value, null, 2));
       try {
         const result = await registerMutation.mutateAsync({
           email: value.email,
           password: value.password,
           username: value.username,
         });
-
-        console.log('Registration result:', JSON.stringify(result, null, 2));
 
         if (result.message === 'Registration successful') {
           try {
@@ -54,7 +51,6 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
         } else if (result.error === 'Validation failed' && result.details) {
           result.details.forEach((detail: any) => {
             const fieldName = detail.field;
-            console.log(`Setting error for field ${fieldName}: ${detail.message}`);
 
             if (fieldName && formApi.getFieldMeta) {
               const fieldMeta = formApi.getFieldMeta(fieldName);
@@ -65,7 +61,6 @@ export const useRegisterForm = ({ redirect, onSuccess }: UseRegisterFormOptions 
                   isValidating: false,
                 }));
               } else {
-                console.log(`Field ${fieldName} not found in form`);
               }
             }
           });

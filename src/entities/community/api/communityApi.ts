@@ -22,10 +22,11 @@ export const communityApi = {
 
   createSubreddit: async (data: CreateSubredditData) => {
     const formData = new FormData();
+    const isPublic = data.is_public === 'public';
 
     formData.append('name', data.name);
     formData.append('display_name', data.display_name);
-    formData.append('is_private', String(data.is_private));
+    formData.append('is_public', String(isPublic));
     formData.append('is_nsfw', String(data.is_nsfw));
 
     if (data.description) {

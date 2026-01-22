@@ -4,18 +4,18 @@ import * as React from 'react';
 
 import { cn } from '../lib';
 
-interface RadioOption<T extends string = string> {
-  value: T;
+interface RadioOption {
+  value: string;
   label: string;
   description?: string;
   icon?: React.ElementType;
   disabled?: boolean;
 }
 
-interface RadioCardGroupProps<T extends string = string> {
-  value: T;
-  onChange: (value: T) => void;
-  options: RadioOption<T>[];
+interface RadioCardGroupProps {
+  value: string;
+  onChange: (value: string) => void;
+  options: RadioOption[];
   direction?: 'horizontal' | 'vertical';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
@@ -53,7 +53,7 @@ const sizeClasses = {
   },
 };
 
-export const RadioCardGroup = <T extends string = string>({
+export const RadioCardGroup = ({
   value,
   onChange,
   options,
@@ -62,7 +62,7 @@ export const RadioCardGroup = <T extends string = string>({
   className,
   name,
   disabled = false,
-}: RadioCardGroupProps<T>) => {
+}: RadioCardGroupProps) => {
   const config = sizeClasses[size];
 
   const handleKeyDown = React.useCallback(
@@ -107,7 +107,7 @@ export const RadioCardGroup = <T extends string = string>({
 
         return (
           <motion.button
-            key={option.value}
+            key={String(option.value)}
             type='button'
             role='radio'
             aria-checked={isSelected}

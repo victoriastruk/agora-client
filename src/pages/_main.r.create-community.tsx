@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { CreateCommunityForm } from '@/widgets/create-community-form';
 
-
 const CreateCommunityPage = () => {
   return (
     <div className='max-w-3xl mx-auto p-6 space-y-6'>
@@ -10,7 +9,6 @@ const CreateCommunityPage = () => {
         Build a space for your interests and connect with like-minded people
       </p>
       <CreateCommunityForm />
-
     </div>
   );
 };

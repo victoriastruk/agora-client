@@ -48,7 +48,6 @@ export const extractUserFromResponse = (response: unknown): AuthUserData | null 
     if (typeof resp.user === 'object' && resp.user !== null) {
       const user = resp.user as Record<string, unknown>;
       if (typeof user.id === 'number' && typeof user.username === 'string') {
-        console.log('Found nested user object format');
         return {
           id: user.id,
           username: user.username,

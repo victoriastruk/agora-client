@@ -4,16 +4,16 @@ import { Button, Input, Textarea, ImageUpload, RadioCardGroup, FormField } from 
 
 const VISIBILITY_OPTIONS = [
   {
-    value: 'public',
+    value: 'public' as const,
     label: 'Public',
     description: 'Anyone can view, post, and comment',
-    icon: Globe as React.FC<React.SVGProps<SVGSVGElement>>,
+    icon: Globe,
   },
   {
-    value: 'private',
+    value: 'private' as const,
     label: 'Private',
     description: 'Only approved users can view and participate',
-    icon: Lock as React.FC<React.SVGProps<SVGSVGElement>>,
+    icon: Lock,
   },
 ];
 
@@ -39,7 +39,7 @@ export const CreateCommunityForm = () => {
         <form.Field name='banner_url'>
           {field => (
             <ImageUpload
-              value={field.state.value || ''}
+              value={field.state.value}
               onChange={value => field.handleChange(value || '')}
               variant='banner'
               size='lg'
@@ -52,7 +52,10 @@ export const CreateCommunityForm = () => {
         <div className='-mt-12 ml-4 relative z-10 inline-block rounded-full bg-background p-1 shadow-lg'>
           <form.Field name='icon_url'>
             {field => (
-              <ImageUpload value={field.state.value} onChange={file => field.handleChange(file)} />
+              <ImageUpload
+                value={field.state.value}
+                onChange={value => field.handleChange(value || '')}
+              />
             )}
           </form.Field>
         </div>
@@ -65,7 +68,7 @@ export const CreateCommunityForm = () => {
             label='Community name'
             hint='Choose a unique name. This cannot be changed later.'
             htmlFor='community-name'
-            error={field.state.meta.errors?.[0]?.message}
+            error={field.state.meta.errors?.[0]}
           >
             <Input
               id='community-name'
@@ -79,13 +82,13 @@ export const CreateCommunityForm = () => {
       </form.Field>
 
       {/* Display Name */}
-      <form.Field name='displayName'>
+      <form.Field name='display_name'>
         {field => (
           <FormField
             label='Display name'
             hint='This is how your community will appear to users.'
             htmlFor='display-name'
-            error={field.state.meta.errors?.[0]?.message}
+            error={field.state.meta.errors?.[0]}
           >
             <Input
               id='display-name'
@@ -105,7 +108,7 @@ export const CreateCommunityForm = () => {
             label='Description'
             hint='Help people understand what your community is about.'
             htmlFor='description'
-            error={field.state.meta.errors?.[0]?.message}
+            error={field.state.meta.errors?.[0]}
           >
             <Textarea
               id='description'
@@ -129,7 +132,9 @@ export const CreateCommunityForm = () => {
             </h3>
             <RadioCardGroup
               value={field.state.value}
-              onChange={field.handleChange}
+              onChange={(value: string) => {
+                field.setValue(value as 'public' | 'private');
+              }}
               options={VISIBILITY_OPTIONS}
               size='md'
             />

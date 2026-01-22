@@ -3,7 +3,6 @@ import { formatDistanceToNow } from 'date-fns';
 import { Calendar, Award, MessageSquare, FileText } from 'lucide-react';
 import { useState, Suspense } from 'react';
 
-import { useUserComments } from '@/entities/comment';
 import { useUserPosts } from '@/entities/post';
 import { useUserByUsername } from '@/entities/user';
 import { Tabs, TabsContent, TabsList, TabsTrigger, Spinner } from '@/shared/ui';
@@ -25,7 +24,8 @@ const UserProfilePageContent = () => {
 
   const { user, isLoading: userLoading } = useUserByUsername(username);
   const { posts, isLoading: postsLoading } = useUserPosts(user?.id ?? '', 20, 0);
-  const { comments, isLoading: commentsLoading } = useUserComments(user?.id ?? '', 20, 0);
+  const comments: any[] = []; // TODO: Implement useUserComments
+  const commentsLoading = false;
 
   if (userLoading) {
     return (

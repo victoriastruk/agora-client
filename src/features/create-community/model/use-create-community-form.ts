@@ -7,8 +7,9 @@ export const useCreateCommunityForm = () => {
       name: '',
       display_name: '',
       description: '',
-      icon_url: null,
-      is_public: true,
+      icon_url: '',
+      banner_url: '',
+      is_public: 'public' as 'public' | 'private',
       is_nsfw: false,
     } satisfies CreateSubredditFormValues,
 

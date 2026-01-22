@@ -19,9 +19,9 @@ export interface CreateSubredditData {
   name: string;
   display_name: string;
   description?: string;
-  icon_url?: File | null;
-  banner_url?: File;
-  is_private: boolean;
+  icon_url?: string;
+  banner_url?: string;
+  is_public: 'public' | 'private';
   is_nsfw: boolean;
 }
 

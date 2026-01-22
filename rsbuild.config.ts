@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from '@rsbuild/core';
+import { defineConfig } from '@rsbuild/core';
 import { reactAppPreset } from './rsbuild.preset.react';
 
 export default defineConfig(({ envMode }) => {
@@ -11,19 +11,54 @@ export default defineConfig(({ envMode }) => {
     | 'development'
     | 'production';
 
-  const preset = reactAppPreset({
-    mode,
-    analyze: Boolean(process.env.BUNDLE_ANALYZE),
-  });
-
   return {
     mode,
-    ...preset,
+    plugins: [
+      reactAppPreset({
+        mode,
+        analyze: Boolean(process.env.BUNDLE_ANALYZE),
+      }),
+    ],
     source: {
       entry: { index: './src/app/index.tsx' },
       define: {
         __APP_ENV__: JSON.stringify(mode),
         __BACKEND_URL__: JSON.stringify(backendUrl),
+      },
+      include: [
+        {
+          test: /\.tsx?$/,
+          type: 'javascript/auto',
+        },
+      ],
+    },
+    tools: {
+      rspack: {
+        cache: true,
+        watchOptions: {
+          ignored: /node_modules/,
+          aggregateTimeout: 100,
+          poll: false,
+        },
+        optimization: {
+          sideEffects: true,
+        },
+      },
+      swc: {
+        jsc: {
+          parser: {
+            syntax: 'typescript',
+            tsx: true,
+            decorators: true,
+          },
+          transform: {
+            react: {
+              runtime: 'automatic',
+              development: mode === 'development',
+              refresh: mode === 'development',
+            },
+          },
+        },
       },
     },
     resolve: {
@@ -67,10 +102,10 @@ export default defineConfig(({ envMode }) => {
 
     tools: {
       rspack: {
-        cache: { type: 'filesystem' },
+        cache: true,
         watchOptions: {
           ignored: /node_modules/,
-          aggregateTimout: 100,
+          aggregateTimeout: 100,
           poll: false,
         },
         optimization: {
